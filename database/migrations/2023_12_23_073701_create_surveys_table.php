@@ -12,15 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surveys', function (Blueprint $table) {
+        $status = [
+            Survey::VERY_SATISFIED->value,
+            Survey::SATISFIED->value,
+            Survey::NEUTRAL->value,
+            Survey::UPSET->value,
+            Survey::VERY_UPSET->value
+        ];
+
+        Schema::create('surveys', function (Blueprint $table) use ($status) {
             $table->id();
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->enum('facilities', [Survey::VERY_SATISFIED->value, Survey::SATISFIED->value, Survey::NEUTRAL->value, Survey::UPSET->value, Survey::VERY_UPSET->value]);
-            $table->enum('organization', [Survey::VERY_SATISFIED->value, Survey::SATISFIED->value, Survey::NEUTRAL->value, Survey::UPSET->value, Survey::VERY_UPSET->value]);
-            $table->enum('events', [Survey::VERY_SATISFIED->value, Survey::SATISFIED->value, Survey::NEUTRAL->value, Survey::UPSET->value, Survey::VERY_UPSET->value]);
-            $table->enum('access', [Survey::VERY_SATISFIED->value, Survey::SATISFIED->value, Survey::NEUTRAL->value, Survey::UPSET->value, Survey::VERY_UPSET->value]);
+            $table->enum('facilities', $status);
+            $table->enum('organization', $status);
+            $table->enum('events', $status);
+            $table->enum('access', $status);
             $table->timestamps();
         });
     }

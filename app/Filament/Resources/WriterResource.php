@@ -2,16 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\WriterResource\Pages;
-use App\Filament\Resources\WriterResource\RelationManagers;
-use App\Models\Writer;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Writer;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\WriterResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\WriterResource\RelationManagers;
+use App\Filament\Resources\WriterResource\RelationManagers\WorksRelationManager;
+use Filament\Infolists\Components\TextEntry;
 
 class WriterResource extends Resource
 {
@@ -31,47 +34,53 @@ class WriterResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Grid::make(1)
+                Forms\Components\Section::make('البيانات الشخصية')
                 ->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->label('الإسم')
-                        ->placeholder('إسم الأديب')
-                        ->required()
-                        ->minLength(3)
-                        ->maxLength(255)
-                        ->rules('required|min:3|max:255'),
+                    Forms\Components\Grid::make(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('الإسم')
+                            ->placeholder('إسم الأديب')
+                            ->required()
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->rules('required|min:3|max:255'),
+        
+                        Forms\Components\DatePicker::make('birthday')
+                            ->label('يوم الميلاد')
+                            ->placeholder('يوم ميلاد الأديب')
+                            ->required()
+                            ->rules('required'),
     
-                    Forms\Components\RichEditor::make('about')
-                        ->label('نبذة')
-                        ->placeholder('نبذة عن الأديب')
-                        ->required()
-                        ->minLength(10)
-                        ->rules('required|string'),
-
-                    Forms\Components\RichEditor::make('quote')
-                        ->label('اقتباس')
-                        ->placeholder('اقتباسات للأديب')
-                        ->required()
-                        ->minLength(10)
-                        ->rules('required'),
+                        Forms\Components\DatePicker::make('deathday')
+                            ->label('يوم الوفاة')
+                            ->placeholder('يوم وفاة الأديب')
+                            ->required()
+                            ->rules('required'),
+                    ]),
                 ]),
 
-                Forms\Components\Grid::make(2)
+                Forms\Components\Section::make('نبذة عن الأديب')
                 ->schema([
-                    Forms\Components\DatePicker::make('birthday')
-                        ->label('يوم الميلاد')
-                        ->placeholder('يوم ميلاد الأديب')
-                        ->required()
-                        ->rules('required'),
-
-                    Forms\Components\DatePicker::make('deathday')
-                        ->label('يوم الوفاة')
-                        ->placeholder('يوم وفاة الأديب')
-                        ->required()
-                        ->rules('required'),
+                    Forms\Components\RichEditor::make('about')
+                    ->label('نبذة')
+                    ->placeholder('نبذة عن الأديب')
+                    ->required()
+                    ->minLength(10)
+                    ->rules('required|string'),
                 ]),
 
-                Forms\Components\Grid::make(1)
+                Forms\Components\Section::make('اقتباسات للأديب')
+                ->schema([
+                    Forms\Components\RichEditor::make('quote')
+                    ->label('اقتباس')
+                    ->placeholder('اقتباسات للأديب')
+                    ->required()
+                    ->minLength(10)
+                    ->rules('required'),
+                ]),
+
+                Forms\Components\Section::make('مرفقات للأديب')
                 ->schema([
                     Forms\Components\FileUpload::make('attachments')
                         ->label('المرفقات')
@@ -85,16 +94,15 @@ class WriterResource extends Resource
                         ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain'])
                 ]),
 
+                /*
                 Forms\Components\Grid::make(1)
                 ->schema([
                     Forms\Components\Select::make('work_id')
                         ->label('الأعمال')
-                        ->required()
                         ->relationship('works', 'title')
                         ->multiple()
                         ->searchable()
                         ->selectablePlaceholder(false)
-                        ->minItems(1)
                         ->createOptionForm([
                             Forms\Components\Grid::make(1)
                             ->schema([
@@ -125,8 +133,9 @@ class WriterResource extends Resource
                                     ->downloadable()
                                     ->previewable()
                             ])
-                        ]),                
-                    ])
+                        ])
+                ])
+                */
             ]);
     }
 
@@ -174,10 +183,38 @@ class WriterResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                \Filament\Infolists\Components\Section::make('معلومات شخصية')->columns(3)->schema([
+                    \Filament\Infolists\Components\TextEntry::make('name')
+                    ->label('الإسم'),
+
+                \Filament\Infolists\Components\TextEntry::make('birthday')
+                    ->label('يوم الميلاد'),
+
+                \Filament\Infolists\Components\TextEntry::make('deathday')
+                    ->label('يوم الوفاة')
+                    ->dateTime('M j, Y'),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('الإضافة')->columns(2)->schema([
+                    \Filament\Infolists\Components\TextEntry::make('created_at')
+                    ->label('تاريخ الإضافة')
+                    ->dateTime('M j, Y'),
+
+                    \Filament\Infolists\Components\TextEntry::make('updated_at')
+                        ->label('تاريخ آخر تحديث')
+                        ->dateTime('M j, Y'),
+                ]),
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            WorksRelationManager::class
         ];
     }
 

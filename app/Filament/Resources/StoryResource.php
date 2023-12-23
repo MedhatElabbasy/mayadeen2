@@ -33,23 +33,26 @@ class StoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Grid::make(1)
+                Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\TextInput::make('title')
-                        ->label('الإسم')
-                        ->placeholder('إسم الأقصوصة')
-                        ->required()
-                        ->minLength(3)
-                        ->maxLength(255)
-                        ->rules('required|min:3|max:255'),
-    
-                    Forms\Components\RichEditor::make('content')
-                        ->label('المحتوي')
-                        ->placeholder('محتوي الأقصوصة')
-                        //->toolbarButtons(['bold', 'italic', 'link', 'clean'])
-                        ->required()
-                        ->minLength(10)
-                        ->rules('required|string'),
+                    Forms\Components\Grid::make(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label('الإسم')
+                            ->placeholder('إسم الأقصوصة')
+                            ->required()
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->rules('required|min:3|max:255'),
+        
+                        Forms\Components\RichEditor::make('content')
+                            ->label('المحتوي')
+                            ->placeholder('محتوي الأقصوصة')
+                            //->toolbarButtons(['bold', 'italic', 'link', 'clean'])
+                            ->required()
+                            ->minLength(10)
+                            ->rules('required|string'),
+                    ])
                 ])
             ]);
     }
@@ -88,6 +91,28 @@ class StoryResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                \Filament\Infolists\Components\Section::make('إسم الأقصوصة')
+                ->schema([
+                    \Filament\Infolists\Components\TextEntry::make('title')
+                    ->label('الإسم')
+                    ->hiddenLabel(),
+                 ]),
+
+                 \Filament\Infolists\Components\Section::make('محتوي الأقصوصة')
+                 ->schema([
+ 
+                     \Filament\Infolists\Components\TextEntry::make('content')
+                         ->label('المحتوي')
+                         ->hiddenLabel()
+                         ->html(),
+                  ])
+            ]);
+    }
+    
     public static function getRelations(): array
     {
         return [

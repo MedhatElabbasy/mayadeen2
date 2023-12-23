@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\WorkResource\Pages;
-use App\Filament\Resources\WorkResource\RelationManagers;
-use App\Models\Work;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Work;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\WorkResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\WorkResource\RelationManagers;
+use App\Filament\Resources\WorkResource\RelationManagers\WritersRelationManager;
 
 class WorkResource extends Resource
 {
@@ -31,34 +33,37 @@ class WorkResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Grid::make(1)
+                Forms\Components\Section::make("العمل")
                 ->schema([
-                    Forms\Components\TextInput::make('title')
-                        ->label('الإسم')
-                        ->required()
-                        ->placeholder('إسم العمل')
-                        ->minLength(3)
-                        ->maxLength(255)
-                        ->rules('required|min:3|max:255'),
+                    Forms\Components\Grid::make(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label('الإسم')
+                            ->required()
+                            ->placeholder('إسم العمل')
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->rules('required|min:3|max:255'),
+        
+                        Forms\Components\RichEditor::make('description')
+                            ->label('وصف')
+                            ->required()
+                            ->placeholder('وصف عن العمل')
+                            ->minLength(10)
+                            ->rules('required|string'),
+                    ]),
     
-                    Forms\Components\RichEditor::make('description')
-                        ->label('وصف')
-                        ->required()
-                        ->placeholder('وصف عن العمل')
-                        ->minLength(10)
-                        ->rules('required|string'),
-                ]),
-
-                Forms\Components\Grid::make(1)
-                ->schema([
-                    Forms\Components\FileUpload::make('image')
-                        ->label('الصورة')
-                        ->required()
-                        ->image()
-                        ->imageEditor()
-                        ->openable()
-                        ->downloadable()
-                        ->previewable()
+                    Forms\Components\Grid::make(1)
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('الصورة')
+                            ->required()
+                            ->image()
+                            ->imageEditor()
+                            ->openable()
+                            ->downloadable()
+                            ->previewable()
+                    ])
                 ])
             ]);
     }
@@ -67,7 +72,7 @@ class WorkResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                   Tables\Columns\TextColumn::make('title')
                     ->label('الإسم')
                     ->searchable(),
 
@@ -99,11 +104,40 @@ class WorkResource extends Resource
                 ]),
             ]);
     }
+    
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                \Filament\Infolists\Components\Section::make('العمل')
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('title')
+                        ->label('الإسم')
+                        ->hiddenLabel(),
+                    ]),
+
+                \Filament\Infolists\Components\Section::make('الوصف')
+                ->schema([
+                    \Filament\Infolists\Components\TextEntry::make('description')
+                    ->label('الوصف')
+                    ->html()
+                    ->hiddenLabel(),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('الصورة')
+                ->schema([
+                    \Filament\Infolists\Components\ImageEntry::make('image')
+                    ->label('الصورة')
+                    ->size(250)
+                    ->hiddenLabel(),
+                ]),
+            ]);
+    }
 
     public static function getRelations(): array
     {
         return [
-            //
+            WritersRelationManager::class
         ];
     }
 
