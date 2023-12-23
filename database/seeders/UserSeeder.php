@@ -14,14 +14,11 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::firstOrCreate([
-            [
-                'email' => 'admin@email.com'
-            ],
-            [
-                'name' =>  'Admin',
-                'password' => 'admin',
-                'email_verified_at' => now(),
-            ]
+            'email' => 'admin@email.com',
+        ], [
+            'name' => 'Admin',
+            'password' => 'admin',
+            'email_verified_at' => now(),
         ]);
     }
 }
