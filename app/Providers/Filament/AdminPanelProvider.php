@@ -53,6 +53,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -67,6 +68,8 @@ class AdminPanelProvider extends PanelProvider
                 StickyHeaderPlugin::make()
                 ->floating()
                 ->colored(),
+
+                \Hasnayeen\Themes\ThemesPlugin::make()
             ])
             ->globalSearchKeyBindings(['command+k', "ctrl+k"])
             ->font(
