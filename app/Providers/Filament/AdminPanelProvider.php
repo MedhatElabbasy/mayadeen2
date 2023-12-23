@@ -59,7 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->spa()
-            ->brandName('ميادين')
+            ->brandName(setting('siteName'))
             ->favicon(asset('images/logo.png'))
             ->plugins([
                 FilamentBackgroundsPlugin::make()
