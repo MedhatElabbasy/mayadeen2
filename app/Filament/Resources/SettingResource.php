@@ -9,12 +9,12 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\SettingsResource\Pages;
+use App\Filament\Resources\SettingResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SettingsResource\RelationManagers;
+use App\Filament\Resources\SettingResource\RelationManagers;
 use Filament\Forms\Components\TextInput;
 
-class SettingsResource extends Resource
+class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;
 
@@ -44,10 +44,12 @@ class SettingsResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('label')
+                    ->label('الخاصية')
                     ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('value')
+                    ->label('القيمة')
                     ->formatStateUsing(fn ($state) => $state === null ? 'Empty' : $state)
                     ->sortable()
                     ->searchable(),
@@ -78,7 +80,7 @@ class SettingsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageSettings::route('/'),
+            'index' => Pages\ManageSetting::route('/'),
         ];
     }
 }
