@@ -2,13 +2,13 @@
  
 use function Laravel\Folio\name;
  
-name('home.index');
+name('challenge.index');
 
 ?>
 
 @extends('layouts.app')
 
-@section('title', 'مرحبا')
+@section('title', 'تحدي نفسك')
 
 @section('content')
 <div class="img-btn">
@@ -20,8 +20,8 @@ name('home.index');
 
 
     @guest
-    <a href="/challenge" wire:navigate>
-        <h2>تحدي نفسك</h2>
+    <a href="#">
+        <h2>تحد نفسك</h2>
     </a>   
     @endguest
 
