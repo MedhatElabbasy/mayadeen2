@@ -87,16 +87,8 @@ class WriterResource extends Resource
 
                 Forms\Components\Grid::make(1)
                 ->schema([
-                    Forms\Components\CheckboxList::make('work_id')
-                    ->label('الأعمال')
-                    ->required()
-                    ->searchable()
-                    ->relationship('works', 'title')
-                    ->rules(['max:2']),
-
                     Forms\Components\Select::make('work_id')
                         ->label('الأعمال')
-                        ->hiddenLabel()
                         ->required()
                         ->relationship('works', 'title')
                         ->multiple()
