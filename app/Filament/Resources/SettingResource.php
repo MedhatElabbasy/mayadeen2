@@ -42,6 +42,7 @@ class SettingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'asc')
             ->columns([
                 Tables\Columns\TextColumn::make('label')
                     ->label('الخاصية')
