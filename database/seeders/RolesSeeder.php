@@ -2,23 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class UserSeeder extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::firstOrCreate([
-            'email' => 'admin@email.com',
+        Role::firstOrCreate([
+            'name' => 'superAdmin',
         ], [
-            'name' => 'Admin',
-            'password' => 'admin',
-            'email_verified_at' => now(),
+            'name' => 'superAdmin',
         ]);
     }
 }
