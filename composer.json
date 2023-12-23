@@ -19,6 +19,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "livewire/volt": "^1.6",
         "spatie/laravel-permission": "^6.2",
         "swisnl/filament-backgrounds": "^1.1"
     },

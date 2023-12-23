@@ -1,16 +1,8 @@
-<?php
- 
-use function Laravel\Folio\name;
- 
-name('home.index');
+<x-layouts.app title="مرحبا">
+@volt
+<link rel="stylesheet" href="{{asset('website/css/style.css')}}" />
 
-?>
-
-@extends('layouts.app')
-
-@section('title', 'مرحبا')
-
-@section('content')
+<div class="app">
 <div class="img-btn">
     <img class="red-small-btn" src="{{asset('website/images/red-small-btn.svg')}}" alt="" />
 
@@ -26,4 +18,6 @@ name('home.index');
     @endguest
 
 </div>
-@endsection
+</div>
+@endvolt
+</x-layouts.app>

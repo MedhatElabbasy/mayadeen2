@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,6 +11,7 @@
         rel="stylesheet"
     />
     <!-- css files-->
+    <link rel="stylesheet" href="{{asset('website/css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('website/css/global-style.css')}}" />
     <!-- bootstrap link-->
     <link
@@ -19,9 +20,8 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <title>@yield('title') | {{setting('siteName')}}</title>
+    <title>{{ $title ?? '' }} | {{setting('siteName')}}</title>
 
-    @stack('head')
   </head>
   <body>
     <img class="top-right" src="{{asset('website/images/column.svg')}}" alt="" />
@@ -32,12 +32,11 @@
 
     <div>
 
-        @yield('content')
+        {{ $slot }}
 
     </div>
 
     <img class="bottom-left" src="{{asset('website/images/column.svg')}}" alt="" />
 
-    @stack('body')
   </body>
 </html>
