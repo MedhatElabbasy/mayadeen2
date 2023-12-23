@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="545.372" height="430.263" viewBox="0 0 545.372 430.263">
+  <g id="Group_14" data-name="Group 14" transform="translate(-6507.314 -324.869)">
+    <path id="Path_38" data-name="Path 38" d="M7011.289,324.869H6548.844l4.26,41.786h-45.79V712.343h43.926l-5.99,42.789h468.3l-5.99-42.789h45.124V367.1H7007.03l4.259-42.231" fill="#4985af"/>
+    <g id="Group_13" data-name="Group 13">
+      <text id="الاسم_:" data-name="الاسم :" transform="translate(6982.364 471.859)" fill="#f1e1c6" font-size="29.604" font-family="SegoeUI, Segoe UI"><tspan x="-40.633" y="0">الاسم</tspan><tspan y="0" xml:space="preserve"> :</tspan></text>
+      <rect id="Rectangle_5" data-name="Rectangle 5" width="373.51" height="58.262" transform="translate(6536.867 439.292)" fill="#f1e1c6"/>
+      <text id="الرقم_:" data-name="الرقم :" transform="translate(6985.625 564.399)" fill="#f1e1c6" font-size="29.604" font-family="SegoeUI, Segoe UI"><tspan x="-36.926" y="0">الرقم</tspan><tspan y="0" xml:space="preserve"> :</tspan></text>
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="373.51" height="58.262" transform="translate(6536.867 531.831)" fill="#f1e1c6"/>
+      <text id="الايميل_:" data-name="الايميل :" transform="translate(6972.086 656.938)" fill="#f1e1c6" font-size="29.604" font-family="SegoeUI, Segoe UI"><tspan x="-48.049" y="0">الايميل</tspan><tspan y="0" xml:space="preserve"> :</tspan></text>
+      <rect id="Rectangle_7" data-name="Rectangle 7" width="373.51" height="58.262" transform="translate(6536.867 624.37)" fill="#f1e1c6"/>
+    </g>
+    <text id="الكاتب_الثاني" data-name="الكاتب الثاني" transform="translate(6787.613 385.244)" fill="#f1e1c6" font-size="36.407" font-family="SegoeUI, Segoe UI"><tspan x="-94.663" y="0">الكاتب الثاني</tspan></text>
+  </g>
+</svg>

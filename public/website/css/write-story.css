@@ -1,0 +1,33 @@
+span {
+  text-align: center;
+  color: #e34e34;
+  font-size: 35px;
+}
+.write-story-container .write-story-img {
+  width: 900px;
+  height: 450px;
+  margin: 20px 0 30px;
+}
+
+.write-story-container .img-btn > img {
+  width: 140px;
+}
+a h2 {
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0;
+}
+.input-container {
+  position: relative;
+}
+.input-container textarea {
+  position: absolute;
+  top: 68px;
+  left: 107px;
+  width: 687px;
+  height: 353px;
+  border: none;
+  outline: none;
+  background-color: #f1e1c6;
+  padding: 10px;
+}

@@ -1,0 +1,19 @@
+
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+.nav-container img {
+  width: 55%;
+}
+.img-btn {
+  margin-top: 160px;
+}
+.img-btn .red-small-btn {
+  width: 330px;
+}
+a h2 {
+  font-size: 45px;
+}

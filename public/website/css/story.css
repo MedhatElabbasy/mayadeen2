@@ -1,0 +1,25 @@
+.first-page-container .story-img {
+  width: 380px;
+  height: 350px;
+}
+.first-page-container .story-title {
+  margin: 70px 0 60px;
+  font-size: 43px;
+}
+
+.first-page-container .img-btn {
+  position: relative;
+  text-align: center;
+}
+.first-page-container .img-btn > img {
+  width: 190px;
+  /* position: relative; */
+}
+.first-page-container .img-btn a {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
