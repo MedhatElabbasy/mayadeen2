@@ -20,13 +20,11 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "none";
     document.getElementById("nextBtnContainer").style.display = "none";
 
-  }
-
-  if (n == x.length - 1) {
+    // عندما يكون الزر "إرسال"، غيّر نوعه إلى 'submit'
    document.getElementById("nextBtn").type = 'submit';
   }
 
-  fixStepIndicator(n);
+ // fixStepIndicator(n);
 }
 
 function nextPrev(n) {
@@ -42,11 +40,7 @@ function nextPrev(n) {
 }
 
 function validateForm() {
-  var x,
-    y,
-    z,
-    i,
-    valid = true;
+  var x, y, z, i, valid = true;
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   z = x[currentTab].getElementsByTagName("textarea");
@@ -65,8 +59,7 @@ function validateForm() {
 }
 
 function fixStepIndicator(n) {
-  var i,
-    x = document.getElementsByClassName("step");
+  var i, x = document.getElementsByClassName("step");
   for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace(" active", "");
   }

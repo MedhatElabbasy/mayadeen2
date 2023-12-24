@@ -2,49 +2,27 @@
 
 @section('title', 'مرحبا')
 
-@push('head')
-    <link rel="stylesheet" href="{{asset('website/css/welcome.css')}}" />
-    <link rel="stylesheet" href="{{asset('website/css/global-style.css')}}" />
-@endpush
-
 @section('content')
 @volt
-<div class="app">
+<div class="px-8 border-x-2 border-[#e34e34]">
+    <div class="flex flex-col items-center justify-center h-screen">
+        <div class="z-10">
+            <img src="{{ asset('website/images/navbar.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
 
-<img class="top-right" src="{{asset('website/imges/column.svg')}}" alt="" />
+                <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
+                    <div class="beep text-center relative hover:scale-95">
+                        <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                        <a href="#" class="absolute inset-0 flex items-center justify-center text-white text-4xl">تحد نفسك</a>
+                    </div>
+        
+                    <div class="beep text-center relative hover:scale-95">
+                        <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                        <a wire:navigate href="{{ url('/survey') }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">إبداء رأيك</a>
+                    </div>
 
-<div class="nav-container">
-  <img src="{{asset('website/imges/navbar.svg')}}" alt="" />
-</div>
-
-    @auth
-    <div class="img-btn">
-        <img class="red-small-btn" src="{{asset('website/imges/red-small-btn.svg')}}" alt="" />
-        <div>
-            <h2>مرحبا {{ auth()->user()->name }}!</h2>
+                </div>
         </div>
     </div>
-    @endauth
-
-    @guest
-    <div class="img-btn">
-        <img class="red-small-btn" src="{{asset('website/imges/red-small-btn.svg')}}" alt="" />
-        <a href="#" wire:navigate>
-            <h2>تحدي نفسك</h2>
-        </a>
-    </div>
-
-    <div class="img-btn">
-        <img class="red-small-btn" src="{{asset('website/imges/red-small-btn.svg')}}" alt="" />
-        <a href="/survey" wire:navigate>
-            <h2>شاركنا تجربتك</h2>
-        </a>
-    </div>
-    @endguest
-
-
 </div>
-
-<script src="{{asset('website/js/survey.js')}}"></script>
 @endvolt
 @endsection

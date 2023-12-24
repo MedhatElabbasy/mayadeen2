@@ -24,10 +24,10 @@
 
   </head>
   <body>
-    <img class="top-right" src="{{asset('website/images/column.svg')}}" alt="" />
+    <img class="top-right" src="{{asset('website/imges/column.svg')}}" alt="" />
 
     <div class="nav-container">
-      <img src="{{asset('website/images/navbar.svg')}}" alt="" />
+      <img src="{{asset('website/imges/navbar.svg')}}" alt="" />
     </div>
 
     <div>
@@ -36,7 +36,7 @@
 
     </div>
 
-    <img class="bottom-left" src="{{asset('website/images/column.svg')}}" alt="" />
+    <img class="bottom-left" src="{{asset('website/imges/column.svg')}}" alt="" />
 
   </body>
 </html>

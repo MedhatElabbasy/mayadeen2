@@ -8,18 +8,18 @@
 
 <div class="app">
 
-    <img class="top-right" src="{{asset('website/images/column.svg')}}" alt="" />
+    <img class="top-right" src="{{asset('website/imges/column.svg')}}" alt="" />
 
     <form action="">
         <div class="tab">
           <div class="poll-quesition-container">
-            <img class="img-box" src="{{asset('website/images/Path 115.svg')}}" alt="" />
+            <img class="img-box" src="{{asset('website/imges/Path 115.svg')}}" alt="" />
 
             <div class="end-container">
               <div class="img-end-btn-container">
                 <img
                   class="red-small-end-btn"
-                  src="../{{asset('website/images/end-red-btn.svg')}}"
+                  src="../{{asset('website/imges/end-red-btn.svg')}}"
                   alt=""
                 />
 
@@ -31,13 +31,13 @@
         <!-- ====================== -->
         <div class="tab">
           <div class="poll-quesition-container">
-            <img class="img-box" src="{{asset('website/images/Path 115.svg')}}" alt="" />
+            <img class="img-box" src="{{asset('website/imges/Path 115.svg')}}" alt="" />
 
             <div class="title-container">
               <div class="img-btn-container">
                 <img
                   class="red-small-btn"
-                  src="../{{asset('website/images/red-small-btn.svg')}}"
+                  src="../{{asset('website/imges/red-small-btn.svg')}}"
                   alt=""
                 />
 
@@ -51,27 +51,27 @@
                   <span>ما مدى رضاك عن مرافق المهرجان ؟</span>
                   <div class="imgs-container">
                     <div class="img-container">
-                      <img src="{{asset('website/images/rating/very_suf.svg')}}" alt="" />
+                      <img src="{{asset('website/imges/rating/very_suf.svg')}}" alt="" />
                       <span class="very_suf">راضي جدا</span>
                       <input type="radio" />
                     </div>
                     <div class="img-container">
-                      <img src="{{asset('website/images/rating/suf.svg')}}" alt="" />
+                      <img src="{{asset('website/imges/rating/suf.svg')}}" alt="" />
                       <span class="suf">راضي </span>
                       <input type="radio" />
                     </div>
                     <div class="img-container">
-                      <img src="{{asset('website/images/rating/mid.svg')}}" alt="" />
+                      <img src="{{asset('website/imges/rating/mid.svg')}}" alt="" />
                       <span class="mid">محايد </span>
                       <input type="radio" />
                     </div>
                     <div class="img-container">
-                      <img src="{{asset('website/images/rating/sad.svg')}}" alt="" />
+                      <img src="{{asset('website/imges/rating/sad.svg')}}" alt="" />
                       <span class="sad"> مستاء</span>
                       <input type="radio" />
                     </div>
                     <div class="img-container">
-                      <img src="{{asset('website/images/rating/very_sad.svg')}}" alt="" />
+                      <img src="{{asset('website/imges/rating/very_sad.svg')}}" alt="" />
                       <span class="very_sad"> مستاء جدا</span>
                       <input type="radio" />
                     </div>
@@ -242,8 +242,8 @@
 
           <!-- footer -->
     <div class="styling-footer">
-        <img class="right-footer" src="{{asset('website/images/Group 33.svg')}}" alt="" />
-        <img class="left-footer" src="{{asset('website/images/Group 33.svg')}}" alt="" />
+        <img class="right-footer" src="{{asset('website/imges/Group 33.svg')}}" alt="" />
+        <img class="left-footer" src="{{asset('website/imges/Group 33.svg')}}" alt="" />
       </div>
 
     <script src="{{asset('website/js/survey.js')}}"></script>
