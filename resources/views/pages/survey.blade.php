@@ -46,8 +46,8 @@ $submit = function () {
 
     Survey::create([
         'name'         => $this->name,
-        'email'        => $this->phone,
-        'phone'        => $this->email,
+        'email'        => $this->email,
+        'phone'        => $this->phone,
         'facilities'   => $this->facilities,
         'organization' => $this->organization,
         'events'       => $this->events,
