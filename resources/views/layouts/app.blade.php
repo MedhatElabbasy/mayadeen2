@@ -11,7 +11,9 @@
         rel="stylesheet"
     />
     <!-- css files-->
+    <link rel="stylesheet" href="{{asset('website/css/poll-quesition.css')}}" />
     <link rel="stylesheet" href="{{asset('website/css/global-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('website/css/story-title.css')}}" />
     <!-- bootstrap link-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -31,9 +33,7 @@
     </div>
 
     <div>
-
         @yield('content')
-
     </div>
 
     <img class="bottom-left" src="{{asset('website/images/column.svg')}}" alt="" />

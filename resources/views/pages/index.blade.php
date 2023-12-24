@@ -1,23 +1,50 @@
-<x-layouts.app title="مرحبا">
-@volt
-<link rel="stylesheet" href="{{asset('website/css/style.css')}}" />
+@extends('layouts.app')
 
+@section('title', 'مرحبا')
+
+@push('head')
+    <link rel="stylesheet" href="{{asset('website/css/welcome.css')}}" />
+    <link rel="stylesheet" href="{{asset('website/css/global-style.css')}}" />
+@endpush
+
+@section('content')
+@volt
 <div class="app">
-<div class="img-btn">
-    <img class="red-small-btn" src="{{asset('website/images/red-small-btn.svg')}}" alt="" />
+
+<img class="top-right" src="{{asset('website/imges/column.svg')}}" alt="" />
+
+<div class="nav-container">
+  <img src="{{asset('website/imges/navbar.svg')}}" alt="" />
+</div>
 
     @auth
-    <h2>مرحبا {{ auth()->user()->name }}!</h2>
+    <div class="img-btn">
+        <img class="red-small-btn" src="{{asset('website/imges/red-small-btn.svg')}}" alt="" />
+        <div>
+            <h2>مرحبا {{ auth()->user()->name }}!</h2>
+        </div>
+    </div>
     @endauth
 
-
     @guest
-    <a href="/challenge" wire:navigate>
-        <h2>تحدي نفسك</h2>
-    </a>   
+    <div class="img-btn">
+        <img class="red-small-btn" src="{{asset('website/imges/red-small-btn.svg')}}" alt="" />
+        <a href="#" wire:navigate>
+            <h2>تحدي نفسك</h2>
+        </a>
+    </div>
+
+    <div class="img-btn">
+        <img class="red-small-btn" src="{{asset('website/imges/red-small-btn.svg')}}" alt="" />
+        <a href="/survey" wire:navigate>
+            <h2>شاركنا تجربتك</h2>
+        </a>
+    </div>
     @endguest
 
+
 </div>
-</div>
+
+<script src="{{asset('website/js/survey.js')}}"></script>
 @endvolt
-</x-layouts.app>
+@endsection
