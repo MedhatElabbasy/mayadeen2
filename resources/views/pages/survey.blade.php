@@ -98,7 +98,7 @@ $submit = function () {
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/very_suf.svg" alt="" />
                     <span class="very_suf">راضي جدا</span>
-                    <input name="facilities" wire:model="facilities" value="verySatisfied" type="radio" />
+                    <input name="facilities" wire:model="facilities" value="verySatisfied" selected type="radio" />
                 </div>
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/suf.svg" alt="" />
@@ -129,7 +129,7 @@ $submit = function () {
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/very_suf.svg" alt="" />
                     <span class="very_suf">راضي جدا</span>
-                    <input name="organization" wire:model="organization" value="verySatisfied" type="radio" />
+                    <input name="organization" wire:model="organization" value="verySatisfied" selected type="radio" />
                 </div>
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/suf.svg" alt="" />
@@ -160,7 +160,7 @@ $submit = function () {
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/very_suf.svg" alt="" />
                     <span class="very_suf">راضي جدا</span>
-                    <input name="events" wire:model="events" value="verySatisfied" type="radio" />
+                    <input name="events" wire:model="events" value="verySatisfied" selected type="radio" />
                 </div>
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/suf.svg" alt="" />
@@ -191,7 +191,7 @@ $submit = function () {
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/very_suf.svg" alt="" />
                     <span class="very_suf">راضي جدا</span>
-                    <input name="access" wire:model="access" value="verySatisfied" type="radio" />
+                    <input name="access" wire:model="access" value="verySatisfied" selected type="radio" />
                 </div>
                 <div class="img-container">
                     <img src="{{asset('/website/imges/')}}/rating/suf.svg" alt="" />
