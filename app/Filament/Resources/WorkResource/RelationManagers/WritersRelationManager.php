@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class WritersRelationManager extends RelationManager
 {
     protected static string $relationship = 'writers';
-    
+
     protected static ?string $title = 'الأدباء';
 
     protected static ?string $pluralLabel = 'أدباء';
@@ -33,7 +33,7 @@ class WritersRelationManager extends RelationManager
                         ->minLength(3)
                         ->maxLength(255)
                         ->rules('required|min:3|max:255'),
-    
+
                     Forms\Components\RichEditor::make('about')
                         ->label('نبذة')
                         ->placeholder('نبذة عن الأديب')
@@ -73,7 +73,6 @@ class WritersRelationManager extends RelationManager
                         ->appendFiles()
                         ->openable()
                         ->downloadable()
-                        ->previewable(false)
                         ->maxFiles(10)
                         ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain'])
                 ]),

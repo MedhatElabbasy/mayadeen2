@@ -21,7 +21,7 @@ class WriterResource extends Resource
     protected static ?string $model = Writer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    
+
     protected static ?string $navigationGroup = 'أدباء عبر التاريخ';
 
     protected static ?string $navigationLabel = 'الأدباء';
@@ -45,13 +45,13 @@ class WriterResource extends Resource
                             ->minLength(3)
                             ->maxLength(255)
                             ->rules('required|min:3|max:255'),
-        
+
                         Forms\Components\DatePicker::make('birthday')
                             ->label('يوم الميلاد')
                             ->placeholder('يوم ميلاد الأديب')
                             ->required()
                             ->rules('required'),
-    
+
                         Forms\Components\DatePicker::make('deathday')
                             ->label('يوم الوفاة')
                             ->placeholder('يوم وفاة الأديب')
@@ -75,23 +75,37 @@ class WriterResource extends Resource
                     Forms\Components\RichEditor::make('quote')
                     ->label('اقتباس')
                     ->placeholder('اقتباسات للأديب')
-                    ->required()
                     ->minLength(10)
+                    ->required()
                     ->rules('required'),
                 ]),
 
-                Forms\Components\Section::make('مرفقات للأديب')
+                Forms\Components\Section::make('الصورة والمرفقات')
                 ->schema([
-                    Forms\Components\FileUpload::make('attachments')
-                        ->label('المرفقات')
-                        ->multiple()
-                        ->reorderable()
-                        ->appendFiles()
-                        ->openable()
-                        ->downloadable()
-                        ->previewable(false)
-                        ->maxFiles(10)
-                        ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain'])
+                    Forms\Components\Grid::make(2)
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('الصورة')
+                            ->reorderable()
+                            ->appendFiles()
+                            ->openable()
+                            ->downloadable()
+                            ->acceptedFileTypes(['image/*'])
+                            ->required()
+                            ->rules('required'),
+
+                        Forms\Components\FileUpload::make('attachments')
+                            ->label('المرفقات')
+                            ->multiple()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->openable()
+                            ->downloadable()
+                            ->maxFiles(10)
+                            ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain'])
+                            ->required()
+                            ->rules('required'),
+                    ]),
                 ]),
 
                 /*
@@ -113,7 +127,7 @@ class WriterResource extends Resource
                                     ->minLength(3)
                                     ->maxLength(255)
                                     ->rules('required|min:3|max:255'),
-                
+
                                 Forms\Components\RichEditor::make('description')
                                     ->label('وصف')
                                     ->required()
@@ -121,7 +135,7 @@ class WriterResource extends Resource
                                     ->minLength(10)
                                     ->rules('required|string'),
                             ]),
-            
+
                             Forms\Components\Grid::make(1)
                             ->schema([
                                 Forms\Components\FileUpload::make('image')
@@ -147,6 +161,10 @@ class WriterResource extends Resource
                     ->label('الإسم')
                     ->searchable(),
 
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular()
+                    ->label('الصورة'),
+
                 Tables\Columns\TextColumn::make('birthday')
                     ->label('يوم الميلاد')
                     ->searchable()
@@ -156,7 +174,7 @@ class WriterResource extends Resource
                     ->label('يوم الوفاة')
                     ->searchable()
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')
                     ->dateTime('M j, Y')
@@ -197,6 +215,13 @@ class WriterResource extends Resource
                 \Filament\Infolists\Components\TextEntry::make('deathday')
                     ->label('يوم الوفاة')
                     ->dateTime('M j, Y'),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('الصورة الشخصية')->columns(1)->schema([
+                    \Filament\Infolists\Components\ImageEntry::make('image')
+                    ->label('الصورة الأديب')
+                    ->size(250)
+                    ->circular(),
                 ]),
 
                 \Filament\Infolists\Components\Section::make('الإضافة')->columns(2)->schema([

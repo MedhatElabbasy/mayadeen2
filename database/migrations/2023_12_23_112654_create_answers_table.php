@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->longText('content');
             $table->boolean('isCorrect')->default(false);
+            $table->string('wrongText');
+            $table->string('wrongImage');
             $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
             $table->timestamps();
         });

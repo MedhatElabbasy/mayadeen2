@@ -12,7 +12,8 @@ class Work extends Model
     public $fillable = [
         'title',
         'description',
-        'image'
+        'image',
+        'attachments',
     ];
 
     public function writers()

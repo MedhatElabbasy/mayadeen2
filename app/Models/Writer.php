@@ -12,13 +12,14 @@ class Writer extends Model
     protected $casts = [
         'attachments' => 'array',
     ];
-    
+
     public $fillable = [
         'name',
         'about',
         'quote',
         'birthday',
         'deathday',
+        'image',
         'attachments',
     ];
 

@@ -13,6 +13,8 @@ class Answer extends Model
         'content',
         'isCorrect',
         'question_id',
+        'wrongText',
+        'wrongImage',
     ];
 
     public function question()
