@@ -1,0 +1,69 @@
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.img-btn {
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+.red-bg-title {
+  width: 100%;
+  height: 100px;
+}
+ul {
+  list-style: none;
+  /* position: absolute;
+  top: 50%;
+  left: 42%;
+  transform: translate(-50%, -50%); */
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 20px;
+  margin-right: 200px;
+}
+ul li {
+  font-size: 35px;
+  /* line-height: 45px; */
+}
+/*==========================================*/
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #f8492a;
+}
+
+/* MK CSS  */
+.button-form {
+  background-color: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}

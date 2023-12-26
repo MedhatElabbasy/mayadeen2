@@ -1,0 +1,39 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
+  flex-direction: column;
+}
+
+.writers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  margin-bottom: 70px;
+}
+.writer-container {
+  position: relative;
+}
+.writer-container input {
+  position: absolute;
+  width: 325px;
+  height: 52px;
+  left: 96px;
+}
+.writer-container input[type="text"] {
+  top: 99px;
+}
+.writer-container input[type="number"] {
+  top: 180px;
+}
+.writer-container input[type="email"] {
+  top: 260px;
+}
+.writer-container img {
+  width: 87%;
+}
+.img-btn > img {
+  width: 190px;
+}
