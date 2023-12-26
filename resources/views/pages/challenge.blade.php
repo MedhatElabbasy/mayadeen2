@@ -109,8 +109,8 @@ $submit = function () {
 
         <div x-data="{ 
           correctQuestion(el) {
-            this.currentQuestion++; 
             if(this.questionsCount==this.currentQuestion) this.step++;
+            this.currentQuestion++; 
             party.confetti(el,{
               count: party.variation.range(50, 100),
             });
