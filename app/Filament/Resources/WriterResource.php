@@ -102,9 +102,7 @@ class WriterResource extends Resource
                             ->openable()
                             ->downloadable()
                             ->maxFiles(10)
-                            ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain'])
-                            ->required()
-                            ->rules('required'),
+                            ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain']),
                     ]),
                 ]),
 
