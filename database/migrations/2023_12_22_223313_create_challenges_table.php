@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('mark');
             $table->string('fullMark');
-            $table->string('rating');
-            $table->longText('opinion');
+            $table->string('rating')->nullable();
+            $table->longText('opinion')->nullable();
             $table->timestamps();
         });
     }

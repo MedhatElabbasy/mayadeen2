@@ -108,15 +108,12 @@ class WriterResource extends Resource
                     ]),
                 ]),
 
-                /*
                 Forms\Components\Grid::make(1)
                 ->schema([
                     Forms\Components\Select::make('work_id')
                         ->label('الأعمال')
                         ->relationship('works', 'title')
                         ->multiple()
-                        ->searchable()
-                        ->selectablePlaceholder(false)
                         ->createOptionForm([
                             Forms\Components\Grid::make(1)
                             ->schema([
@@ -149,7 +146,6 @@ class WriterResource extends Resource
                             ])
                         ])
                 ])
-                */
             ]);
     }
 
@@ -222,6 +218,11 @@ class WriterResource extends Resource
                     ->label('الصورة الأديب')
                     ->size(250)
                     ->circular(),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('المرفقات')->columns(1)->schema([
+                    \Filament\Infolists\Components\TextEntry::make('attachments')
+                    ->label('مرفقات للأديب'),
                 ]),
 
                 \Filament\Infolists\Components\Section::make('الإضافة')->columns(2)->schema([

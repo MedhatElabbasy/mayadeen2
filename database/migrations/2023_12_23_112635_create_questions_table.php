@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->longText('content');
+            $table->josn('answers');
             $table->timestamps();
         });
     }

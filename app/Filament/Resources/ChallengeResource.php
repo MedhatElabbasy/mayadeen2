@@ -62,7 +62,19 @@ class ChallengeResource extends Resource
                         ])
                     ]),
 
-                Forms\Components\Section::make("الدرجة")
+                Forms\Components\Section::make("الإستطلاع")
+                    ->schema([
+                        Forms\Components\Grid::make(1)
+                        ->schema([
+                            Forms\Components\Textarea::make('opinion')
+                                ->label('الرأي في الاسئلة')
+                                ->placeholder('رأي المتحدي في الأسئلة')
+                                ->required()
+                                ->rules('required'),
+                        ])
+                    ]),
+
+                    Forms\Components\Section::make("الدرجة")
                     ->schema([
                         Forms\Components\Grid::make(2)
                         ->schema([
@@ -161,6 +173,15 @@ class ChallengeResource extends Resource
                             \Filament\Infolists\Components\TextEntry::make('fullMark')
                                 ->label('الدرجة الكاملة')
                                 ->badge(),
+                        ]),
+                    ]),
+
+                    \Filament\Infolists\Components\Section::make('الإستطلاع')
+                    ->schema([
+                        \Filament\Infolists\Components\Grid::make(2)
+                            ->schema([
+                            \Filament\Infolists\Components\TextEntry::make('opinion')
+                                ->label('الرأي في الاسئلة'),
                         ]),
                     ]),
             ]);

@@ -22,7 +22,7 @@
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    
+  
     <title>@yield('title') | {{setting('siteName')}}</title>
 
     @stack('head')
@@ -40,24 +40,40 @@
 
     @stack('body')
 
-    <audio id="beep" src="{{asset('website/audio/beep.mp3')}}" preload="auto">
-      Your browser does not support the <code>audio</code> element.
-    </audio>
+    @foreach ([
+      'beep',
+      'correctAnswer',
+      'wrongAnswer',
+    ] as $item)
+      <audio id="{{$item.'Player'}}" src="{{asset("website/audio/{$item}.mp3")}}" preload="auto">
+        Your browser does not support the <code>audio</code> element.
+      </audio>
+    @endforeach
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          var beepOne = document.getElementById("beep");
+      function soundEffectPlay(player, background=false) {
+        if(!background){
+          const audioElements = document.querySelectorAll('audio');
+          audioElements.forEach(audio => audio.pause());
+        }
 
-          var beepElements = document.querySelectorAll(".beep");
+        let beepOne = document.getElementById(player);
+        beepOne.pause();
+        beepOne.currentTime = 0;
+        beepOne.play();
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+          let beepElements = document.querySelectorAll(".beep");
 
           beepElements.forEach(function(beepElement) {
               beepElement.addEventListener("mouseenter", function() {
-                  beepOne.pause();
-                  beepOne.currentTime = 0;
-                  beepOne.play();
+                  soundEffectPlay("beepPlayer", true)
               });
           });
       });
     </script>
-  </body>
+
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+</body>
 </html>

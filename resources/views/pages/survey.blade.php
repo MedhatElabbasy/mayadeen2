@@ -59,13 +59,7 @@ $submit = function () {
 
 @extends('layouts.app')
 
-@section('title', 'تحدي نفسك')
-
-@push('head')
-<link rel="stylesheet" href="{{asset('website/css/poll-quesition.css')}}" />
-<link rel="stylesheet" href="{{asset('website/css/global-style.css')}}" />
-<link rel="stylesheet" href="{{asset('website/css/story-title.css')}}" />
-@endpush
+@section('title', 'إبداء رأيك')
 
 @section('content')
 @volt
@@ -439,9 +433,13 @@ $submit = function () {
     </div>
     @endif
 
-    <div class="absolute top-0 left-8 z-0">
-        <img src="{{ asset('website/images/banner.svg') }}" class="w-20 md:w-64">
-    </div>
+<!-- Banner -->
+<div class="absolute top-0 left-8 z-0">
+    <a href="/" wire:navigate>
+      <img src="{{ asset('website/images/banner.svg') }}" class="w-20 md:w-64">
+    </a>
+</div>
+<!-- //Banner -->
 </div>
 @endvolt
 @endsection
