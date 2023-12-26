@@ -11,6 +11,15 @@ class Story extends Model
 
     public $fillable = [
         'title',
-        'content'
+        'content',
+        'w1_name',
+        'w1_number',
+        'w1_email',
+        'w2_name',
+        'w2_number',
+        'w2_email',
+        'w3_name',
+        'w3_number',
+        'w3_email',
     ];
 }

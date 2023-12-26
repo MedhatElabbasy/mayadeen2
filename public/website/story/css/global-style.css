@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1e1c6 !important;
+  font-family: "Noto Kufi Arabic", sans-serif !important;
+  direction: rtl;
+}
+input {
+  border: none;
+  outline: none;
+  background-color: #f1e1c6;
+}
+
+a {
+  text-decoration: none !important;
+}
+.first-page-container,
+.write-story-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* img button style on the footer */
+.img-btn {
+  position: relative;
+  text-align: center;
+}
+
+.img-btn button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.img-btn a {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.img-btn > h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f1e1c6;
+  width: 100%;
+}
+a h2 {
+  color: #f1e1c6;
+}
+/* footer styling */
+
+.styling-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 110px;
+}
+.styling-footer img {
+  height: 52px;
+}
+
+/* styling positions of images in top right bottom left in chantage your self pages */
+.top-right,
+.bottom-left {
+  position: absolute;
+  width: 40px;
+}
+.top-right {
+  top: 55px;
+  right: 56px;
+}
+.bottom-left {
+  bottom: 55px;
+  left: 56px;
+}
