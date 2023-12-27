@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('poems', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['Nabatieh', 'faq']);
+            $table->enum('type', ['نبطية', 'فصحى'])->default('نبطية');
             $table->text('poem')->comment('The Content of the poem');
             $table->string('author');
             $table->string('phone');

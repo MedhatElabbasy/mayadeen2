@@ -39,8 +39,8 @@ class PoemsResource extends Resource
                             ->label('نوع القصيدة')
                             ->placeholder('نوع القصيدة')
                             ->options([
-                                'Nabatieh' => 'نبطية',
-                                'faq' => 'الفصحى',
+                                'نبطية' => 'نبطية',
+                                'فصحى' => 'الفصحى',
                             ])
                             ->required()
                             ->rules('required','in:Nabatieh,faq'),

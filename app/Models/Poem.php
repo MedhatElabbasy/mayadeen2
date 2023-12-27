@@ -18,9 +18,4 @@ class Poem extends Model
     ];
 
 
-    public function getTypeAttribute($value)
-    {
-        return $value == 'faq' ? 'الفصحى' : 'نبطية';
-    }
-
 }
