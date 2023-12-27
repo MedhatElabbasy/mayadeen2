@@ -11,6 +11,7 @@ class Poem extends Model
 
     protected $fillable = [
         'type',
+        'name',
         'poem',
         'author',
         'phone',
