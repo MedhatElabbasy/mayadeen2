@@ -39,11 +39,19 @@ class PoemsResource extends Resource
                             ->label('نوع القصيدة')
                             ->placeholder('نوع القصيدة')
                             ->options([
-                                'Nabatieh' => 'نبطية',
-                                'faq' => 'الفصحى',
+                                'نبطية' => 'نبطية',
+                                'فصحى' => 'الفصحى',
                             ])
                             ->required()
                             ->rules('required','in:Nabatieh,faq'),
+
+                        Forms\Components\TextInput::make('name')
+                            ->label('إسم القصيدة')
+                            ->placeholder('إسم القصيدة')
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->required()
+                            ->rules('max:255'),
 
                         Forms\Components\Textarea::make('poem')
                             ->label('القصيدة')
@@ -88,6 +96,9 @@ class PoemsResource extends Resource
                 Tables\Columns\TextColumn::make('type')
                     ->label('نوع القصيدة'),
 
+                Tables\Columns\TextColumn::make('name')
+                    ->label('إسم القصيدة'),
+                    
                 Tables\Columns\TextColumn::make('poem')
                     ->label('القصيدة'),
 

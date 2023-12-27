@@ -11,13 +11,13 @@ class Poem extends Model
 
     protected $fillable = [
         'type',
+        'name',
         'poem',
         'author',
         'phone',
         'email',
     ];
-
-
+    
     public function getTypeAttribute($value)
     {
         return $value == 'faq' ? 'الفصحى' : 'نبطية';
