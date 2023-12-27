@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('writers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->longText('about');
             $table->longText('quote');
             $table->date('birthday');
             $table->date('deathday');
-            $table->json('attachments');
+            $table->json('attachments')->nullable();
             $table->timestamps();
         });
     }

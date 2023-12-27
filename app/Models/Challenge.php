@@ -15,7 +15,5 @@ class Challenge extends Model
         'phone',
         'mark',
         'fullMark',
-        'rating',
-        'opinion',
     ];
 }

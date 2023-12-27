@@ -58,6 +58,7 @@ $submit = function () {
     $this->completed = true;
 };
 
+<<<<<<< HEAD
 $sendMail = function () {
     // $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
 
@@ -91,6 +92,26 @@ $downloadPdf = function () {
     $pdf->download($this->title . '.pdf');
 
 };
+=======
+    $submit = function ()
+        {
+/*             $this->validate();
+ */            Story::create([
+                'title'         => $this->title,
+                'content'       => $this->content,
+                'w1_name'       => $this->w1_name,
+                'w1_number'     => $this->w1_number,
+                'w1_email'      => $this->w1_email,
+                'w2_name'       => $this->w2_name,
+                'w2_number'     => $this->w2_number,
+                'w2_email'      => $this->w2_email,
+                'w3_name'       => $this->w3_name,
+                'w3_number'     => $this->w3_number,
+                'w3_email'      => $this->w3_email,
+            ]);
+            $this->completed = true;
+        };
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
 
 ?>
 @extends('layouts.app')
@@ -136,8 +157,12 @@ $downloadPdf = function () {
                     </div>
                 </div>
                 {{-- ############################ --}}
+<<<<<<< HEAD
                 <div x-show="step==2"
                     class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
+=======
+                <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__backInDown">
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
                     <div class="z-10">
                         <div class="beep text-center relative hover:scale-95 ">
                             <div class="write-story-container">
@@ -172,11 +197,19 @@ $downloadPdf = function () {
 
                 {{-- ############################ --}}
                 @if (!$this->completed)
+<<<<<<< HEAD
                     <div x-show="step==3"
                         class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
                         <div class="z-10 p-8">
                             <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                                 style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+=======
+                <div x-show="step==3"
+                    class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+                    <div class="z-10 p-8">
+                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
+                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
 
                                 <div class="max-w-sm mx-auto pt-16">
                                     <h1 class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الأول</h1>
@@ -232,6 +265,7 @@ $downloadPdf = function () {
                 {{-- ############################ --}}
                 {{-- ############################ --}}
                 @if (!$this->completed)
+<<<<<<< HEAD
                     <div x-show="step==4"
                         class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopRight">
                         <div class="z-10 p-8">
@@ -239,6 +273,15 @@ $downloadPdf = function () {
                                 style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
                                 <div class="max-w-sm mx-auto pt-16">
                                     <h1 class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثاني </h1>
+=======
+                <div x-show="step==4"
+                    class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+                    <div class="z-10 p-8">
+                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
+                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+                            <div class="max-w-sm mx-auto pt-16">
+                                <h1  class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثاني </h1>
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
 
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
                                     <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
@@ -284,8 +327,8 @@ $downloadPdf = function () {
                     </div>
                 @endif
                 {{-- ############################ --}}
-                {{-- ############################ --}}
                 @if (!$this->completed)
+<<<<<<< HEAD
                     <div x-show="step==5"
                         class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopLeft">
                         <div class="z-10 p-8">
@@ -308,6 +351,18 @@ $downloadPdf = function () {
                                     <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
                                         wire:model="w3_number" placeholder="أدخل الهاتف">
                                 </div>
+=======
+                <div x-show="step==5"
+                    class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+                    <div class="z-10 p-8">
+                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
+                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+                            <div class="max-w-sm mx-auto pt-16">
+                                <h1  class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثالث </h1>
+                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
+                                    wire:model="w3_name" placeholder="أدخل الإسم">
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
                             </div>
 
                             <div class="beep text-center relative hover:scale-95 mt-16" wire:click="submit">

@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('vip_visitors', function (Blueprint $table) {
             $table->id();
-            $table->longText('content');
-            $table->boolean('isCorrect')->default(false);
-            $table->string('wrongText');
-            $table->string('wrongImage');
-            $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('vip_visitors');
     }
 };

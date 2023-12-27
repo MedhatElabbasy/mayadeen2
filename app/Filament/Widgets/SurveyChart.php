@@ -20,7 +20,7 @@ class SurveyChart extends ChartWidget
         $data = Trend::model(Survey::class)
             ->between(
                 start: now()->startOfMonth(),
-                end: now()->endOfMonth(),
+                end  : now()->endOfMonth(),
             )
             ->perDay()
             ->count();

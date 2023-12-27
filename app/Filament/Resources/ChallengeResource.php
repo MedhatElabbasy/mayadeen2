@@ -43,14 +43,14 @@ class ChallengeResource extends Resource
                                 ->minLength(3)
                                 ->maxLength(255)
                                 ->rules('required|min:3|max:255'),
-    
+
                             Forms\Components\TextInput::make('email')
                                 ->label('البريد الإلكتروني')
                                 ->placeholder('بريد إلكتروني المتحدي')
                                 ->required()
                                 ->email()
                                 ->rules('required|email'),
-    
+
                             Forms\Components\TextInput::make('phone')
                                 ->label('جوال')
                                 ->placeholder('جوال المتحدي')
@@ -58,11 +58,22 @@ class ChallengeResource extends Resource
                                 ->tel()
                                 ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
                                 ->rules('required'),
-    
                         ])
                     ]),
 
-                Forms\Components\Section::make("الدرجة")
+                Forms\Components\Section::make("الإستطلاع")
+                    ->schema([
+                        Forms\Components\Grid::make(1)
+                        ->schema([
+                            Forms\Components\Textarea::make('opinion')
+                                ->label('الرأي في الاسئلة')
+                                ->placeholder('رأي المتحدي في الأسئلة')
+                                ->required()
+                                ->rules('required'),
+                        ])
+                    ]),
+
+                    Forms\Components\Section::make("الدرجة")
                     ->schema([
                         Forms\Components\Grid::make(2)
                         ->schema([
@@ -93,20 +104,20 @@ class ChallengeResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('email')
-                ->label('البريد الإلكتروني')
-                ->searchable(),
-                    
+                    ->label('البريد الإلكتروني')
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('phone')
-                ->label('الجوال')
-                ->searchable(),
+                    ->label('الجوال')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('mark')
-                ->label('الدرجة')
-                ->searchable(),
+                    ->label('الدرجة')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('fullMark')
-                ->label('الدرجة الكاملة')
-                ->searchable(),
+                    ->label('الدرجة الكاملة')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')
@@ -161,6 +172,15 @@ class ChallengeResource extends Resource
                             \Filament\Infolists\Components\TextEntry::make('fullMark')
                                 ->label('الدرجة الكاملة')
                                 ->badge(),
+                        ]),
+                    ]),
+
+                    \Filament\Infolists\Components\Section::make('الإستطلاع')
+                    ->schema([
+                        \Filament\Infolists\Components\Grid::make(2)
+                            ->schema([
+                            \Filament\Infolists\Components\TextEntry::make('opinion')
+                                ->label('الرأي في الاسئلة'),
                         ]),
                     ]),
             ]);

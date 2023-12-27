@@ -23,10 +23,10 @@ class SettingsSeeder extends Seeder
         ]);
 
         Setting::firstOrCreate([
-            'key' => 'questionsNumber',
+            'key' => 'questionsCount',
         ], [
-            'label' => 'عدد الأسئلة',
-            'value' => 1,
+            'label' => 'عدد أسئلة التحديات',
+            'value' => 6,
             'type' => 'number',
         ]);
     }

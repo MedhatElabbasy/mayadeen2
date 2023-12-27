@@ -31,6 +31,7 @@ class StoryResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
+<<<<<<< HEAD
                         Forms\Components\Grid::make(1)
                             ->schema([
                                 Forms\Components\TextInput::make('title')
@@ -125,6 +126,37 @@ class StoryResource extends Resource
                                     ->rules('nullable|email'),
                             ]),
                     ]),
+=======
+                        Forms\Components\TextInput::make('title')
+                            ->label('الإسم')
+                            ->placeholder('إسم الأقصوصة')
+                            ->required()
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->rules('required|min:3|max:255'),
+
+                        Forms\Components\RichEditor::make('content')
+                            ->label('المحتوي')
+                            ->placeholder('محتوي الأقصوصة')
+                            //->toolbarButtons(['bold', 'italic', 'link', 'clean'])
+                            ->required()
+                            ->minLength(10)
+                            ->rules('required|string'),
+                    ]),
+
+                    Forms\Components\Section::make("الإستطلاع")
+                    ->schema([
+                        Forms\Components\Grid::make(1)
+                        ->schema([
+                            Forms\Components\Textarea::make('opinion')
+                                ->label('رأي المستطلع')
+                                ->placeholder('رأي المستطلع')
+                                ->required()
+                                ->rules('required'),
+                        ])
+                    ]),
+                ])
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
             ]);
     }
 
@@ -173,6 +205,7 @@ class StoryResource extends Resource
                             ->hiddenLabel(),
                     ]),
 
+<<<<<<< HEAD
                 \Filament\Infolists\Components\Section::make('محتوي الأقصوصة')
                     ->schema([
                         \Filament\Infolists\Components\TextEntry::make('content')
@@ -225,6 +258,19 @@ class StoryResource extends Resource
     }
 
 
+=======
+                 \Filament\Infolists\Components\Section::make('محتوي الأقصوصة')
+                 ->schema([
+
+                \Filament\Infolists\Components\TextEntry::make('content')
+                    ->label('المحتوي')
+                    ->hiddenLabel()
+                    ->html(),
+                  ])
+            ]);
+    }
+
+>>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
     public static function getRelations(): array
     {
         return [

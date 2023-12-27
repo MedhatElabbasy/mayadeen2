@@ -29,6 +29,8 @@ return new class extends Migration
             $table->enum('organization', $status);
             $table->enum('events', $status);
             $table->enum('access', $status);
+            $table->string('rating')->nullable();
+            $table->longText('opinion')->nullable();
             $table->timestamps();
         });
     }

@@ -18,8 +18,10 @@ class Survey extends Model
         'organization',
         'events',
         'access',
+        'rating',
+        'opinion',
     ];
-    
+
     protected $casts = [
         'facilities' => SurveyEnum::class,
         'organization' => SurveyEnum::class,
