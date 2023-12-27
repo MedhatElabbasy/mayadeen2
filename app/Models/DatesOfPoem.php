@@ -15,7 +15,8 @@ class DatesOfPoem extends Model
         'start_time',
         'end_time',
         'details',
+        'type',
     ];
 
-    
+
 }
