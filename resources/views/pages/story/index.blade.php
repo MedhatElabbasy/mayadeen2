@@ -39,8 +39,8 @@ rules([
 
     $submit = function ()
         {
-            $this->validate();
-            Story::create([
+/*             $this->validate();
+ */            Story::create([
                 'title'         => $this->title,
                 'content'       => $this->content,
                 'w1_name'       => $this->w1_name,
@@ -239,7 +239,6 @@ rules([
                     </div>
                 </div>
             @endif
-                {{-- ############################ --}}
                 {{-- ############################ --}}
                 @if (!$this->completed)
                 <div x-show="step==5"
