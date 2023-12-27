@@ -2,8 +2,13 @@
 
 use function Livewire\Volt\{rules, state};
 use App\Models\Story;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf ;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StoryPdfSendMail;
+
 state([
     'completed' => false,
+    'mailersSend' => false,
     'title' => null,
     'content' => null,
     'w1_name' => null,
@@ -15,46 +20,77 @@ state([
     'w3_name' => null,
     'w3_number' => null,
     'w3_email' => null,
+    'story' => null,
+    'id' => null,
 ]);
-
-
-
-
 
 rules([
-    'title'      => 'required|min:2',
-    'content'    => 'required',
-    'w1_name'    => 'required|min:2',
-    'w1_number'  => 'required|min:9',
-    'w1_email'   => 'required|email',
-    'w2_name'    => 'required|min:2',
-    'w2_number'  => 'required|min:9',
-    'w2_email'   => 'required|email',
-    'w3_name'    => 'required|min:2',
-    'w3_number'  => 'required|min:9',
-    'w3_email'   => 'required|email',
+    'title' => 'required|min:2',
+    'content' => 'required',
+    'w1_name' => 'required|min:2',
+    'w1_number' => 'required|min:9',
+    'w1_email' => 'required|email',
+    'w2_name' => 'required|min:2',
+    'w2_number' => 'required|min:9',
+    'w2_email' => 'required|email',
+    'w3_name' => 'required|min:2',
+    'w3_number' => 'required|min:9',
+    'w3_email' => 'required|email',
 ]);
 
+$submit = function () {
+    // $this->validate();
+    $story = new Story();
+    $story->title = $this->title;
+    $story->content = $this->content;
+    $story->w1_name = $this->w1_name;
+    $story->w1_number = $this->w1_number;
+    $story->w1_email = $this->w1_email;
+    $story->w2_name = $this->w2_name;
+    $story->w2_number = $this->w2_number;
+    $story->w2_email = $this->w2_email;
+    $story->w3_name = $this->w3_name;
+    $story->w3_number = $this->w3_number;
+    $story->w3_email = $this->w3_email;
 
+    $story->save();
+    $this->id=$story->id;
+    $this->completed = true;
+};
 
-    $submit = function ()
-        {
-            $this->validate();
-            Story::create([
-                'title'         => $this->title,
-                'content'       => $this->content,
-                'w1_name'       => $this->w1_name,
-                'w1_number'     => $this->w1_number,
-                'w1_email'      => $this->w1_email,
-                'w2_name'       => $this->w2_name,
-                'w2_number'     => $this->w2_number,
-                'w2_email'      => $this->w2_email,
-                'w3_name'       => $this->w3_name,
-                'w3_number'     => $this->w3_number,
-                'w3_email'      => $this->w3_email,
-            ]);
-            $this->completed = true;
-        };
+$sendMail = function () {
+    // $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
+
+    $recipientEmails = [
+        // auth()->user()->email,
+        $this->w1_email,
+        $this->w2_email,
+        $this->w3_email,
+    ];
+
+    $data['title'] = $this->title;
+    $data['content'] = $this->content;
+    $data['body'] = 'from mayadeen';
+
+    $pdf = FacadePdf::loadView('story.pdf', ['title' => $data['title'], 'content' => $data['content']]);
+    $data['pdf'] = $pdf;
+
+    // Send email with the PDF attached using Laravel Mail
+    foreach ($recipientEmails as $recipientEmail) {
+        $data['email'] = $recipientEmail;
+        Mail::to($recipientEmail)->send(new StoryPdfSendMail($data));
+    }
+    $this->mailersSend = true;
+    //save pdf
+    $pdfPath = public_path('pdfs/' . $this->title . '.pdf');
+    $pdf->save($pdfPath);
+};
+
+$downloadPdf = function () {
+    $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
+    $pdf->download($this->title . '.pdf');
+
+};
 
 ?>
 @extends('layouts.app')
@@ -88,41 +124,47 @@ rules([
                             <div class="story-title-container">
                                 <img src="{{ asset('website/story/imges/story-title.svg') }}" alt=""
                                     class="story-title-img" />
-                                <input type="text" name="story-title"  wire:model="title" />
+                                <input type="text" name="story-title" wire:model="title" />
                             </div>
                         </div>
                     </div>
 
                     <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
                         <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                        <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
+                        <button type="button"
+                            class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
                     </div>
                 </div>
                 {{-- ############################ --}}
-                <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
+                <div x-show="step==2"
+                    class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
                     <div class="z-10">
                         <div class="beep text-center relative hover:scale-95 ">
                             <div class="write-story-container">
                                 <span>اكتب القصه</span>
                                 <div class="input-container">
-                                    <img class="write-story-img" src="{{ 'website/story/imges/Path 115.svg' }}" alt="" />
-                                    <textarea  wire:model="content"></textarea>
+                                    <img class="write-story-img" src="{{ 'website/story/imges/Path 115.svg' }}"
+                                        alt="" />
+                                    <textarea wire:model="content"></textarea>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div class=" mt-3">
                         <div class="d-flex justify-content-evenly  ">
                             <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
                                 <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
+                                <button type="button"
+                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
                             </div>
 
                             <!-- Add margin-right to create space between the two buttons -->
                             <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step--">
                                 <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">السابق</button>
+                                <button type="button"
+                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">السابق</button>
                             </div>
                         </div>
                     </div>
@@ -130,183 +172,205 @@ rules([
 
                 {{-- ############################ --}}
                 @if (!$this->completed)
-                <div x-show="step==3"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
-                    <div class="z-10 p-8">
-                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
-                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+                    <div x-show="step==3"
+                        class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
+                        <div class="z-10 p-8">
+                            <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
+                                style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
 
-                            <div class="max-w-sm mx-auto pt-16">
-                                <h1  class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الأول</h1>
-                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="w1_name" placeholder="أدخل الإسم">
+                                <div class="max-w-sm mx-auto pt-16">
+                                    <h1 class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الأول</h1>
+                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w1_name" placeholder="أدخل الإسم">
+                                </div>
+                                <div class="max-w-sm mx-auto">
+                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
+                                        الإلكتروني</label>
+                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="w1_email"
+                                        placeholder="أدخل البريد الإلكتروني">
+                                </div>
+                                <div class="max-w-sm mx-auto pb-10">
+                                    <label for="number" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
+                                    <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w1_number" placeholder="أدخل الهاتف">
+                                </div>
                             </div>
-                            <div class="max-w-sm mx-auto">
-                                <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد الإلكتروني</label>
-                                <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="w1_email"
-                                    placeholder="أدخل البريد الإلكتروني">
-                            </div>
-                            <div class="max-w-sm mx-auto pb-10">
-                                <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="w1_phone" placeholder="أدخل الهاتف">
-                            </div>
-                        </div>
 
-                        <div class="beep text-center relative hover:scale-95 mt-16" x-on:click="step++">
-                            <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                            <button type="button"
-                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl" >التالي</button>
-                        </div>
-                        {{-- <div class="beep text-center relative hover:scale-95 mt-16" x-on:click="step++">
+                            <div class="beep text-center relative hover:scale-95 mt-16" x-on:click="step++">
+                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                                <button type="button"
+                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">التالي</button>
+                            </div>
+                            {{-- <div class="beep text-center relative hover:scale-95 mt-16" x-on:click="step++">
                             <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
                             <button type="button"
                                 class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">السابق</button>
                         </div> --}}
 
-                        @error('w1_name')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل اسمك الحقيقي.
-                            </div>
-                        @enderror
+                            @error('w1_name')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل اسمك الحقيقي.
+                                </div>
+                            @enderror
 
-                        @error('w1_email')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل بريد إلكتروني صالح.
-                            </div>
-                        @enderror
+                            @error('w1_email')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل بريد إلكتروني صالح.
+                                </div>
+                            @enderror
 
-                        @error('w1_phone')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل رقم هاتف صحيح.
-                            </div>
-                        @enderror
+                            @error('w1_number')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل رقم هاتف صحيح.
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
-            @endif
+                @endif
 
                 {{-- ############################ --}}
                 {{-- ############################ --}}
                 @if (!$this->completed)
-                <div x-show="step==4"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopRight">
-                    <div class="z-10 p-8">
-                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
-                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
-                            <div class="max-w-sm mx-auto pt-16">
-                                <h1  class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثاني </h1>
+                    <div x-show="step==4"
+                        class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopRight">
+                        <div class="z-10 p-8">
+                            <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
+                                style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+                                <div class="max-w-sm mx-auto pt-16">
+                                    <h1 class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثاني </h1>
 
-                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="w2_name" placeholder="أدخل الإسم">
+                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w2_name" placeholder="أدخل الإسم">
+                                </div>
+                                <div class="max-w-sm mx-auto">
+                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
+                                        الإلكتروني</label>
+                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w2_email" placeholder="أدخل البريد الإلكتروني">
+                                </div>
+                                <div class="max-w-sm mx-auto pb-10">
+                                    <label for="number" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
+                                    <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w2_number" placeholder="أدخل الهاتف">
+                                </div>
                             </div>
-                            <div class="max-w-sm mx-auto">
-                                <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد الإلكتروني</label>
-                                <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="w2_email"
-                                    placeholder="أدخل البريد الإلكتروني">
+
+                            <div class="beep text-center relative hover:scale-95 mt-16" x-on:click="step++">
+                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                                <button type="button"
+                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">التالي</button>
                             </div>
-                            <div class="max-w-sm mx-auto pb-10">
-                                <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="w2_phone" placeholder="أدخل الهاتف">
-                            </div>
+
+                            @error('w2_name')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل اسمك الحقيقي.
+                                </div>
+                            @enderror
+
+                            @error('w2_email')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل بريد إلكتروني صالح.
+                                </div>
+                            @enderror
+
+                            @error('w2_number')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل رقم هاتف صحيح.
+                                </div>
+                            @enderror
                         </div>
-
-                        <div class="beep text-center relative hover:scale-95 mt-16" x-on:click="step++">
-                            <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                            <button type="button"
-                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">التالي</button>
-                        </div>
-
-                        @error('w2_name')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل اسمك الحقيقي.
-                            </div>
-                        @enderror
-
-                        @error('w2_email')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل بريد إلكتروني صالح.
-                            </div>
-                        @enderror
-
-                        @error('w2_phone')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل رقم هاتف صحيح.
-                            </div>
-                        @enderror
                     </div>
-                </div>
-            @endif
+                @endif
                 {{-- ############################ --}}
                 {{-- ############################ --}}
                 @if (!$this->completed)
-                <div x-show="step==5"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopLeft">
-                    <div class="z-10 p-8">
-                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
-                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
-                            <div class="max-w-sm mx-auto pt-16">
-                                <h1  class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثالث </h1>
-                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="w3_name" placeholder="أدخل الإسم">
+                    <div x-show="step==5"
+                        class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopLeft">
+                        <div class="z-10 p-8">
+                            <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
+                                style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
+                                <div class="max-w-sm mx-auto pt-16">
+                                    <h1 class="block mb-2 font-medium text-[#f1e1c6] text-center">الكاتب الثالث </h1>
+                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w3_name" placeholder="أدخل الإسم">
+                                </div>
+                                <div class="max-w-sm mx-auto">
+                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
+                                        الإلكتروني</label>
+                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w3_email" placeholder="أدخل البريد الإلكتروني">
+                                </div>
+                                <div class="max-w-sm mx-auto pb-10">
+                                    <label for="number" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
+                                    <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        wire:model="w3_number" placeholder="أدخل الهاتف">
+                                </div>
                             </div>
-                            <div class="max-w-sm mx-auto">
-                                <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد الإلكتروني</label>
-                                <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="w3_email"
-                                    placeholder="أدخل البريد الإلكتروني">
+
+                            <div class="beep text-center relative hover:scale-95 mt-16" wire:click="submit">
+                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                                <button type="button"
+                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">إرسال</button>
                             </div>
-                            <div class="max-w-sm mx-auto pb-10">
-                                <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="w3_phone" placeholder="أدخل الهاتف">
-                            </div>
+
+                            @error('w3_name')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل اسمك الحقيقي.
+                                </div>
+                            @enderror
+
+                            @error('w3_email')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل بريد إلكتروني صالح.
+                                </div>
+                            @enderror
+
+                            @error('w3_number')
+                                <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                    ادخل رقم هاتف صحيح.
+                                </div>
+                            @enderror
                         </div>
-
-                        <div class="beep text-center relative hover:scale-95 mt-16" wire:click="submit">
-                            <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                            <button type="button"
-                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">إرسال</button>
-                        </div>
-
-                        @error('w3_name')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل اسمك الحقيقي.
-                            </div>
-                        @enderror
-
-                        @error('w3_email')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل بريد إلكتروني صالح.
-                            </div>
-                        @enderror
-
-                        @error('w3_phone')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل رقم هاتف صحيح.
-                            </div>
-                        @enderror
                     </div>
-                </div>
-            @endif
+                @endif
                 {{-- ############################ --}}
 
                 @if ($this->completed)
                     <div class="flex flex-col items-center justify-center h-screen animate__animated animate__bounce">
                         <div class="z-10">
-                            <h1 class="text-center text-4xl mt-16">تم ارسال البيانات!</h1>
-                            <h1 class="text-center text-4xl mt-16">تم ارسال الأقصوصة الي المشرف!</h1>
-                            <h1 class="text-center text-4xl mt-16">تم ارسال الأقصوصة الي الكاتب الاول!</h1>
-                            <h1 class="text-center text-4xl mt-16">تم ارسال الأقصوصة الي الكاتب الثاني!</h1>
-                            <h1 class="text-center text-4xl mt-16">تم ارسال الأقصوصة الي الكاتب الثالث !</h1>
-
+                            <h1 class="text-center text-4xl mt-16">تم انشاء الاأقصوصة</h1>
                             <div class="beep text-center relative hover:scale-95 mt-16">
                                 <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <a href="{{ url('/') }}" wire:navigate
+                                <a href="{{ url('/') }}"
                                     class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">الرئيسية</a>
                             </div>
+                            <a href="{{ route('story.pdf',$this->id) }}">
+                                <div class="beep text-center relative hover:scale-95 mt-16">
+                                    {{-- wire:click="downloadPdf()" --}}
+                                    <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                                    <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">تحميل
+                                        الأقصوصة PDF</div>
+                                </div>
+                            </a>
+
+
+
+                            @if ($this->mailersSend)
+                                <h1 class="text-center text-4xl mt-16">تم ارسال الاأقصوصة عبر البريد </h1>
+                            @endif
+                            @if (!$this->mailersSend)
+                            <div class="beep text-center relative hover:scale-95 mt-16" wire:click="sendMail()">
+                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                                <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">ارسال
+                                    الأقصوصة الي الأعضاء</div>
+                            </div>
+                            @endif
+
+                            <br>
+                            <br>
                         </div>
                     </div>
                 @endif

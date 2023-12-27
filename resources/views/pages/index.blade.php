@@ -14,10 +14,16 @@
                         <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
                         <a href="#" class="absolute inset-0 flex items-center justify-center text-white text-4xl">تحد نفسك</a>
                     </div>
-        
+
                     <div class="beep text-center relative hover:scale-95">
                         <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
                         <a wire:navigate href="{{ url('/survey') }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">إبداء رأيك</a>
+                    </div>
+
+
+                    <div class="beep text-center relative hover:scale-95">
+                        <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                        <a wire:navigate href="{{ url('/story') }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl"> الأقصوصة </a>
                     </div>
 
                 </div>
