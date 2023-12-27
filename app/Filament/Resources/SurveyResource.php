@@ -46,14 +46,14 @@ class SurveyResource extends Resource
                             ->minLength(3)
                             ->maxLength(255)
                             ->rules('required|min:3|max:255'),
-    
+
                         Forms\Components\TextInput::make('email')
                             ->label('البريد الإلكتروني')
                             ->placeholder('بريد إلكتروني المستفتي')
                             ->required()
                             ->email()
                             ->rules('required|email'),
-    
+
                         Forms\Components\TextInput::make('phone')
                             ->label('جوال')
                             ->placeholder('جوال المستفتي')
@@ -61,7 +61,7 @@ class SurveyResource extends Resource
                             ->tel()
                             ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
                             ->rules('required'),
-    
+
                     ]),
                 ]),
 
@@ -80,7 +80,7 @@ class SurveyResource extends Resource
                             ->options(SurveyEnum::class)
                             ->required()
                             ->searchable(),
-                            
+
                             Forms\Components\Select::make('events')
                             ->label('الفعاليات')
                             ->options(SurveyEnum::class)
@@ -92,6 +92,29 @@ class SurveyResource extends Resource
                             ->options(SurveyEnum::class)
                             ->required()
                             ->searchable(),
+                    ])
+                ]),
+                Forms\Components\Section::make("الإستطلاع")
+                ->schema([
+                    Forms\Components\Grid::make(2)
+                    ->schema([
+                        Forms\Components\Select::make('rating')
+                            ->label('التقييم')
+                            ->options([
+                                '1' => 'راضي جدا',
+                                '2' => 'راضي',
+                                '3' => 'محايد',
+                                '4' => 'مستاء',
+                                '5' => 'مستاء جدا',
+                            ])
+                            ->required()
+                            ->searchable(),
+
+                        Forms\Components\Textarea::make('opinion')
+                            ->label('رأي المستطلع')
+                            ->placeholder('رأي المستطلع')
+                            ->required()
+                            ->rules('required'),
                     ])
                 ]),
             ]);
@@ -152,7 +175,7 @@ class SurveyResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -163,15 +186,15 @@ class SurveyResource extends Resource
                         ->schema([
                             \Filament\Infolists\Components\TextEntry::make('name')
                                 ->label('الإسم'),
-        
+
                             \Filament\Infolists\Components\TextEntry::make('email')
                                 ->label('البريد الإلكتروني'),
-        
+
                             \Filament\Infolists\Components\TextEntry::make('phone')
                                 ->label('جوال'),
                         ]),
                     ]),
-    
+
                 \Filament\Infolists\Components\Section::make('الإستبيان')
                     ->schema([
                         \Filament\Infolists\Components\Grid::make(4)

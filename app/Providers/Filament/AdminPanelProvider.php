@@ -72,8 +72,6 @@ class AdminPanelProvider extends PanelProvider
                 ->colored(),
 
                 \Hasnayeen\Themes\ThemesPlugin::make(),
-
-                SimpleLightBoxPlugin::make()
             ])
             ->globalSearchKeyBindings(['command+k', "ctrl+k"])
             ->font(

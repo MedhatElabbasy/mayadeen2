@@ -43,14 +43,14 @@ class ChallengeResource extends Resource
                                 ->minLength(3)
                                 ->maxLength(255)
                                 ->rules('required|min:3|max:255'),
-    
+
                             Forms\Components\TextInput::make('email')
                                 ->label('البريد الإلكتروني')
                                 ->placeholder('بريد إلكتروني المتحدي')
                                 ->required()
                                 ->email()
                                 ->rules('required|email'),
-    
+
                             Forms\Components\TextInput::make('phone')
                                 ->label('جوال')
                                 ->placeholder('جوال المتحدي')
@@ -58,7 +58,6 @@ class ChallengeResource extends Resource
                                 ->tel()
                                 ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
                                 ->rules('required'),
-    
                         ])
                     ]),
 
@@ -105,20 +104,20 @@ class ChallengeResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('email')
-                ->label('البريد الإلكتروني')
-                ->searchable(),
-                    
+                    ->label('البريد الإلكتروني')
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('phone')
-                ->label('الجوال')
-                ->searchable(),
+                    ->label('الجوال')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('mark')
-                ->label('الدرجة')
-                ->searchable(),
+                    ->label('الدرجة')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('fullMark')
-                ->label('الدرجة الكاملة')
-                ->searchable(),
+                    ->label('الدرجة الكاملة')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')

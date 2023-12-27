@@ -22,5 +22,4 @@ class Poem extends Model
     {
         return $value == 'faq' ? 'الفصحى' : 'نبطية';
     }
-
 }

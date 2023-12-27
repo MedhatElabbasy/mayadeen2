@@ -21,7 +21,7 @@ class StoryResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
 
     protected static ?string $navigationGroup = 'الأقصوصة';
-    
+
     protected static ?string $navigationLabel = 'الأقصوصات';
 
     protected static ?string $pluralLabel = 'اقصوصات';
@@ -44,7 +44,7 @@ class StoryResource extends Resource
                             ->minLength(3)
                             ->maxLength(255)
                             ->rules('required|min:3|max:255'),
-        
+
                         Forms\Components\RichEditor::make('content')
                             ->label('المحتوي')
                             ->placeholder('محتوي الأقصوصة')
@@ -52,7 +52,19 @@ class StoryResource extends Resource
                             ->required()
                             ->minLength(10)
                             ->rules('required|string'),
-                    ])
+                    ]),
+
+                    Forms\Components\Section::make("الإستطلاع")
+                    ->schema([
+                        Forms\Components\Grid::make(1)
+                        ->schema([
+                            Forms\Components\Textarea::make('opinion')
+                                ->label('رأي المستطلع')
+                                ->placeholder('رأي المستطلع')
+                                ->required()
+                                ->rules('required'),
+                        ])
+                    ]),
                 ])
             ]);
     }
@@ -104,15 +116,15 @@ class StoryResource extends Resource
 
                  \Filament\Infolists\Components\Section::make('محتوي الأقصوصة')
                  ->schema([
- 
-                     \Filament\Infolists\Components\TextEntry::make('content')
-                         ->label('المحتوي')
-                         ->hiddenLabel()
-                         ->html(),
+
+                \Filament\Infolists\Components\TextEntry::make('content')
+                    ->label('المحتوي')
+                    ->hiddenLabel()
+                    ->html(),
                   ])
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [

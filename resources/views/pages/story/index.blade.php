@@ -99,7 +99,7 @@ rules([
                     </div>
                 </div>
                 {{-- ############################ --}}
-                <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
+                <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__backInDown">
                     <div class="z-10">
                         <div class="beep text-center relative hover:scale-95 ">
                             <div class="write-story-container">
@@ -131,7 +131,7 @@ rules([
                 {{-- ############################ --}}
                 @if (!$this->completed)
                 <div x-show="step==3"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
+                    class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
                     <div class="z-10 p-8">
                         <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                             style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
@@ -190,7 +190,7 @@ rules([
                 {{-- ############################ --}}
                 @if (!$this->completed)
                 <div x-show="step==4"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopRight">
+                    class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
                     <div class="z-10 p-8">
                         <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                             style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
@@ -243,7 +243,7 @@ rules([
                 {{-- ############################ --}}
                 @if (!$this->completed)
                 <div x-show="step==5"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopLeft">
+                    class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
                     <div class="z-10 p-8">
                         <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                             style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">

@@ -5,7 +5,7 @@
                 class="fi-badge flex items-center justify-center gap-x-1 rounded-md text-xs font-medium ring-1 ring-inset px-2 min-w-[theme(spacing.6)] py-1 fi-color-custom bg-custom-50 text-custom-600 ring-custom-600/10 dark:bg-custom-400/10 dark:text-custom-400 dark:ring-custom-400/30">
                 <span class="grid">
                     <span class="truncate">
-                        {{ count($getState()) }}
+                        {{ $getState() ? count($getState()) : 0 }}
                     </span>
                 </span>
             </div>
