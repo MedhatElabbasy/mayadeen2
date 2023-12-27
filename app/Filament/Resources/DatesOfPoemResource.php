@@ -40,7 +40,8 @@ class DatesOfPoemResource extends Resource
                             ->placeholder('إسم الشاعر')
                             ->minLength(3)
                             ->maxLength(255)
-                            ->rules('max:255'),
+                            ->rules('max:255')
+                        ->columnSpan('full'),
 
                         Forms\Components\DatePicker::make('date')
                             ->label('التاريخ')
@@ -49,8 +50,8 @@ class DatesOfPoemResource extends Resource
                             ->rules('required'),
 
                         Forms\Components\TimePicker::make('start_time')
-                            ->label('وقت النهاية')
-                            ->placeholder('وقت النهاية')
+                            ->label('وقت البداية')
+                            ->placeholder('وقت البداية')
                             ->required()
                             ->rules('required'),
 
@@ -58,6 +59,15 @@ class DatesOfPoemResource extends Resource
                             ->label('وقت النهاية')
                             ->placeholder('وقت النهاية')
                             ->required()
+                            ->rules('required'),
+
+                            Forms\Components\Select::make('type')
+                            ->label('النوع')
+                            ->placeholder('النوع')
+                            ->options([
+                                'نبطية' => 'نبطية',
+                                'فصحى' => 'فصحى',
+                            ])->required()
                             ->rules('required'),
 
                         Forms\Components\Textarea::make('details')
