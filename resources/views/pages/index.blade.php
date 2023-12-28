@@ -41,7 +41,7 @@ state([
                         ],
                         [
                             "title" => "أدباء عبر التاريخ",
-                            "link" => "/"
+                            "link" => "/writers"
                         ],
                         [
                             "title" => "شارك قصيدتك",
@@ -66,7 +66,7 @@ state([
                     ] as $link)
 
                     <div class="beep text-center relative hover:scale-95">
-                        <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
+                        <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
                         <a wire:navigate href="{{ url($link['link']) }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">{{$link['title']}}</a>
                     </div>
                     @endforeach

@@ -57,7 +57,7 @@
 
     @stack('head')
   </head>
-  <body dir="rtl" class="bg-[#f1e1c6]">
+  <body dir="rtl" class="@yield('bg', 'bg-[#f1e1c6]')">
     @yield('content')
 
     <!-- Palms -->
