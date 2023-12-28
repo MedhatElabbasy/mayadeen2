@@ -10,6 +10,7 @@ class Story extends Model
     use HasFactory;
 
     public $fillable = [
+        'user_id',
         'title',
         'content',
         'w1_name',
