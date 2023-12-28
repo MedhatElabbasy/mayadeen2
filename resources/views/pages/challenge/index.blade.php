@@ -1,20 +1,24 @@
 <?php
 
-use function Livewire\Volt\{rules,state};
+use function Livewire\Volt\{rules,state, computed};
 use App\Models\Question;
 use App\Models\Challenge;
 
-$questions = Question::inRandomOrder()->limit(setting('questionsCount'))->get();
-
 state([
-  'questionsTotal' => $questions->count(),
-  'questions'      => $questions,
   'completed'      => false,
   'score'          => 0,
   'name'           => null,
   'email'          => null,
   'phone'          => null,
 ]);
+
+$questions = computed(function () {
+    return Question::inRandomOrder()->limit(setting('questionsCount'))->get();
+});
+
+$questionsTotal = computed(function () {
+    return $this->questions->count();
+});
 
 rules([
     'name'    => 'required|min:2',
@@ -61,8 +65,18 @@ $submit = function () {
   }
   }" class="border-x-2 border-[#e34e34]">
 
+    <!-- Banner -->
+    <div class="h-36 md:h-64 w-full cursor-pointer">
+        <a href="{{url('/')}}" wire:navigate>
+            <div class="absolute top-0 left-8 -z-50">
+                <img src="{{ asset('website/images/banner.svg') }}" class="h-36 md:h-64 w-full">
+            </div>
+        </a>
+    </div>
+    <!-- //Banner -->
+
     <!-- Step 0 : Wrong answer hint -->
-    <div x-show="step==0" class="flex items-center justify-center min-h-screen animate__animated animate__backInDown">
+    <div x-show="step==0" class="flex items-center justify-center animate__animated animate__backInDown z-10">
       <div class="container mx-auto px-4">
         <div class="z-10">
 
@@ -70,10 +84,10 @@ $submit = function () {
             <a target="_blank" :href="hint_image">
               <img class="h-auto max-w-full rounded-lg" :src="hint_image" alt="image description">
             </a>
-          <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400" x-text="hint_text"></figcaption>
+          <figcaption class="mt-2 text-sm text-center text-black" x-text="hint_text"></figcaption>
           </figure>
 
-          <div class="beep text-center relative hover:scale-95 mt-4" x-on:click="nextQuestion">
+          <div class="beep text-center relative hover:scale-95 mt-4 cursor-pointer" x-on:click="nextQuestion">
               <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
               <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">أكمل</span>
         </div>
@@ -84,12 +98,12 @@ $submit = function () {
     <!-- //Step 0 -->
 
   <!-- Step 1 : Welcome -->
-  <div x-show="step==1" class="flex flex-col items-center justify-center min-h-screen animate__animated animate__backInDown">
+  <div x-show="step==1" class="flex flex-col items-center justify-center animate__animated animate__backInDown">
     <div class="container mx-auto px-4 justify">
       <div class="z-10">
-        <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 text-[#e34e34]">تحدَّ نفسك!</h1>
+        <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تحدَّ نفسك!</h1>
 
-        <div class="beep text-center relative hover:scale-95 mb-8" x-on:click="step++">
+        <div class="beep text-center relative hover:scale-95 mb-8 cursor-pointer" x-on:click="step++">
           <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
           <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">بدء التحدي</span>
         </div>
@@ -99,7 +113,7 @@ $submit = function () {
   <!-- //Step 1 -->
 
   <!-- Step 2 : Questions -->
-  <div x-show="step==2" class="flex flex-col items-center justify-center min-h-screen animate__animated animate__backInDown">
+  <div x-show="step==2" class="flex flex-col items-center justify-center animate__animated animate__backInDown">
     <div class="container mx-auto px-4 justify">
       <div class="z-10">
 
@@ -107,9 +121,7 @@ $submit = function () {
           correctQuestion(el) {
             if(this.questionsCount==this.currentQuestion) this.step++;
             this.currentQuestion++;
-            party.confetti(el,{
-              count: party.variation.range(50, 100),
-            });
+            party.confetti(el,{ count: party.variation.range(50, 100) });
             soundEffectPlay('correctAnswerPlayer');
           },
           wrongQuestion(text, image) {
@@ -123,27 +135,28 @@ $submit = function () {
          }">
 
         @foreach ($this->questions as $question)
-          <div x-show="currentQuestion=={{$loop->index+1}}" class="animate__animated animate__backInDown">
-            <h1 class="text-1xl md:text-4xl font-bold mb-8 text-[#e34e34]">{{$question->content}}</h1>
+        <div x-show="currentQuestion=={{$loop->index+1}}" class="animate__animated animate__backInDown">
+            <div class="flex flex-col items-center justify-center mt-4">
+                <h1 class="text-1xl md:text-4xl font-bold mb-8 text-[#e34e34]">{{$question->content}}</h1>
 
-            <div class="mb-8">
-              <ol class="font-semibold text-black max-w-md space-y-4 md:space-y-12 list-decimal list-inside text-1xl md:text-2xl">
-                @foreach ($question->answers as $answer)
-                  <li
-                    class="beep md:hover:scale-125 text-black hover:text-[#e34e34]"
+                <div
+                class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-4 gap-4">
+                    @foreach ($question->answers as $answer)
+                    <div
+                    class="rounded-lg bg-[#e34e34] text-white p-8 items-center text-center font-semibold cursor-pointer beep hover:scale-95"
                     @if($answer['isCorrect'] && $loop->index+1)
-                      x-on:click="correctQuestion($event.target)" wire:click="incrementScore"
+                        x-on:click="correctQuestion($event.target)" wire:click="incrementScore"
                     @else
-                      x-on:click="wrongQuestion('{{$answer['wrongText']}}', '{{asset('storage/'.$answer['wrongImage'])}}')"
+                        x-on:click="wrongQuestion('{{$answer['wrongText']}}', '{{asset('storage/'.$answer['wrongImage'])}}')"
                     @endif
-                    >
-                      <span>{{$answer['content']}}</span>
-                  </li>
+                >
+                    <span>{{$answer['content']}}</span>
+                </div>
                 @endforeach
-              </ol>
+                </div>
             </div>
-          </div>
-          @endforeach
+        </div>
+        @endforeach
         </div>
 
       </div>
@@ -153,7 +166,9 @@ $submit = function () {
 
   <!-- Step 3 : Information -->
   @if(!$this->completed)
-  <div x-show="step==3" class="flex flex-col items-center justify-center min-h-screen animate__animated animate__backInDown">
+  <div x-show="step==3" class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown">
+    <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">ادخل بياناتك الشخصية</h1>
+
       <form wire:submit='submit'>
         <div class="z-10 p-2">
             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
@@ -186,15 +201,17 @@ $submit = function () {
 
   <!-- Step 4 : Score -->
   @if($this->completed)
-  <div class="flex flex-col items-center justify-center min-h-screen animate__animated animate__backInDown">
+  <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
     <div class="container mx-auto px-4 justify">
+    <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">النتيجة</h1>
+
       <div class="z-10">
         <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 text-[#e34e34]">{{ $this->score.' - '.''.$this->questionsTotal }}</h1>
 
         <div class="beep text-center relative hover:scale-95 mb-8">
           <a href="/" wire:navigate>
             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">النتيجة</span>
+            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الرئيسية</span>
           </a>
         </div>
       </div>
@@ -203,13 +220,6 @@ $submit = function () {
   @endif
   <!-- //Step 4 -->
 
-  <!-- Banner -->
-  <div class="absolute top-0 left-8 z-0">
-      <a href="/" wire:navigate>
-        <img src="{{ asset('website/images/banner.svg') }}" class="h-36 md:h-64 w-full">
-      </a>
-  </div>
-  <!-- //Banner -->
 </div>
 @endvolt
 @endsection

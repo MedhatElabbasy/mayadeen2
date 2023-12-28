@@ -213,7 +213,7 @@ class WriterResource extends Resource
 
                 \Filament\Infolists\Components\Section::make('الصورة الشخصية')->columns(1)->schema([
                     \Filament\Infolists\Components\ImageEntry::make('image')
-                    ->label('الصورة الأديب')
+                    ->label('صورة الأديب')
                     ->size(250)
                     ->circular(),
                 ]),

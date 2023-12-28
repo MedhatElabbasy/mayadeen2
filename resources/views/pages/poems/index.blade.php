@@ -30,7 +30,7 @@ rules([
     'author'    => 'required|min:2',
     'phone'  => 'required|min:9',
     'email'   => 'required|email',
-  
+
 ]);
 
 $selectedType =function($value)
@@ -48,7 +48,7 @@ $selectedType =function($value)
                 'author'       => $this->author,
                 'phone'     => $this->phone,
                 'email'      => $this->email,
-              
+
             ]);
             $this->completed = true;
         };
@@ -108,9 +108,9 @@ $selectedType =function($value)
                     <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
                 </div>
             </div>
-        
+
                 {{-- ############################ --}}
-        
+
                 {{-- ############################ --}}
                 <div x-show="step==3" class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
                     <div class="z-10">
@@ -172,7 +172,7 @@ $selectedType =function($value)
                             <button type="button"
                                 class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">إرسال</button>
                         </div>
-                    
+
 
                         @error('author')
                             <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
@@ -196,11 +196,10 @@ $selectedType =function($value)
                 @endif
 
                 {{-- ############################ --}}
-      
                 {{-- ############################ --}}
 
                 @if ($this->completed)
-                <div class="flex flex-col items-center justify-center h-screen animate__animated animate__bounce">
+                <div class="flex flex-col items-center justify-center my-36 animate__animated animate__bounce">
                     <div class="z-10">
                         <h1 class="text-center text-4xl mt-16">تم ارسال البيانات!</h1>
                         <div class="beep text-center relative hover:scale-95 mt-16">
@@ -210,14 +209,14 @@ $selectedType =function($value)
                         </div>
 
                     </div>
-                 
+
                     <div>
-                     
+
 
                 </div>
             @endif
             </div>
-            <div class="absolute top-0 left-8 z-0">
+            <div class="absolute top-0 left-8 -z-50">
                 <img src="{{ asset('website/images/banner.svg') }}" class="w-20 md:w-64">
             </div>
         </div>

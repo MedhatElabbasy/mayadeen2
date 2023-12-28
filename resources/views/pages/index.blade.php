@@ -16,7 +16,7 @@ state([
 @section('content')
 @volt
 <div class="px-8 border-x-2 border-[#e34e34]">
-    <div class="flex flex-col items-center justify-center h-screen">
+    <div class="flex flex-col items-center justify-center my-36">
         <div class="z-10">
             <img src="{{ asset('website/images/navbar.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
 
@@ -32,10 +32,9 @@ state([
                         <a wire:navigate href="{{ url('/survey') }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إبداء رأيك</a>
                     </div>
 
-
                     <div class="beep text-center relative hover:scale-95">
-                        <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                        <a wire:navigate href="{{ url('/story') }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl"> الأقصوصة </a>
+                        <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
+                        <a wire:navigate href="{{ url('/story') }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الأقصوصة</a>
                     </div>
 
                 </div>
