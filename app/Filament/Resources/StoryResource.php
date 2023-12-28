@@ -33,6 +33,17 @@ class StoryResource extends Resource
                     ->schema([
                         Forms\Components\Grid::make(1)
                             ->schema([
+                                Forms\Components\Select::make('user_id')
+                                    ->label('المشرف')
+                                    ->placeholder('اختر المشرف')
+                                    ->options(
+                                        \App\Models\User::whereHas('roles', function ($query) {
+                                            $query->where('name', 'supervisor');
+                                        })->get()->pluck('name', 'id')
+                                    )
+                                    ->required()
+                                    ->rules('required'),
+
                                 Forms\Components\TextInput::make('title')
                                     ->label('الإسم')
                                     ->placeholder('إسم الأقصوصة')
@@ -132,8 +143,15 @@ class StoryResource extends Resource
     {
         return $table
             ->columns([
+                
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('المشرف')
+                    ->alignCenter()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('title')
                     ->label('الإسم')
+                    ->alignCenter()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('created_at')
@@ -142,11 +160,6 @@ class StoryResource extends Resource
                     ->toggleable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('تاريخ آخر تحديث')
-                    ->dateTime('M j, Y')
-                    ->toggleable()
-                    ->sortable(),
             ])
             ->filters([
                 //
