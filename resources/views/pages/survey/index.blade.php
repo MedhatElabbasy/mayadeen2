@@ -75,7 +75,7 @@ $submit = function () {
 @volt
 <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
 
-    <div x-show="step==1" class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+    <div x-show="step==1" class="flex flex-col items-center justify-center my-36 animate__animated animate__backInDown">
         <div class="z-10">
             <h1 class="text-center text-4xl mt-16">من خلال تجربتك شاركنا مامدي رضاك!</h1>
 
@@ -86,7 +86,7 @@ $submit = function () {
         </div>
     </div>
 
-    <div x-show="step==2" class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+    <div x-show="step==2" class="flex flex-col items-center justify-center my-36 animate__animated animate__backInDown">
         <div class="z-10">
             <h1 class="text-center text-3xl mt-16">ما مدى رضاك عن مرافق المهرجان ؟</h1>
 
@@ -161,7 +161,7 @@ $submit = function () {
         </div>
     </div>
 
-    <div x-show="step==3" class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+    <div x-show="step==3" class="flex flex-col items-center justify-center my-36 animate__animated animate__backInDown">
         <div class="z-10">
             <h1 class="text-center text-3xl mt-16">ما مدى رضاك عن تنظيم الفعالية ؟</h1>
 
@@ -236,7 +236,7 @@ $submit = function () {
         </div>
     </div>
 
-    <div x-show="step==4" class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+    <div x-show="step==4" class="flex flex-col items-center justify-center my-36 animate__animated animate__backInDown">
         <div class="z-10">
             <h1 class="text-center text-3xl mt-16">ما مدى رضاك عن الفعاليات المقامة ؟</h1>
 
@@ -311,7 +311,7 @@ $submit = function () {
         </div>
     </div>
 
-    <div x-show="step==5" class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
+    <div x-show="step==5" class="flex flex-col items-center justify-center my-36 animate__animated animate__backInDown">
         <div class="z-10">
             <h1 class="text-center text-3xl mt-16">ما مدى رضاك عن سهولة الوصول للمهرجان ؟</h1>
 
@@ -438,7 +438,7 @@ $submit = function () {
     @endif
 
     @if($this->completed)
-    <div class="flex flex-col items-center justify-center h-screen animate__animated animate__bounce">
+    <div class="flex flex-col items-center justify-center my-36 animate__animated animate__bounce">
         <div class="z-10">
             <h1 class="text-center text-4xl mt-16">تم ارسال البيانات!</h1>
 
@@ -451,7 +451,7 @@ $submit = function () {
     @endif
 
 <!-- Banner -->
-<div class="absolute top-0 left-8 z-0">
+<div class="absolute top-0 left-8 -z-50">
     <a href="/" wire:navigate>
       <img src="{{ asset('website/images/banner.svg') }}" class="w-20 md:w-64">
     </a>

@@ -1,0 +1,154 @@
+:root {
+  --main-color: #f54224;
+}
+body {
+  background-color: #f3eac8;
+  font-family: "Tajawal", sans-serif !important;
+}
+.form {
+  padding: 20px 0;
+}
+.img-hed img {
+  width: 15%;
+}
+.desfrom {
+}
+.for-img img {
+  width: 45%;
+}
+.text-arr {
+  position: relative;
+}
+.text-arr textarea {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 37%);
+  width: 34%;
+  height: 192px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+@media (max-width: 477px) {
+  .text-arr textarea {
+    height: 111px !important;
+  }
+  .text-arr textarea {
+    width: 73%;
+  }
+  .for-img img {
+    width: 83%;
+  }
+  .img-hed img {
+    width: 22%;
+  }
+}
+@media (max-width: 799px) {
+  .text-arr textarea {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 32%);
+    width: 65%;
+    height: 241px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+  .for-img img {
+    width: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  .text-arr textarea {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 32%);
+    width: 65%;
+    height: 310px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+  .for-img img {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .text-arr textarea {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 32%);
+    width: 65%;
+    height: 222px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+  .for-img img {
+    width: 100%;
+  }
+  .omd img {
+    width: 196px !important;
+  }
+  .omd p {
+    font-size: 14px !important;
+  }
+}
+
+.send {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+}
+.send img {
+  width: 20%;
+}
+.send p {
+  color: var(--main-color);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.otherd {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 35px;
+}
+@media (max-width: 477px) {
+  .otherd {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .omd img {
+    width: 196px !important;
+  }
+  .omd p {
+    font-size: 14px !important;
+  }
+}
+.omd {
+  position: relative;
+}
+.omd p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f3eac8;
+  font-size: 20px;
+}
+.omd img {
+  width: 333px;
+}
+.text-oghr {
+  margin-top: 62px;
+  color: var(--main-color);
+  font-size: 18px;
+  cursor: pointer;
+}

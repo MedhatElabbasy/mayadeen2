@@ -103,7 +103,7 @@ $submit = function () {
   <!-- //Step 2 -->
 
 <!-- Banner -->
-<div class="absolute top-0 left-8 z-0">
+<div class="absolute top-0 left-8 -z-50">
     <a href="/" wire:navigate>
         <img src="{{ asset('website/images/banner.svg') }}" class="h-36 md:h-64 w-full">
     </a>
