@@ -1,11 +1,15 @@
 <?php
 
 use function Livewire\Volt\{rules, state};
+use function Laravel\Folio\{middleware};
+
 use App\Models\Story;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StoryPdfSendMail;
 use Dompdf\Options;
+
+middleware(['superviser', 'auth']);
 
 state([
     'completed' => false,
