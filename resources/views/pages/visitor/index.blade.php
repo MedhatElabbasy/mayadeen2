@@ -111,6 +111,12 @@ $submit = function () {
                                     @error('image')
                                         <div class="text-white">اختر الصورة*</div>
                                     @enderror
+
+                                    @if($this->image)
+                                        <div class="mt-4 rounded-lg" id="imagePreviewContainer">
+                                            <div class="text-gray-700">الملف: {{$this->image?->getClientOriginalName()}}</div>
+                                        </div>
+                                    @endif
                                 </div>
 
                             </div>
