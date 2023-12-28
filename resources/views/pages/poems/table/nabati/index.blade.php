@@ -88,7 +88,7 @@ $dates = computed(function () {
                     <img class="py-8" src="{{ asset('website/images/qr.png') }}">
                     -->
 
-                    <span class="text-3xl md:text-4xl text-center font-bold py-8">شاركنا قصيدتك بالفصحة !</span>
+                    <span class="text-3xl md:text-4xl text-center font-bold py-8">شاركنا قصيدتك بالنبطي !</span>
                     <img class="py-8" src="{{ asset('website/images/palm-horizontal.svg') }}">
                 </div>
 
