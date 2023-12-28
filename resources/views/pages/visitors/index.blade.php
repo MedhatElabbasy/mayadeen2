@@ -157,10 +157,10 @@ $submit = function () {
         </div>
 
         @push('body')
-            <link href=" https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+            <link data-navigate-once href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
+            <script data-navigate-once src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 
-            <script>
+            <script data-navigate-once>
                 const input = document.querySelector("#phone");
                 window.intlTelInput(input, {
                     initialCountry: "auto",
