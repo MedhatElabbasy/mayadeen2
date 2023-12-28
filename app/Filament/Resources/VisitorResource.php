@@ -19,11 +19,11 @@ class VisitorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $navigationGroup = 'الزائرين';
+    protected static ?string $navigationGroup = 'الزوار';
 
-    protected static ?string $navigationLabel = 'الزائرين';
+    protected static ?string $navigationLabel = 'الزوار';
 
-    protected static ?string $pluralLabel = 'زائرين';
+    protected static ?string $pluralLabel = 'زوار';
 
     protected static ?string $modelLabel = 'زائر';
 

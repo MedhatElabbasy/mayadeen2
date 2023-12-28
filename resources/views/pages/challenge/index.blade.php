@@ -15,7 +15,7 @@ state([
 $questions = computed(function () {
     $questions = Question::all();
     $questionsCount = $questions->count() < setting('questionsCount') ?  $questions->count() : setting('questionsCount');
-    return Question::all()->random(2);
+    return Question::all()->random($questionsCount);
 });
 
 $questionsTotal = computed(function () {
@@ -68,12 +68,14 @@ $submit = function () {
   }" class="border-x-2 border-[#e34e34]">
 
     <!-- Banner -->
-    <div class="h-36 md:h-64 w-full cursor-pointer">
-        <a href="{{url('/')}}" wire:navigate>
-            <div class="absolute top-0 left-8 -z-50">
-                <img src="{{ asset('website/images/banner.svg') }}" class="h-36 md:h-64 w-full">
-            </div>
+    <div class="h-36 md:h-64 w-full">
+      <div class="relative">
+        <a href="{{ url('/') }}" wire:navigate>
+          <div class="absolute top-0 left-8 -z-50">
+            <img src="{{ asset('website/images/banner.svg') }}" alt="Banner" class="h-36 md:h-64 w-full">
+          </div>
         </a>
+      </div>
     </div>
     <!-- //Banner -->
 

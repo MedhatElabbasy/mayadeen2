@@ -34,9 +34,11 @@ state([
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
                         @foreach ($writers as $writer)
 
-                        <div class="beep text-center rounded-lg hover:scale-95 px-4 py-5 bg-[#e34e34]">
-                            <a wire:navigate href="{{ url('/writers/'.$writer->id) }}" class="mt-2 items-center justify-center text-white text-1xl md:text-2xl font-semibold">{{$writer->name}}</a>
-                        </div>
+                        <a wire:navigate href="{{ url('/writers/'.$writer->id) }}" class="mt-2 items-center justify-center text-white text-1xl md:text-2xl font-semibold">
+                            <div class="beep text-center rounded-lg hover:scale-95 px-4 py-5 bg-[#e34e34]">
+                            {{$writer->name}}
+                            </div>
+                        </a>
                         @endforeach
                     </div>
             </div>

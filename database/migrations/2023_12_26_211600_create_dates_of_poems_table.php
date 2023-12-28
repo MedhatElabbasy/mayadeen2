@@ -17,7 +17,9 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->text('details');
+            $table->text('details')->nullable();
+            $table->enum('type', ['nabati', 'fosha'])->default('nabati');
+            $table->boolean('is_break')->default(false);
             $table->timestamps();
         });
     }

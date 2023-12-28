@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DatesOfPoemResource\Pages;
-use App\Filament\Resources\DatesOfPoemResource\RelationManagers;
-use App\Models\DatesOfPoem;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\DatesOfPoem;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\DatesOfPoemResource\Pages;
+use App\Filament\Resources\DatesOfPoemResource\RelationManagers;
 
 class DatesOfPoemResource extends Resource
 {
@@ -21,17 +22,25 @@ class DatesOfPoemResource extends Resource
 
     protected static ?string $navigationGroup = 'القصائد';
 
-    protected static ?string $navigationLabel = 'مواعيد القصائد';
+    protected static ?string $navigationLabel = 'جدول القصائد';
 
-    protected static ?string $pluralLabel = 'المواعيد';
+    protected static ?string $pluralLabel = 'جدول قصائد';
 
-    protected static ?string $modelLabel = 'موعد';
+    protected static ?string $modelLabel = 'جدول قصائد';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make("إضافة موعد")
+                Forms\Components\Section::make("قصيدة او استراحة")
+                ->schema([
+                    Forms\Components\Toggle::make('is_break')
+                    ->label('هل هذا الموعد استراحة؟')
+                    ->required()
+                    ->live(),
+                ]),
+
+                Forms\Components\Section::make("إضافة موعد قصيدة")
                 ->schema([
                     Forms\Components\Grid::make(2)
                     ->schema([
@@ -41,7 +50,23 @@ class DatesOfPoemResource extends Resource
                             ->minLength(3)
                             ->maxLength(255)
                             ->rules('max:255')
-                        ->columnSpan('full'),
+                            ->columnSpan('full')
+                            ->required(fn (Get $get): bool => !$get('is_break'))
+                            ->visible(fn (Get $get): bool => !$get('is_break'))
+                            ->default(function (Get $get): string {
+                                return $get('is_break') ? '' : $get('owner') ?? '';
+                            }),
+
+                        Forms\Components\Textarea::make('details')
+                            ->label('التفاصيل')
+                            ->placeholder('التفاصيل')
+                            ->required()
+                            ->columnSpan('full')
+                            ->required(fn (Get $get): bool => !$get('is_break'))
+                            ->visible(fn (Get $get): bool => !$get('is_break'))
+                            ->default(function (Get $get): string {
+                                return $get('is_break') ? '' : $get('details') ?? '';
+                            }),
 
                         Forms\Components\DatePicker::make('date')
                             ->label('التاريخ')
@@ -65,16 +90,10 @@ class DatesOfPoemResource extends Resource
                             ->label('النوع')
                             ->placeholder('النوع')
                             ->options([
-                                'نبطية' => 'نبطية',
-                                'فصحى' => 'فصحى',
+                                'nabati' => 'نبطية',
+                                'fosha' => 'فصحى',
                             ])->required()
-                            ->rules('required'),
-
-                        Forms\Components\Textarea::make('details')
-                            ->label('التفاصيل')
-                            ->placeholder('التفاصيل')
-                            ->required()
-                            ->columnSpan('full'),
+                            ->rules('required', 'in:fosha,nabati'),
                     ]),
                 ]),
             ]);
@@ -87,6 +106,13 @@ class DatesOfPoemResource extends Resource
                 Tables\Columns\TextColumn::make('owner')
                     ->label('الشاعر'),
 
+                Tables\Columns\TextColumn::make('details')
+                    ->label('التفاصيل'),
+
+                Tables\Columns\IconColumn::make('is_break')
+                    ->label('إستراحة')
+                    ->boolean(),
+
                 Tables\Columns\TextColumn::make('date')
                     ->sortable()
                     ->label('التاريخ'),
@@ -98,13 +124,24 @@ class DatesOfPoemResource extends Resource
                 Tables\Columns\TextColumn::make('end_time')
                     ->sortable()
                     ->label('وقت النهاية'),
-
-                Tables\Columns\TextColumn::make('details')
-                ->label('التفاصيل'),
             ])
 
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('is_break')
+                ->label('استراحة او قصيدة')
+                ->options([
+                    true => 'استراحة',
+                    false => 'قصيدة',
+                ])
+                ->attribute('is_break'),
+
+                Tables\Filters\SelectFilter::make('type')
+                ->label('نبطية او فصحى')
+                ->options([
+                    'nabati' => 'نبطية',
+                    'fosha' => 'فصحى',
+                ])
+                ->attribute('type')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

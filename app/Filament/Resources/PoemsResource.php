@@ -17,7 +17,7 @@ class PoemsResource extends Resource
 {
     protected static ?string $model = Poem::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-book-open';
+    protected static ?string $navigationIcon = 'heroicon-o-pencil';
 
     protected static ?string $navigationGroup = 'القصائد';
 
@@ -39,11 +39,11 @@ class PoemsResource extends Resource
                             ->label('نوع القصيدة')
                             ->placeholder('نوع القصيدة')
                             ->options([
-                                'نبطية' => 'نبطية',
-                                'فصحى' => 'الفصحى',
+                                'nabati' => 'نبطية',
+                                'fosha' => 'الفصحى',
                             ])
                             ->required()
-                            ->rules('required','in:Nabatieh,faq'),
+                            ->rules('required', 'in:fosha,nabati'),
 
                         Forms\Components\TextInput::make('name')
                             ->label('إسم القصيدة')

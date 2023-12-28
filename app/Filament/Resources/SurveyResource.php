@@ -132,20 +132,20 @@ class SurveyResource extends Resource
                     ->label('جوال'),
 
                 Tables\Columns\TextColumn::make('facilities')
-                ->label('السهولة')
-                ->badge(),
+                    ->label('السهولة')
+                    ->badge(),
 
                 Tables\Columns\TextColumn::make('organization')
-                ->label('التنظيم')
-                ->badge(),
+                    ->label('التنظيم')
+                    ->badge(),
 
                 Tables\Columns\TextColumn::make('events')
-                ->label('الفعاليات')
-                ->badge(),
+                    ->label('الفعاليات')
+                    ->badge(),
 
                 Tables\Columns\TextColumn::make('access')
-                ->label('الوصول')
-                ->badge(),
+                    ->label('الوصول')
+                    ->badge(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')

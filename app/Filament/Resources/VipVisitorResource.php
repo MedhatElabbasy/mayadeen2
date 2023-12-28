@@ -19,11 +19,11 @@ class VipVisitorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $navigationGroup = 'الزائرين';
+    protected static ?string $navigationGroup = 'الزوار';
 
-    protected static ?string $navigationLabel = 'كبار الزائرين';
+    protected static ?string $navigationLabel = 'كبار الزوار';
 
-    protected static ?string $pluralLabel = 'كبار زائرين';
+    protected static ?string $pluralLabel = 'كبار زوار';
 
     protected static ?string $modelLabel = 'زائر كبير';
 

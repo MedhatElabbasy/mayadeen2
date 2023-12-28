@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('poems', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['نبطية', 'فصحى'])->default('نبطية');
             $table->string('name');
-            $table->text('poem')->comment('The Content of the poem');
+            $table->text('content');
+            $table->enum('type', ['nabati', 'fosha'])->default('fosha');
             $table->string('author');
             $table->string('phone');
             $table->string('email');
