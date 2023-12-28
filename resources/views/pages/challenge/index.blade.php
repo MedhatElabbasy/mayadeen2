@@ -13,7 +13,9 @@ state([
 ]);
 
 $questions = computed(function () {
-    return Question::inRandomOrder()->limit(setting('questionsCount'))->get();
+    $questions = Question::all();
+    $questionsCount = $questions->count() < setting('questionsCount') ?  $questions->count() : setting('questionsCount');
+    return Question::all()->random(2);
 });
 
 $questionsTotal = computed(function () {
@@ -84,7 +86,7 @@ $submit = function () {
             <a target="_blank" :href="hint_image">
               <img class="h-auto max-w-full rounded-lg" :src="hint_image" alt="image description">
             </a>
-          <figcaption class="mt-2 text-sm text-center text-black" x-text="hint_text"></figcaption>
+          <figcaption class="mt-2 text-sm text-center text-black font-semibold" x-text="hint_text"></figcaption>
           </figure>
 
           <div class="beep text-center relative hover:scale-95 mt-4 cursor-pointer" x-on:click="nextQuestion">
