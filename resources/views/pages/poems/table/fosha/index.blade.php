@@ -26,7 +26,7 @@ $dates = computed(function () {
         <div id="app">
             <div class="px-0 md:px-48">
                 <div class="py-20 md:py-40 px-2 md:px-8 bg-[#ec6646]">
-                    <p class="text-center text-2xl md:text-4xl my-8 p-4 font-semibold text-black">
+                    <p class="text-center text-2xl md:text-4xl my-8 p-4 font-semibold text-black" style="line-height:normal">
                         استعدوا لتجربة شعرية استثنائية،
                         في هذه المساحة
                         سيقوم الشاعر بإلقاء قصائد الشعر الفصيح
