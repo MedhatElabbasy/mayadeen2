@@ -44,9 +44,22 @@ $submit = function () {
 @section('content')
 @volt
 <div id="app">
+
+    <!-- Banner -->
+    <div class="h-36 md:h-64 w-full">
+        <div class="relative">
+            <a href="{{ url('/') }}" wire:navigate>
+                <div class="absolute top-0 left-8 -z-50">
+                    <img src="{{ asset('website/images/banner.svg') }}" alt="Banner" class="h-36 md:h-64 w-full">
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- //Banner -->
+
 <!-- Step 1 : Form -->
 @if(!$this->completed)
-<div class="flex flex-col items-center justify-center min-h-screen animate__animated animate__backInDown">
+<div class="flex flex-col items-center justify-center animate__animated animate__backInDown">
     <form wire:submit='submit' accept="file" enctype="multipart/form-data">
         <div class="z-10 p-2">
             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
@@ -67,10 +80,27 @@ $submit = function () {
                 </div>
 
                 <div class="max-w-sm mx-auto">
-                    <label class="block mb-2 font-medium text-[#f1e1c6] rounded-lg" for="user_avatar">رفع صورة</label>
-                    <input name="image" class="bg-[#f1e1c6] p-2.5 text-black" type="file" wire:model="image">
-                    @error ('image')<div class="text-white">اختر الصورة*</div> @enderror
+                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الصورة</label>
+
+                    <label for="uploadFile"
+                        class="bg-[#f1e1c6] text-black text-base rounded w-80 h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 mb-2 fill-black" viewBox="0 0 32 32">
+                            <path
+                                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                                data-original="#000000" />
+                            <path
+                                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                                data-original="#000000" />
+                        </svg>
+                        <span class="font-sans">رفع الصورة</span>
+                        <input type="file" id='uploadFile' class="hidden" wire:model="image" />
+                        <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
+                    </label>
+                    @error('image')
+                        <div class="text-white">اختر الصورة*</div>
+                    @enderror
                 </div>
+
             </div>
 
             <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">
@@ -85,7 +115,7 @@ $submit = function () {
 
   <!-- Step 2 : Thank you -->
   @if($this->completed)
-  <div class="flex flex-col items-center justify-center min-h-screen animate__animated animate__backInDown">
+  <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
     <div class="container mx-auto px-4 justify">
       <div class="z-10">
         <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 text-[#e34e34]">تم التسجيل!</h1>
