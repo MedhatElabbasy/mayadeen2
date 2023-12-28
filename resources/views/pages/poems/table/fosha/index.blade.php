@@ -67,7 +67,7 @@ $dates = computed(function () {
 
                     <select wire:model.change="currentDay" name="day" class="bg-[#ec6646] text-white rounded-lg">
                         @foreach ($days as $day)
-                            <option value="{{ $day }}">{{ $day }}</option>
+                            <option value="{{ $day }}">{{\Carbon\Carbon::createFromDate($day)->translatedFormat('j F')}}</option>
                         @endforeach
                     </select>
                 </div>
