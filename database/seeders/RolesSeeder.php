@@ -13,10 +13,15 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::firstOrCreate([
+        $admin = [
             'name' => 'superAdmin',
-        ], [
-            'name' => 'superAdmin',
-        ]);
+        ];
+
+        $supervisor = [
+            'name' => 'supervisor',
+        ];
+
+        Role::create($admin);
+        Role::create($supervisor);
     }
 }
