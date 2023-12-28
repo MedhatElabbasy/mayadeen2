@@ -13,14 +13,24 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrCreate([
-                    'email' => 'admin@email.com',
-                ], [
-                    'name' => 'Admin',
-                    'password' => 'admin',
-                    'email_verified_at' => now(),
-                ]);
+        $admin = [
+            'name' => 'Admin',
+            'email' => 'admin@email.com',
+            'password' => 'admin',
+            'email_verified_at' => now(),
+        ];
 
-        $user->syncRoles(['superAdmin']);
+        $supervisor = [
+            'name' => 'Supervisor',
+            'email' => 'supervisor@email.com',
+            'password' => 'supervisor',
+            'email_verified_at' => now(),
+        ];
+
+        $admin = User::create($admin);
+        $supervisor = User::create($supervisor);
+        $admin->assignRole('superAdmin');
+        $supervisor->assignRole('supervisor');
+        
     }
 }
