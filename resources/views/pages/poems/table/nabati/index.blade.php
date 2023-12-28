@@ -39,7 +39,7 @@ $dates = computed(function () {
                             <thead class="text-sm md:text-2xl text-black bg-[#f1e1c6] text-center">
                                 <tr>
                                     <th class="border-2 border-black px-4 py-6">صاحب القصيده</th>
-                                    <th class="border-2 border-black px-4 py-6">الوقت (التاريخ {{\Carbon\Carbon::createFromDate($this->currentDay)->translatedFormat('j F')}})</th>
+                                    <th class="border-2 border-black px-4 py-6">الوقت (التاريخ: {{\Carbon\Carbon::createFromDate($this->currentDay)->translatedFormat('j F')}})</th>
                                     <th class="border-2 border-black px-4 py-6">التفاصيل</th>
                                 </tr>
                             </thead>
