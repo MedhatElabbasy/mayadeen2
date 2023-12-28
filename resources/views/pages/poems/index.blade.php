@@ -2,13 +2,20 @@
 
 use function Livewire\Volt\{rules, state};
 use App\Models\Poem;
+
+// $poems = Poem::get();
+
 state([
     'completed' => false,
     'type' => null,
+    'name' => null,
     'poem' => null,
     'author' => null,
     'phone' => null,
     'email' => null,
+    // 'currentPoems' => 'faq',
+    // 'faqPoems' => $poems->where('type', 'faq'),
+    // 'nabatiehPoems' => $poems->where('type', 'Nabatieh'),
 
 ]);
 
@@ -18,6 +25,7 @@ state([
 
 rules([
     'type'   => 'required|in:Nabatieh,faq',
+    'name' => "required",
     'poem'    => 'required',
     'author'    => 'required|min:2',
     'phone'  => 'required|min:9',
@@ -35,6 +43,7 @@ $selectedType =function($value)
             //  $this->validate();
           Poem::create([
                 'type'         => $this->type,
+                'name'          =>$this->name,
                 'poem'       => $this->poem,
                 'author'       => $this->author,
                 'phone'     => $this->phone,
@@ -69,8 +78,8 @@ $selectedType =function($value)
 
             <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
 
-<div>
-                <div  x-show="step==1" class="beep text-center relative hover:scale-95" wire:click="selectedType('faq')"  x-on:click="step++">
+                <div  x-show="step==1">
+                <div  class="beep text-center relative hover:scale-95" wire:click="selectedType('faq')"  x-on:click="step++">
                     <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
                     <a type="button" :class="{ 'bg-blue-500': type === 'faq' }" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold"> فصحي</a>
                 </div>
@@ -81,9 +90,29 @@ $selectedType =function($value)
                 </div>
 
             </div>
+
+               {{-------########-----------}}
+               <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__backInDown">
+                <div class="z-10">
+                    <div class="beep text-center relative hover:scale-95 mt-16">
+                        <div class="story-title-container">
+                            <img src="{{ asset('website/poem/poem-title1.PNG') }}" alt=""
+                                class="story-title-img" />
+                            <input type="text" name="story-title"  wire:model="name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
+                    <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                    <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
+                </div>
+            </div>
         
                 {{-- ############################ --}}
-                <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
+        
+                {{-- ############################ --}}
+                <div x-show="step==3" class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
                     <div class="z-10">
                         <div class="beep text-center relative hover:scale-95 ">
                             <div class="write-story-container">
@@ -114,7 +143,7 @@ $selectedType =function($value)
 
                 {{-- ############################ --}}
                 @if (!$this->completed)
-                <div x-show="step==3"
+                <div x-show="step==4"
                     class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
                     <div class="z-10 p-8">
                         <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
@@ -167,7 +196,6 @@ $selectedType =function($value)
                 @endif
 
                 {{-- ############################ --}}
-                {{-- ############################ --}}
       
                 {{-- ############################ --}}
 
@@ -175,15 +203,17 @@ $selectedType =function($value)
                 <div class="flex flex-col items-center justify-center h-screen animate__animated animate__bounce">
                     <div class="z-10">
                         <h1 class="text-center text-4xl mt-16">تم ارسال البيانات!</h1>
-                        <h1 class="text-center text-4xl mt-16">تم ارسال القصيده الي المشرف!</h1>
-                      
-    
                         <div class="beep text-center relative hover:scale-95 mt-16">
                             <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
                             <a href="{{ url('/') }}" wire:navigate
                                 class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">الرئيسية</a>
                         </div>
+
                     </div>
+                 
+                    <div>
+                     
+
                 </div>
             @endif
             </div>
@@ -195,3 +225,4 @@ $selectedType =function($value)
 
 
 @endsection
+
