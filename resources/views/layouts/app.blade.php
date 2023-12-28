@@ -11,14 +11,42 @@
 
     <!-- css -->
     <style>
-      body {
-        font-family: "Noto Kufi Arabic", sans-serif !important;
-        cursor: url("{{asset('website/images/feather.png')}}"), auto;
-      }
+    /* Scrollbar */
+    body::-webkit-scrollbar {
+        width: 16px;
+    }
 
-      a, label, button {
+    body::-webkit-scrollbar-track {
+        border-radius   : 8px;
+        background-color: #e7e7e7;
+        border          : 1px solid #cacaca;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        border-radius   : 8px;
+        border          : 3px solid transparent;
+        background-clip : content-box;
+        background-color: #e34e34;
+    }
+    /* End scrollbar */
+
+    /* Font */
+    body {
+        font-family: "Noto Kufi Arabic", sans-serif !important;
+    }
+    /* End Font */
+
+    /* Cursor */
+    /*
+    body {
         cursor: url("{{asset('website/images/feather.png')}}"), auto;
-      }
+    }
+
+    a, label, button {
+        cursor: url("{{asset('website/images/feather.png')}}"), auto;
+    }
+    */
+    /* End cursor */
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -29,21 +57,25 @@
 
     @stack('head')
   </head>
-  <body dir="rtl" class="bg-[#f1e1c6]">
+  <body dir="rtl" class="@yield('bg', 'bg-[#f1e1c6]')">
     @yield('content')
 
-    <div class="absolute bottom-8 left-8 z-0">
+    <!-- Palms -->
+    <div class="hidden md:block absolute bottom-8 left-8 -z-50">
         <img src="{{ asset('website/images/palm.svg') }}" class="w-full md:w-auto sm:w-6">
     </div>
 
-    <div class="hidden md:block absolute top-8 right-8 z-0">
+    <div class="hidden md:block absolute top-8 right-8 -z-50">
         <img src="{{ asset('website/images/palm.svg') }}" class="w-full md:w-auto sm:w-6">
     </div>
+    <!-- End Palms -->
 
     <script src="{{ asset('website/js/star-rating.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+
     @stack('body')
 
+    <!-- Sound Effect -->
     @foreach ([
       'beep',
       'correctAnswer',
@@ -55,28 +87,28 @@
     @endforeach
 
     <script>
-      function soundEffectPlay(player, background=false) {
+    function soundEffectPlay(player, background=false) {
         if(!background){
-          const audioElements = document.querySelectorAll('audio');
-          audioElements.forEach(audio => audio.pause());
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => audio.pause());
         }
 
         let beepOne = document.getElementById(player);
         beepOne.pause();
         beepOne.currentTime = 0;
         beepOne.play();
-      }
+    }
 
-      document.addEventListener("DOMContentLoaded", function() {
-          let beepElements = document.querySelectorAll(".beep");
+    document.addEventListener("DOMContentLoaded", function() {
+        let beepElements = document.querySelectorAll(".beep");
 
-          beepElements.forEach(function(beepElement) {
-              beepElement.addEventListener("mouseenter", function() {
-                  soundEffectPlay("beepPlayer", true)
-              });
-          });
-      });
+        beepElements.forEach(function(beepElement) {
+            beepElement.addEventListener("mouseenter", function() {
+                soundEffectPlay("beepPlayer", true)
+            });
+        });
+    });
     </script>
-
+    <!-- // Sound Effect -->
 </body>
 </html>

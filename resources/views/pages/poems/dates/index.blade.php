@@ -9,7 +9,7 @@ use App\Models\DatesOfPoem;
     'start_time' => null,
     'end_time' => null,
     'details' => null,
- 
+
 ]);
 
 
@@ -19,10 +19,10 @@ use App\Models\DatesOfPoem;
 rules([
     'owner'      => 'required|min:2',
     'date'    => 'required',
-    'start_time' => 'required|date_format:H:i', 
+    'start_time' => 'required|date_format:H:i',
     'end_time'   => 'required|date_format:H:i|after:start_time',
     'details'   => 'required',
- 
+
 ]);
 
 ?>
@@ -49,7 +49,7 @@ rules([
         <div>
             <div>
                 <div id="app"class="text-center">
-                    <div class="flex flex-col items-center justify-center h-screen">
+                    <div class="flex flex-col items-center justify-center my-36">
                         <table class="table caption-top text-center">
                             <caption class="text-center">List of users</caption>
                             <thead>
@@ -79,10 +79,10 @@ rules([
                     </div>
                 </div>
             </div>
-            
-          
 
-       
+
+
+
         </div>
     @endvolt
 

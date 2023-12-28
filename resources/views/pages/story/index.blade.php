@@ -2,9 +2,10 @@
 
 use function Livewire\Volt\{rules, state};
 use App\Models\Story;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf ;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StoryPdfSendMail;
+use Dompdf\Options;
 
 state([
     'completed' => false,
@@ -54,9 +55,37 @@ $submit = function () {
     $story->w3_email = $this->w3_email;
 
     $story->save();
-    $this->id=$story->id;
+    $this->id = $story->id;
     $this->completed = true;
 };
+
+// $sendMail = function () {
+//     // $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
+
+//     $recipientEmails = [
+//         // auth()->user()->email,
+//         $this->w1_email,
+//         $this->w2_email,
+//         $this->w3_email,
+//     ];
+
+//     $data['title'] = $this->title;
+//     $data['content'] = $this->content;
+//     $data['body'] = 'from mayadeen';
+
+//     $pdf = FacadePdf::loadView('story.pdf', ['title' => $data['title'], 'content' => $data['content']]);
+//     $data['pdf'] = $pdf;
+
+//     // Send email with the PDF attached using Laravel Mail
+//     foreach ($recipientEmails as $recipientEmail) {
+//         $data['email'] = $recipientEmail;
+//         Mail::to($recipientEmail)->send(new StoryPdfSendMail($data));
+//     }
+//     $this->mailersSend = true;
+//     //save pdf
+//     $pdfPath = public_path('pdfs/' . $this->title . '.pdf');
+//     $pdf->save($pdfPath);
+// };
 
 $sendMail = function () {
     // $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
@@ -64,15 +93,28 @@ $sendMail = function () {
     $recipientEmails = [
         // auth()->user()->email,
         $this->w1_email,
-        $this->w2_email,
-        $this->w3_email,
+        // $this->w2_email,
+        // $this->w3_email,
     ];
 
     $data['title'] = $this->title;
     $data['content'] = $this->content;
     $data['body'] = 'from mayadeen';
+    $title= $data['title'];
+    $content= $data['content'];
+    $html = view('story.pdf', compact('title', 'content'))->toArabicHTML();
 
-    $pdf = FacadePdf::loadView('story.pdf', ['title' => $data['title'], 'content' => $data['content']]);
+    // Create an instance of the PDF class with options
+    $options = new Options();
+    $options->set('isHtml5ParserEnabled', true);
+    $options->set('isPhpEnabled', true);
+    $pdf = app()->make('dompdf.wrapper', ['options' => $options]);
+
+    // Load HTML on the instance
+    $pdf= $pdf->loadHTML($html);
+    // Output the PDF content
+    // $output = $pdf->output();
+
     $data['pdf'] = $pdf;
 
     // Send email with the PDF attached using Laravel Mail
@@ -82,14 +124,13 @@ $sendMail = function () {
     }
     $this->mailersSend = true;
     //save pdf
-    $pdfPath = public_path('pdfs/' . $this->title . '.pdf');
-    $pdf->save($pdfPath);
+    // $pdfPath = public_path('pdfs/' . $this->title . '.pdf');
+    // $pdf->save($pdfPath);
 };
 
 $downloadPdf = function () {
     $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
     $pdf->download($this->title . '.pdf');
-
 };
 
 ?>
@@ -173,7 +214,7 @@ $downloadPdf = function () {
                 {{-- ############################ --}}
                 @if (!$this->completed)
                     <div x-show="step==3"
-                        class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
+                        class="flex flex-col items-center justify-center my-36 animate__animated animate__fadeInBottomLeft">
                         <div class="z-10 p-8">
                             <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                                 style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
@@ -233,7 +274,7 @@ $downloadPdf = function () {
                 {{-- ############################ --}}
                 @if (!$this->completed)
                     <div x-show="step==4"
-                        class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopRight">
+                        class="flex flex-col items-center justify-center my-36 animate__animated animate__fadeInTopRight">
                         <div class="z-10 p-8">
                             <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                                 style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
@@ -286,7 +327,7 @@ $downloadPdf = function () {
                 {{-- ############################ --}}
                 @if (!$this->completed)
                     <div x-show="step==5"
-                        class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInTopLeft">
+                        class="flex flex-col items-center justify-center my-36 animate__animated animate__fadeInTopLeft">
                         <div class="z-10 p-8">
                             <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
                                 style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
@@ -338,7 +379,7 @@ $downloadPdf = function () {
                 {{-- ############################ --}}
 
                 @if ($this->completed)
-                    <div class="flex flex-col items-center justify-center h-screen animate__animated animate__bounce">
+                    <div class="flex flex-col items-center justify-center my-36 animate__animated animate__bounce">
                         <div class="z-10">
                             <h1 class="text-center text-4xl mt-16">تم انشاء الاأقصوصة</h1>
                             <div class="beep text-center relative hover:scale-95 mt-16">
@@ -346,11 +387,12 @@ $downloadPdf = function () {
                                 <a href="{{ url('/') }}"
                                     class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">الرئيسية</a>
                             </div>
-                            <a href="{{ route('story.pdf',$this->id) }}">
+                            <a href="{{ route('story.pdf', $this->id) }}">
                                 <div class="beep text-center relative hover:scale-95 mt-16">
                                     {{-- wire:click="downloadPdf()" --}}
                                     <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                    <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">تحميل
+                                    <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">
+                                        تحميل
                                         الأقصوصة PDF</div>
                                 </div>
                             </a>
@@ -361,11 +403,12 @@ $downloadPdf = function () {
                                 <h1 class="text-center text-4xl mt-16">تم ارسال الاأقصوصة عبر البريد </h1>
                             @endif
                             @if (!$this->mailersSend)
-                            <div class="beep text-center relative hover:scale-95 mt-16" wire:click="sendMail()">
-                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">ارسال
-                                    الأقصوصة الي الأعضاء</div>
-                            </div>
+                                <div class="beep text-center relative hover:scale-95 mt-16" wire:click="sendMail()">
+                                    <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                                    <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">
+                                        ارسال
+                                        الأقصوصة الي الأعضاء</div>
+                                </div>
                             @endif
 
                             <br>
@@ -374,7 +417,7 @@ $downloadPdf = function () {
                     </div>
                 @endif
             </div>
-            <div class="absolute top-0 left-8 z-0">
+            <div class="absolute top-0 left-8 -z-50">
                 <img src="{{ asset('website/images/banner.svg') }}" class="w-20 md:w-64">
             </div>
         </div>

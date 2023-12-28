@@ -77,7 +77,7 @@
 
 <body>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="column">
             <p class="text-darky">بيانات باللغة العربية </p>
         </div>
@@ -142,7 +142,7 @@
                 وعليه فإن السطر هذا يعتبر سطر جديد
             </p>
         </div>
-    </div>
+    </div> --}}
 </body>
 
 </html>
