@@ -75,16 +75,18 @@ $submit = function () {
                                 <div class="max-w-sm mx-auto">
                                     <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                         الإلكتروني</label>
-                                    <input required type="email" class=" rounded-lg bg-[#f1e1c6] p-2.5 text-black"
+                                    <input required type="email" class="rounded-lg bg-[#f1e1c6] p-2.5 text-black"
                                         wire:model="email" placeholder="أدخل البريد الإلكتروني">
                                     @error('email')
                                         <div class="text-white">ادخل البريد الإلكتروني*</div>
                                     @enderror
                                 </div>
+
                                 <div class="max-w-sm mx-auto">
-                                    <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                    <input required min="9" type="number"
-                                        class=" rounded-lg bg-[#f1e1c6] p-2.5 text-black" wire:model="phone"
+                                    <label for="phone"
+                                        class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
+                                    <input id="phone" required min="9" type="tel"
+                                        class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                     @error('phone')
                                         <div class="text-white">ادخل الهاتف*</div>
@@ -112,13 +114,12 @@ $submit = function () {
                                         <div class="text-white">اختر الصورة*</div>
                                     @enderror
 
-                                    @if($this->image)
+                                    @if ($this->image)
                                         <div class="mt-4 rounded-lg" id="imagePreviewContainer">
-                                            <div class="text-gray-700">الملف: {{$this->image?->getClientOriginalName()}}</div>
+                                            <div class="text-gray-700">الملف: {{ $this->image?->getClientOriginalName() }}</div>
                                         </div>
                                     @endif
                                 </div>
-
                             </div>
 
                             <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">
@@ -134,8 +135,8 @@ $submit = function () {
 
             <!-- Step 2 : Thank you -->
             @if ($this->completed)
-            <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
-                <div class="container mx-auto px-4 justify">
+                <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
+                    <div class="container mx-auto px-4 justify">
                         <div class="z-10">
                             <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 text-[#e34e34]">تم التسجيل!</h1>
 
@@ -154,5 +155,24 @@ $submit = function () {
             <!-- //Step 2 -->
 
         </div>
+
+        @push('body')
+            <link href=" https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+
+            <script>
+                const input = document.querySelector("#phone");
+                window.intlTelInput(input, {
+                    initialCountry: "auto",
+                    geoIpLookup: callback => {
+                        fetch("https://ipapi.co/json")
+                            .then(res => res.json())
+                            .then(data => callback(data.country_code))
+                            .catch(() => callback("us"));
+                    },
+                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+                });
+            </script>
+        @endpush
     @endvolt
 @endsection
