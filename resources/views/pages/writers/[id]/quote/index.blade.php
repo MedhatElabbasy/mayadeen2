@@ -21,7 +21,7 @@ state([
         <a href="{{ url('/') }}" wire:navigate>
             <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
         </a>
-        
+
         <div class="bg-[#f2e7d1] mt-8 rounded-3xl p-8 text-center justify-center items-center w-12/12 md:w-8/12">
             <h1 class="font-semibold mt-4 text-4xl">الاقتباسات</h1>
 

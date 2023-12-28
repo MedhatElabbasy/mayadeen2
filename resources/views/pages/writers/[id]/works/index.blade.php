@@ -37,7 +37,11 @@ state([
             </div>
             @endforeach
 
-            <div class="flex justify-between mt-12">
+            <div class="flex flex-col justify-center items-center">
+                <img src="{{ asset('website/images/palm-horizontal.svg') }}" class="h-36 w-36">
+            </div>
+
+            <div class="flex justify-between mt-2">
                 <div>
                     <a href="{{ url('/writers/'.$writer->id) }}" wire:navigate class="flex gap-2 justify-center items-start">
                         <img src="{{ asset('website/images/arrow-right.png') }}" class="w-6">
