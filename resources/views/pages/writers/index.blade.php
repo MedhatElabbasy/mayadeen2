@@ -33,9 +33,9 @@ state([
                 <h1 class="text-center text-2xl md:text-4xl font-bold my-8 text-[#e34e34]">ادباء عبر التاريخ!</h1>
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
                         @foreach ($writers as $writer)
-                        <div class="beep text-center relative hover:scale-95">
-                            <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
-                            <a wire:navigate href="{{ url('/writers/'.$writer->id) }}" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">{{$writer->name}}</a>
+
+                        <div class="beep text-center rounded-lg hover:scale-95 px-4 py-5 bg-[#e34e34]">
+                            <a wire:navigate href="{{ url('/writers/'.$writer->id) }}" class="mt-2 items-center justify-center text-white text-1xl md:text-2xl font-semibold">{{$writer->name}}</a>
                         </div>
                         @endforeach
                     </div>
