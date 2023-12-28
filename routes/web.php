@@ -1,9 +1,7 @@
 <?php
 
 use App\Models\Story;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Route;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf ;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,27 +29,29 @@ Route::get('story/{id}', function ($id) {
 
     $title = $story->title;
     $content = $story->content;
-
+    // , compact('title', 'content')
     // Use the logic from the 'test' route to generate and download the PDF
-    $html=view('story.pdf', compact('title', 'content'))->toArabicHTML();
+    $html = view('story.pdfstyle')->toArabicHTML();
     $pdf = app()->make('dompdf.wrapper');
+
+
     $pdf->loadHTML($html);
 
-    
 // Output the PDF content
-$output = $pdf->output();
+    $output = $pdf->output();
 
-$headers = array(
-    "Content-type" => "application/pdf",
-);
+    $headers = array(
+        "Content-type" => "application/pdf",
+    );
 
 // Create a stream response as a file download
-return response()->streamDownload(
-    fn () => print($output), // add the content to the stream
-    "invoice.pdf", // the name of the file/stream
-    $headers
-);
+    return response()->streamDownload(
+        fn() => print($output), // add the content to the stream
+        $story->title.".pdf", // the name of the file/stream
+        $headers
+    );
 })->name('story.pdf');
+
 
 
 // Route::get('test', function () {
