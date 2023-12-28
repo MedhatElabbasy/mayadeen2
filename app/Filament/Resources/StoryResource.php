@@ -31,102 +31,6 @@ class StoryResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
-<<<<<<< HEAD
-                        Forms\Components\Grid::make(1)
-                            ->schema([
-                                Forms\Components\TextInput::make('title')
-                                    ->label('الإسم')
-                                    ->placeholder('إسم الأقصوصة')
-                                    ->required()
-                                    ->minLength(3)
-                                    ->maxLength(255)
-                                    ->rules('required'),
-
-                                Forms\Components\RichEditor::make('content')
-                                    ->label('المحتوي')
-                                    ->placeholder('محتوي الأقصوصة')
-                                    //->toolbarButtons(['bold', 'italic', 'link', 'clean'])
-                                    ->required()
-                                    // ->minLength(10)
-                                    ->rules('required|string'),
-
-
-                                    Forms\Components\TextInput::make('w1_name')
-                                    ->label('الكاتب الأول')
-                                    ->placeholder('اسم الكاتب الأول')
-                                    ->required()
-                                    // ->minLength(2)
-                                    // ->maxLength(255)
-                                    ->rules('required'),
-
-                                Forms\Components\TextInput::make('w1_number')
-                                    ->label('رقم الكاتب الأول')
-                                    ->placeholder('رقم الكاتب الأول')
-                                    ->nullable()
-                                    // ->minLength(9)
-                                    // ->maxLength(20)
-                                    ->rules('nullable'),
-
-                                Forms\Components\TextInput::make('w1_email')
-                                    ->label('البريد الإلكتروني للكاتب الأول')
-                                    ->placeholder('بريد الكاتب الأول')
-                                    ->nullable()
-                                    ->email()
-                                    ->rules('nullable|email'),
-
-
-                                    ///
-
-                                    Forms\Components\TextInput::make('w2_name')
-                                    ->label('الكاتب الثاني')
-                                    ->placeholder('اسم الكاتب الثاني')
-                                    ->required()
-                                    // ->minLength(2)
-                                    // ->maxLength(255)
-                                    ->rules('required|min:2'),
-
-                                Forms\Components\TextInput::make('w2_number')
-                                    ->label('رقم الكاتب الثاني')
-                                    ->placeholder('رقم الكاتب الثاني')
-                                    ->nullable()
-                                    // ->minLength(9)
-                                    // ->maxLength(20)
-                                    ->rules('nullable'),
-
-                                Forms\Components\TextInput::make('w2_email')
-                                    ->label('البريد الإلكتروني للكاتب الثاني')
-                                    ->placeholder('بريد الكاتب الثاني')
-                                    ->nullable()
-                                    ->email()
-                                    ->rules('nullable|email'),
-
-                                    //////
-
-                                    Forms\Components\TextInput::make('w3_name')
-                                    ->label('الكاتب الثالث')
-                                    ->placeholder('اسم الكاتب الثالث')
-                                    ->required()
-                                    // ->minLength(2)
-                                    // ->maxLength(255)
-                                    ->rules('required'),
-
-                                Forms\Components\TextInput::make('w3_number')
-                                    ->label('رقم الكاتب الثالث')
-                                    ->placeholder('رقم الكاتب الثالث')
-                                    ->nullable()
-                                    // ->minLength(9)
-                                    // ->maxLength(20)
-                                    ->rules('nullable'),
-
-                                Forms\Components\TextInput::make('w3_email')
-                                    ->label('البريد الإلكتروني للكاتب الثالث')
-                                    ->placeholder('بريد الكاتب الثالث')
-                                    ->nullable()
-                                    ->email()
-                                    ->rules('nullable|email'),
-                            ]),
-                    ]),
-=======
                         Forms\Components\TextInput::make('title')
                             ->label('الإسم')
                             ->placeholder('إسم الأقصوصة')
@@ -156,7 +60,6 @@ class StoryResource extends Resource
                         ])
                     ]),
                 ])
->>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
             ]);
     }
 
@@ -205,60 +108,6 @@ class StoryResource extends Resource
                             ->hiddenLabel(),
                     ]),
 
-<<<<<<< HEAD
-                \Filament\Infolists\Components\Section::make('محتوي الأقصوصة')
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('content')
-                            ->label('المحتوي')
-                            ->hiddenLabel()
-                            ->html(),
-                    ]),
-
-                \Filament\Infolists\Components\Section::make(' الكاتب الأول')
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('w1_name')
-                        ->label(' الأسم')
-                            ->html(),
-                            \Filament\Infolists\Components\TextEntry::make('w1_number')
-                            ->label('  الهاتف')
-                            ->html(),
-                        \Filament\Infolists\Components\TextEntry::make('w1_email')
-                            ->label('البريد الإلكتروني  ')
-                            ->html(),
-                    ]),
-
-                \Filament\Infolists\Components\Section::make('الكاتب الثاني')
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('w2_name')
-                            ->label(' الاسم')
-                            ->html(),
-                        \Filament\Infolists\Components\TextEntry::make('w2_number')
-                            ->label('الهاتف  ')
-                            ->html(),
-                        \Filament\Infolists\Components\TextEntry::make('w2_email')
-                            ->label('البريد الإلكتروني  ')
-                            ->html(),
-                    ]),
-
-                \Filament\Infolists\Components\Section::make('الكاتب الثالث')
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('w3_name')
-                            ->label(' الاسم')
-                            ->html(),
-                        \Filament\Infolists\Components\TextEntry::make('w3_number')
-                            ->label('الهاتف  ')
-
-                            ->html(),
-                        \Filament\Infolists\Components\TextEntry::make('w3_email')
-                            ->label('البريد الإلكتروني  ')
-                            ->html(),
-
-                    ]),
-            ]);
-    }
-
-
-=======
                  \Filament\Infolists\Components\Section::make('محتوي الأقصوصة')
                  ->schema([
 
@@ -270,7 +119,6 @@ class StoryResource extends Resource
             ]);
     }
 
->>>>>>> 5569f53bd9d5d86b168a87fcc2670d26e74339bd
     public static function getRelations(): array
     {
         return [
