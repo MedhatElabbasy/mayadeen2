@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class StoryResource extends Resource
@@ -143,7 +145,7 @@ class StoryResource extends Resource
     {
         return $table
             ->columns([
-                
+
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('المشرف')
                     ->alignCenter()
@@ -162,7 +164,18 @@ class StoryResource extends Resource
 
             ])
             ->filters([
-                //
+                // Filter::make('user_id')
+                //     ->label('المشرف')
+                //     ->query(function ($query) {
+                //         $query->whereHas('user', function ($query) {
+                //             $query->whereHas('roles', function ($query) {
+                //                 $query->where('name', 'supervisor');
+                //             });
+                //         });
+                //     })
+                SelectFilter::make('user')
+                    ->label('المشرف')
+                    ->relationship('user', 'name'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

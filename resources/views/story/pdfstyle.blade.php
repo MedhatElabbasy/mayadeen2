@@ -103,12 +103,15 @@ width: 16%;
                 </div>
                 <div class="conten-text">
                     {{-- <img src="{{ ('pdfstyle/imgs/photo1703672560.jpeg') }}" alt=""> --}}
-                    <h1 class="mt-1"> العنوان
+                    <h1 class="mt-1">
+                        {{ $title  }}
                     </h1>
-                    <p class="fw-bold">(<span>اسم المشرف</span> - <span>المشرف</span>)</p>
-                    <h1>المقدمة</h1>
+                    <p class="fw-bold">(<span>
+                        {{ $user->name }}
+                    </span> - <span>المشرف</span>)</p>
+                    <h1>المحتوى</h1>
                     <p>
-                        الحدوتة الحدوتةالحدوتةالحدوتة
+                        {{ $content }}
                     </p>
                     <div class="foot-img mt-2 mb-1">
                         <img src="{{ ('pdfstyle/imgs/Group 33.svg') }}" alt="">

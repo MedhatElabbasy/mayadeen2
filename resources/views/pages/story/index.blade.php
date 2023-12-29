@@ -1,11 +1,15 @@
 <?php
 
 use function Livewire\Volt\{rules, state};
+use function Laravel\Folio\{middleware};
+
 use App\Models\Story;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StoryPdfSendMail;
 use Dompdf\Options;
+
+middleware(['superviser', 'auth']);
 
 state([
     'completed' => false,
@@ -26,6 +30,7 @@ state([
 ]);
 
 rules([
+
     'title' => 'required|min:2',
     'content' => 'required',
     'w1_name' => 'required|min:2',
@@ -42,6 +47,7 @@ rules([
 $submit = function () {
     // $this->validate();
     $story = new Story();
+    $story->user_id = auth()->user()->id;
     $story->title = $this->title;
     $story->content = $this->content;
     $story->w1_name = $this->w1_name;
@@ -93,8 +99,8 @@ $sendMail = function () {
     $recipientEmails = [
         // auth()->user()->email,
         $this->w1_email,
-        // $this->w2_email,
-        // $this->w3_email,
+        $this->w2_email,
+        $this->w3_email,
     ];
 
     $data['title'] = $this->title;
@@ -403,7 +409,9 @@ $downloadPdf = function () {
                                 <h1 class="text-center text-4xl mt-16">تم ارسال الاأقصوصة عبر البريد </h1>
                             @endif
                             @if (!$this->mailersSend)
-                                <div class="beep text-center relative hover:scale-95 mt-16" wire:click="sendMail()">
+                                <div class="beep text-center relative hover:scale-95 mt-16"
+                                    style="cursor: pointer;"
+                                    wire:click="sendMail()">
                                     <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
                                     <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">
                                         ارسال

@@ -29,9 +29,13 @@ Route::get('story/{id}', function ($id) {
 
     $title = $story->title;
     $content = $story->content;
+    $user = $story->user;
     // , compact('title', 'content')
     // Use the logic from the 'test' route to generate and download the PDF
-    $html = view('story.pdfstyle')->toArabicHTML();
+    $html = view('story.pdfstyle',
+    compact('title', 'content' , 'user')
+        )->toArabicHTML();
+
     $pdf = app()->make('dompdf.wrapper');
 
 
