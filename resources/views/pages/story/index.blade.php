@@ -99,8 +99,8 @@ $sendMail = function () {
     $recipientEmails = [
         // auth()->user()->email,
         $this->w1_email,
-        // $this->w2_email,
-        // $this->w3_email,
+        $this->w2_email,
+        $this->w3_email,
     ];
 
     $data['title'] = $this->title;
@@ -409,7 +409,9 @@ $downloadPdf = function () {
                                 <h1 class="text-center text-4xl mt-16">تم ارسال الاأقصوصة عبر البريد </h1>
                             @endif
                             @if (!$this->mailersSend)
-                                <div class="beep text-center relative hover:scale-95 mt-16" wire:click="sendMail()">
+                                <div class="beep text-center relative hover:scale-95 mt-16"
+                                    style="cursor: pointer;"
+                                    wire:click="sendMail()">
                                     <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
                                     <div class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">
                                         ارسال
