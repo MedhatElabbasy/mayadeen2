@@ -23,6 +23,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/volt": "^1.6",
+        "pxlrbt/filament-excel": "^2.2",
         "solution-forest/filament-simplelightbox": "^0.0.4",
         "spatie/laravel-medialibrary": "11.0.0",
         "spatie/laravel-permission": "^6.2",
