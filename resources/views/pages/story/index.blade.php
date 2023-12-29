@@ -30,6 +30,7 @@ state([
 ]);
 
 rules([
+
     'title' => 'required|min:2',
     'content' => 'required',
     'w1_name' => 'required|min:2',
@@ -46,6 +47,7 @@ rules([
 $submit = function () {
     // $this->validate();
     $story = new Story();
+    $story->user_id = auth()->user()->id;
     $story->title = $this->title;
     $story->content = $this->content;
     $story->w1_name = $this->w1_name;
