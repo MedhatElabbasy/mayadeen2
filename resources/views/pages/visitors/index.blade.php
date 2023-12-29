@@ -85,7 +85,7 @@ $submit = function () {
                                 <div class="max-w-sm mx-auto">
                                     <label for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
-                                    <input id="phone" required min="9" type="tel"
+                                    <input wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                     @error('phone')
@@ -165,7 +165,7 @@ $submit = function () {
             <script>
             const input = document.querySelector("#phone");
                 window.intlTelInput(input, {
-                    initialCountry: "SA",
+                    initialCountry: "auto",
                     geoIpLookup: callback => {
                         fetch("https://ipapi.co/json")
                             .then(res => res.json())

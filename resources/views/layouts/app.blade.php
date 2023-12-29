@@ -42,14 +42,14 @@
 
         /* Cursor */
         /*
-    body {
-        cursor: url("{{ asset('website/images/feather.png') }}"), auto;
-    }
+        body {
+            cursor: url("{{ asset('website/images/feather.png') }}"), auto;
+        }
 
-    a, label, button {
-        cursor: url("{{ asset('website/images/feather.png') }}"), auto;
-    }
-    */
+        a, label, button {
+            cursor: url("{{ asset('website/images/feather.png') }}"), auto;
+        }
+        */
         /* End cursor */
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
