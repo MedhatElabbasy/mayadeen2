@@ -14,7 +14,6 @@ use App\Tables\Columns\CountColumn;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\QuestionResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use App\Filament\Resources\QuestionResource\RelationManagers;
 
 class QuestionResource extends Resource
