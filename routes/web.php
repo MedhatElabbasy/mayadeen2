@@ -30,10 +30,20 @@ Route::get('story/{id}', function ($id) {
     $title = $story->title;
     $content = $story->content;
     $user = $story->user;
+    $w1_name = $story->w1_name;
+    $w1_email = $story->w1_email;
+    $w1_number = $story->w1_number;
+    $w2_name = $story->w2_name;
+    $w2_email = $story->w2_email;
+    $w2_number = $story->w2_number;
+    $w3_name = $story->w3_name;
+    $w3_email = $story->w3_email;
+    $w3_number = $story->w3_number;
+
     // , compact('title', 'content')
     // Use the logic from the 'test' route to generate and download the PDF
     $html = view('story.pdfstyle',
-    compact('title', 'content' , 'user')
+    compact('title', 'content' , 'user' , 'w1_name' , 'w1_email' , 'w1_number' , 'w2_name' , 'w2_email' , 'w2_number' , 'w3_name' , 'w3_email' , 'w3_number')
         )->toArabicHTML();
 
     $pdf = app()->make('dompdf.wrapper');

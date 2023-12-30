@@ -116,6 +116,39 @@ width: 16%;
                     <div class="foot-img mt-2 mb-1">
                         <img src="{{ ('pdfstyle/imgs/Group 33.svg') }}" alt="">
                     </div>
+                    {{-- create table style to displat w1_name, w1_email , w1_number --}}
+                    <h1>المشاركين</h1>
+                    <table class="table table-striped table-hover"
+                        style="direction: ltr; text-align: center; width: 100%;"
+                        >
+                        <thead>
+                            <tr>
+                                <th scope="col">رقم الهاتف</th>
+                                <th scope="col">البريد الالكتروني</th>
+                                <th scope="col">الاسم</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $w1_number }}</td>
+                                <td>{{ $w1_email }}</td>
+                                <td>{{ $w1_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ $w2_number }}</td>
+                                <td>{{ $w2_email }}</td>
+                                <td>{{ $w2_name }}</td>
+                            </tr>
+                            <tr>
+                                 <td>{{ $w3_number }}</td>
+                                <td>{{ $w3_email }}</td>
+                                <td>{{ $w3_name }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="foot-img mt-2 mb-1">
+                        <img src="{{ ('pdfstyle/imgs/Group 33.svg') }}" alt="">
+                    </div>
                 </div>
             </div>
         </div>
