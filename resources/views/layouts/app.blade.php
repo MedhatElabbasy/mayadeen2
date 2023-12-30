@@ -111,6 +111,12 @@
         });
     </script>
     <!-- // Sound Effect -->
+
+    <!-- Livewir back -->
+    <script>
+        window.addEventListener("popstate", function (event) { window.location.reload(); });
+    </script>
+    <!-- // Livewir back -->
 </body>
 
 </html>
