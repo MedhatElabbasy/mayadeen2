@@ -10,6 +10,10 @@ use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -49,5 +53,19 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->hasAnyRole(['superAdmin', 'admin']);
+    }
+    
+    // relations
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id')
+            ->withPivot('model_type');
+
+    }
+
+    //set model_type to App\Models\User when creating a new user
+    public function setModelTypeAttribute($value)
+    {
+        $this->attributes['model_type'] = 'App\Models\User';
     }
 }

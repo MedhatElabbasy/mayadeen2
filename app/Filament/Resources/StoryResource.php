@@ -12,7 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Columns\Column;
 class StoryResource extends Resource
 {
     protected static ?string $model = Story::class;
@@ -183,6 +186,23 @@ class StoryResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('user.name')->heading('المشرف'),
+                            Column::make('title')->heading('الإسم'),
+                            Column::make('content')->heading('المحتوي'),
+                            Column::make('w1_name')->heading('الكاتب الأول'),
+                            Column::make('w1_number')->heading('رقم الكاتب الأول'),
+                            Column::make('w1_email')->heading('البريد الإلكتروني للكاتب الأول'),
+                            Column::make('w2_name')->heading('الكاتب الثاني'),
+                            Column::make('w2_number')->heading('رقم الكاتب الثاني'),
+                            Column::make('w2_email')->heading('البريد الإلكتروني للكاتب الثاني'),
+                            Column::make('w3_name')->heading('الكاتب الثالث'),
+                            Column::make('w3_number')->heading('رقم الكاتب الثالث'),
+                            Column::make('w3_email')->heading('البريد الإلكتروني للكاتب الثالث'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
