@@ -81,6 +81,7 @@ rules([
     'literaryEvents'      => 'required',
     'entertainmentEvents' => 'required',
     'restaurant'          => 'required',
+    'referral'                => 'required',
     'next'                => 'required',
     'suggestion'          => 'required',
     'rating'              => 'required|array',
