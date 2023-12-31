@@ -1,0 +1,164 @@
+/* variables */
+:root {
+  --main-color: #f3eac8;
+}
+
+/* ===========GLOBAL STYLE========== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'mayadenFont';
+  src: url('../fonts/4_F5.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'mayadenFont-bold';
+  src: url('../fonts/riyad-bank-Bold.ttf') format('truetype');
+   font-weight: bold;
+  font-style: normal;
+}
+body {
+  background-color: #f54224 !important;
+  direction: rtl;
+ font-family: 'mayadenFont' !important;
+}
+
+/* ================================ */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.nav-img {
+  max-width: 100%;
+  height: auto;
+}
+.saudi-map-container,
+.map-container {
+  width: 95%;
+  margin: 60px auto 0 auto;
+  width: 95%;
+  background-color: var(--main-color);
+  border-radius: 30px;
+  padding: 20px 0;
+}
+@media screen and (max-width : 767px) {
+  .saudi-map-container,
+.map-container {
+  margin: 120px auto 0 auto;
+}
+}
+.map-container svg,
+.saudi-map-container svg {
+  width: 100%;
+}
+@media screen and (max-width : 797px) {
+  .map-container svg,
+.saudi-map-container svg {
+  height: 450px;
+}
+}
+.map-container path {
+  transition: fill 0.1s linear;
+}
+
+.map-container path[fill='#f54224']:hover,
+.saudi-map-container path[fill='#f54224']:hover {
+  fill: #d22000;
+  stroke: black;
+}
+
+.map-container path[fill='#5f84a8']:hover,
+.saudi-map-container path[fill='#5f84a8']:hover {
+  fill: #294969;
+  stroke: #5f84a8;
+}
+
+.card-container {
+  transition: all 1s;
+  width: 350px;
+  padding: 3px 10px;
+  border: 3.5px solid white;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  background-color: var(--main-color);
+}
+
+.card-container::after {
+  content: '';
+  position: absolute;
+  bottom: -23px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 40px;
+  height: 40px;
+  border-bottom: 3.5px solid white;
+  border-right: 3.5px solid white;
+  background-color: var(--main-color);
+  z-index: 0;
+}
+
+.card-container span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.card-container p {
+  margin-top: 10px;
+  line-height: 22px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.card-container img {
+  margin-right: 230px;
+}
+
+.x-mark {
+  cursor: pointer;
+}
+
+.back {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.back button {
+  border: none;
+  background-color: #d22000;
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+/* routing styling */
+.routing-container {
+  /* 
+  display: flex;
+  justify-content: space-around;
+  align-items: center; */
+  direction: ltr !important;
+  padding: 0 30px;
+  /* font-size: 14px !important;
+  font-weight: 600; */
+}
+
+.img-routing-container {
+  /* display: flex;
+  justify-content: space-around; */
+  cursor: pointer;
+  /* align-items: center;
+  gap: 16px; */
+}
+
+.img-routing-container img {
+  width: 70px;
+}

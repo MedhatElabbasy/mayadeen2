@@ -1,0 +1,148 @@
+/* variables */
+:root {
+  --main-color: #f3eac8;
+}
+
+/* ===========GLOBAL STYLE========== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'mayadenFont';
+  src: url('../fonts/4_F5.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'mayadenFont-bold';
+  src: url('../fonts/riyad-bank-Bold.ttf') format('truetype');
+   font-weight: bold;
+  font-style: normal;
+}
+body {
+  background-color: var(--main-color) !important;
+  direction: rtl;
+  font-family: 'mayadenFont' !important;
+  /* font-family: 'mayadenFont-bold', sans-serif !important; */
+}
+
+/* ================================ */
+
+/* ==============================================start page styling======================== */
+.start-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+.man-image {
+  width: 60%;
+}
+.card-man-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+  width: 30%;
+}
+.card-man-image span,
+.card-man-image p {
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 600;
+}
+.logo-img-min-size {
+  display: none;
+}
+.logo-img {
+  height: fit-content;
+  display: flex;
+  width: 25%;
+}
+a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none !important;
+  color: black !important;
+}
+
+/* =================== MEDIA QUERY for start page ==================== */
+
+@media screen and (max-width: 1580px) {
+  .card-man-image {
+    margin-top: 6rem;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .logo-img {
+    display: none;
+  }
+  .logo-img-min-size {
+    display: flex;
+    width: 60%;
+  }
+  .card-man-image {
+    margin-top: 3rem;
+    width: 80%;
+  }
+  .start-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ================================================================================================================================ */
+
+/* =================== MEDIA QUERY for start page ==================== */
+
+@media screen and (max-width: 779px) {
+  .title-containter {
+    margin: 20px 0px;
+  }
+  .title-containter p,
+  .title-containter span {
+    font-size: 25px;
+  }
+  .content-container p {
+    font-size: 1rem;
+  }
+  .arrow-container {
+    position: relative;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .arrow-container img {
+    width: 15%;
+  }
+}
+
+/* ==================================================================================================================== */
+
+/*========================================================== M A P Stylin =================================*/
+.leaflet-right {
+  display: none;
+}
+.leaflet-left {
+  display: none;
+}
+.custom-popup {
+  background-color: #f3eac8;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  width: 100%;
+  text-align: justify;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: #f3eac8 !important;
+  border: 4px solid white;
+}

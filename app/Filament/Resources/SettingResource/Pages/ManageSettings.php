@@ -4,9 +4,9 @@ namespace App\Filament\Resources\SettingResource\Pages;
 
 use App\Filament\Resources\SettingResource;
 use Filament\Actions;
-use Filament\Resources\Pages\ManageRecords;
+use Filament\Resources\Pages\ManageRecords ;
 
-class ManageSetting extends ManageRecords
+class ManageSettings extends ManageRecords
 {
     protected static string $resource = SettingResource::class;
 

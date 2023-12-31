@@ -1,0 +1,164 @@
+  @font-face {
+  font-family: 'mayadenFont';
+  src: url('../fonts/4_F5.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'mayadenFont-bold';
+  src: url('../fonts/riyad-bank-Bold.ttf') format('truetype');
+   font-weight: bold;
+  font-style: normal;
+}
+body {
+  background-color: #f54224;
+  font-family: 'mayadenFont' !important;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.nav-img {
+  max-width: 100%;
+  height: auto;
+}
+.authors-container {
+  border-radius: 30px;
+  background-color: #f3eac8;
+}
+@media screen and (max-width : 767px) {
+  .authors-container {
+    margin-top: 120px !important;
+  }
+}
+.text-foot div {
+  color: #f54224;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text-foot h2 {
+  color: #f54224;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.text-foot p {
+  color: #f54224;
+  font-size: 31px;
+  line-height: 39px;
+}
+
+@media (max-width: 477px) {
+  .text-foot p {
+    font-size: 27px;
+    margin-bottom: 38px;
+  }
+}
+
+.text-des {
+  /* display: flex;
+  align-items: end; */
+  margin-top: 18px;
+  color: #0b090a;
+  font-size: 26px;
+  /* flex-direction: column; */
+}
+
+.text-dess {
+  display: flex;
+  align-items: end;
+  margin-top: -15px;
+  color: #0b090a;
+  font-size: 26px;
+  flex-direction: column;
+}
+
+@media (max-width: 477px) {
+  .text-des {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .med {
+    font-size: 25px;
+  }
+
+  .text-dess {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .text-dess .div {
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .img-des img {
+    width: 25% !important;
+    /* margin-top: 79px; */
+  }
+
+  .gomaps img {
+    width: 13% !important;
+  }
+}
+
+.img-des img {
+  width: 13%;
+  margin-top: 79px;
+}
+
+.gomaps {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: end;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.gomaps p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.gomaps img {
+  width: 6%;
+}
+
+/* routing styling */
+.routing-container {
+  /* padding: 0 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; */
+  direction: ltr !important;
+  /* font-size: 14px; */
+  /* font-weight: 600; */
+}
+
+.img-routing-container {
+  /* display: flex; */
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  cursor: pointer;
+  /* gap: 16px; */
+}
+
+.home-routing-container {
+  padding: 5px 10px;
+  background-color: #f54224;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.img-routing-container img {
+  width: 70px;
+}
+.fw500 {
+  font-weight: 500;
+}

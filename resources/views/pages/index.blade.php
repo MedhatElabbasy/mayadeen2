@@ -37,7 +37,7 @@ state([
                         ],
                         [
                             "title" => "أدب الرحلات",
-                            "link" => "/"
+                            "link" => "/adab-alrihlat"
                         ],
                         [
                             "title" => "أدباء عبر التاريخ",

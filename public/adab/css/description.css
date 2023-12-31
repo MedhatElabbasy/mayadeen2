@@ -1,0 +1,144 @@
+@font-face {
+  font-family: 'mayadenFont';
+  src: url('../fonts/4_F5.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'mayadenFont-bold';
+  src: url('../fonts/riyad-bank-Bold.ttf') format('truetype');
+   font-weight: bold;
+  font-style: normal;
+}
+body {
+  background-color: #f54224 !important;
+    font-family: 'mayadenFont' !important;
+  /* font-family: 'Tajawal', sans-serif !important; */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.desc-container {
+  background-color: #f3eac8;
+  border-radius: 30px;
+}
+
+.text-host {
+  font-size: 28px;
+  color: #f54224;
+  font-weight: 600;
+}
+
+.hostory-text {
+  text-align: right;
+  text-wrap: balance;
+  margin-top: 40px;
+  font-size: 25px;
+  /* color: #bla; */
+}
+
+@media (max-width: 477px) {
+  .hostory-text {
+    text-align: end;
+    text-wrap: balance;
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .img-des img {
+    margin-top: 64px !important;
+    width: 13%;
+  }
+}
+
+.img-des img {
+  width: 13%;
+}
+
+.gomap {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  cursor: pointer;
+}
+
+.gomap img {
+  width: 15%;
+}
+
+.gomaps {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 17px;
+  cursor: pointer;
+  margin-top: -14px;
+}
+
+.gomaps p {
+  font-size: 20px;
+}
+
+.gomap p {
+  font-size: 20px;
+}
+
+.gomaps img {
+  width: 23%;
+}
+
+.allgo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* start page header */
+.header {
+  padding: 30px 0;
+}
+
+.heade-img img {
+  width: 25%;
+}
+
+.box-imgs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 19px;
+}
+
+.boxtwo-imgs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 19px;
+}
+
+.box-imgs img {
+  width: 233px;
+  height: 430px;
+}
+
+.boxtwo-imgs img {
+  width: 233px;
+  height: 430px;
+}
+
+.headetwo-img img {
+  width: 25%;
+}
+
+/* routing styling */
+
+.img-routing-container img {
+  width: 70px;
+}

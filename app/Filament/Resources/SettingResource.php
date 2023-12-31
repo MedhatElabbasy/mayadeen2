@@ -81,7 +81,7 @@ class SettingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageSetting::route('/'),
+            'index' => Pages\ManageSettings::route('/'),
         ];
     }
 }
