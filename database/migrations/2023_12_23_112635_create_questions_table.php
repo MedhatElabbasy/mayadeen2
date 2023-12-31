@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->longText('content');
             $table->json('answers');
+            $table->json('hint');
             $table->timestamps();
         });
     }
