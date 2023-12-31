@@ -12,7 +12,6 @@ class Question extends Model
     public $fillable = [
         'content',
         'answers',
-        'hint',
     ];
 
     protected $casts = [
