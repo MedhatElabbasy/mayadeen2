@@ -51,20 +51,4 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasAnyRole(['superAdmin', 'admin']);
     }
-    
-    /*
-    // relations
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id')
-            ->withPivot('model_type');
-
-    }
-
-    //set model_type to App\Models\User when creating a new user
-    public function setModelTypeAttribute($value)
-    {
-        $this->attributes['model_type'] = 'App\Models\User';
-    }
-    */
 }

@@ -13,6 +13,13 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
+        $superAdmin = [
+            'name' => 'Super Admin',
+            'email' => 'superadmin@email.com',
+            'password' => 'superAdmin',
+            'email_verified_at' => now(),
+        ];
+
         $admin = [
             'name' => 'Admin',
             'email' => 'admin@email.com',
@@ -27,10 +34,13 @@ class UsersSeeder extends Seeder
             'email_verified_at' => now(),
         ];
 
+        $superAdmin = User::create($superAdmin);
+        $superAdmin->assignRole('superAdmin');
+
         $admin = User::create($admin);
+        $admin->assignRole('admin');
+
         $supervisor = User::create($supervisor);
-        $admin->assignRole('superAdmin');
         $supervisor->assignRole('supervisor');
-        
     }
 }
