@@ -26,7 +26,21 @@ $dates = computed(function () {
         <div id="app">
             <div class="px-0 md:px-48">
                 <div class="py-20 md:py-40 px-2 md:px-8 bg-[#ec6646]">
-                    <p class="text-center text-2xl md:text-4xl my-8 p-4 font-semibold text-black" style="line-height:normal">
+                    <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+                
+                    <div class="mt-4 text-2xl font-bold flex flex-col justify-center items-center text-center">
+                        @if($this->currentDay)
+                        <h1 class="text-black mb-4">اليوم</h1>
+    
+                        <select wire:model.change="currentDay" name="day" class="text-[#ec6646] bg-white py-1 px-2 cursor-pointer rounded-lg">
+                            @foreach ($days as $day)
+                                <option value="{{ $day }}">{{\Carbon\Carbon::createFromDate($day)->translatedFormat('j F')}}</option>
+                            @endforeach
+                        </select>
+                        @endif
+                    </div>
+
+                    <p class="text-center text-2xl md:text-4xl p-4 font-semibold text-black" style="line-height:normal">
                         استعدوا لتجربة شعرية استثنائية،
                         في هذه المساحة
                         سيقوم الشاعر بإلقاء قصائد الشعر النبطي
@@ -62,18 +76,6 @@ $dates = computed(function () {
                         @endif
                     </div>
 
-                </div>
-
-                <div class="mt-24 text-4xl font-bold flex flex-col justify-center items-center text-center">
-                    @if($this->currentDay)
-                    <h1 class="text-black mb-4">اليوم</h1>
-
-                    <select wire:model.change="currentDay" name="day" class="bg-[#ec6646] text-white rounded-lg">
-                        @foreach ($days as $day)
-                            <option value="{{ $day }}">{{\Carbon\Carbon::createFromDate($day)->translatedFormat('j F')}}</option>
-                        @endforeach
-                    </select>
-                    @endif
                 </div>
 
                 <!--
