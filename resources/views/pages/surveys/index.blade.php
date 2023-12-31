@@ -12,7 +12,7 @@ state([
     'organization' => 'verySatisfied',
     'events' => 'verySatisfied',
     'access' => 'verySatisfied',
-    'rating' => 5,
+    // 'rating' => 5,
     'opinion' => null,
 ]);
 
@@ -32,9 +32,9 @@ $updateAccess = function ($value) {
     $this->access = $value;
 };
 
-$updateRating = function ($value) {
-    $this->rating = $value;
-};
+// $updateRating = function ($value) {
+//     $this->rating = $value;
+// };
 
 rules([
     'name' => 'required|min:2',
@@ -44,7 +44,7 @@ rules([
     'organization' => 'required',
     'events' => 'required',
     'access' => 'required',
-    'rating' => 'required',
+    // 'rating' => 'required',
     'opinion' => 'required|min:2',
 ]);
 
@@ -59,7 +59,7 @@ $submit = function () {
         'organization' => $this->organization,
         'events' => $this->events,
         'access' => $this->access,
-        'rating' => $this->rating,
+        // 'rating' => $this->rating,
         'opinion' => $this->opinion,
     ]);
 
@@ -428,7 +428,7 @@ $submit = function () {
                                     @enderror
                                 </div>
 
-                                <div class="max-w-sm mx-auto w-full">
+                                {{-- <div class="max-w-sm mx-auto w-full">
                                     <label for="rating"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">تقييمك</label>
                                     <div class="flex items-center text-center">
@@ -450,7 +450,7 @@ $submit = function () {
                                     @error('rating')
                                         <div class="text-white">اختار تقييمك*</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="max-w-sm mx-auto">
                                     <label for="opinion" class="block mb-2 font-medium text-[#f1e1c6]">رأيك</label>

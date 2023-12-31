@@ -107,7 +107,6 @@ class SurveyResource extends Resource
                                 '4' => 'مستاء',
                                 '5' => 'مستاء جدا',
                             ])
-                            ->required()
                             ->searchable(),
 
                         Forms\Components\Textarea::make('opinion')
