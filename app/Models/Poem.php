@@ -12,7 +12,7 @@ class Poem extends Model
     protected $fillable = [
         'type',
         'name',
-        'poem',
+        'content',
         'author',
         'phone',
         'email',

@@ -3,294 +3,229 @@
 use function Livewire\Volt\{rules, state};
 use App\Models\Poem;
 
-// $poems = Poem::get();
-
 state([
     'completed' => false,
     'type' => null,
     'name' => null,
-    'poem' => null,
+    'content' => null,
     'author' => null,
     'phone' => null,
     'email' => null,
-    // 'currentPoems' => 'faq',
-    // 'faqPoems' => $poems->where('type', 'faq'),
-    // 'nabatiehPoems' => $poems->where('type', 'Nabatieh'),
-
 ]);
-
-
-
-
 
 rules([
-    'type'   => 'required|in:Nabatieh,faq',
-    'name' => "required",
-    'poem'    => 'required',
-    'author'    => 'required|min:2',
-    'phone'  => 'required|min:9',
-    'email'   => 'required|email',
-
+    'type' => 'required|in:nabati,fosha',
+    'name' => 'required|min:2',
+    'content' => 'required|min:12',
+    'author' => 'required|min:2',
+    'phone' => 'required|min:9',
+    'email' => 'required|email',
 ]);
 
-$selectedType =function($value)
-    {
-        $this->type = $value;
-    };
+$selectedType = function ($value) {
+    $this->type = $value;
+};
 
-    $submit = function ()
-        {
-            //  $this->validate();
-          Poem::create([
-                'type'         => $this->type,
-                'name'          =>$this->name,
-                'poem'       => $this->poem,
-                'author'       => $this->author,
-                'phone'     => $this->phone,
-                'email'      => $this->email,
+$submit = function () {
+    $this->validate();
 
-            ]);
-            $this->completed = true;
-        };
+    Poem::create([
+        'type' => $this->type,
+        'name' => $this->name,
+        'content' => $this->content,
+        'author' => $this->author,
+        'phone' => $this->phone,
+        'email' => $this->email,
+    ]);
 
+    $this->completed = true;
+};
 ?>
+
 @extends('layouts.app')
 
-@push('head')
-    <link rel="stylesheet" href="{{ asset('website/css/poll-quesition.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/css/global-style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/css/story-title.css') }}" />
-
-    <!-- css files-->
-   <link rel="stylesheet" href="{{ asset('website/story/css/story-title.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/story/css/write-story.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/story/css/global-style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/story/css/writers.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/poem/css/all.min') }}" />
-    
-    <link rel="stylesheet" href="{{ asset('website/poem/css/bootstrap.min') }}" />
-    <!-- faq,nab--->
-    <link rel="stylesheet" href="{{ asset('website/poem/css/form.css') }}" />
-
-    <!-- bootstrap link-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-@endpush
 @section('title', 'شارك قصيدتك')
 
 @section('content')
     @volt
-        <div>
+        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
 
-            <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
-
-            
-            <div x-show="step == 1" class="flex items-center justify-center h-screen">
-                <div class="p-2 md:p-4">
-                    <div class="beep text-center relative hover:scale-95" wire:click="selectedType('faq')" x-on:click="step++">
-                        <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-                        <a type="button" :class="{ 'bg-blue-500': type === 'faq' }" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">فصحي</a>
-                    </div>
-            
-                    <div class="beep text-center relative hover:scale-95 mt-4" wire:click="selectedType('Nabatieh')" x-on:click="step++">
-                        <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-                        <a type="button" :class="{ 'bg-blue-500': type === 'Nabatieh' }" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">النبطية</a>
-                    </div>
+            <!-- Banner -->
+            <div class="h-36 md:h-64 w-full">
+                <div class="relative">
+                    <a href="{{ url('/') }}" wire:navigate>
+                        <div class="absolute top-0 left-8 -z-50">
+                            <img src="{{ asset('website/images/banner.svg') }}" alt="Banner" class="h-36 md:h-64 w-full">
+                        </div>
+                    </a>
                 </div>
             </div>
-            
-            
-            <!-- For smaller screens (phones), use a stacked layout -->
-           {{-- <div x-show="step == 1" class=" p-2 md:p-4 ">
-                <div class="beep text-center relative hover:scale-95" wire:click="selectedType('faq')" x-on:click="step++">
-                    <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-                    <a type="button" :class="{ 'bg-blue-500': type === 'faq' }" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">فصحي</a>
-                </div>
-            
-                <div class="beep text-center relative hover:scale-95 mt-4" wire:click="selectedType('Nabatieh')" x-on:click="step++">
-                    <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-                    <a type="button" :class="{ 'bg-blue-500': type === 'Nabatieh' }" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">النبطية</a>
-                </div>
-            </div>  --}}
-            
-               {{-------########-----------}}
-           <div x-show="step==2" class="flex flex-col items-center justify-center  animate__animated animate__backInDown">
-                <div class="z-10">
-                    <div class="beep text-center relative hover:scale-95 mt-16">
-                        <div class="story-title-container">
-                            <img src="{{ asset('website/poem/poem-title1.PNG') }}" alt=""
-                                class="story-title-img" />
-                            <input type="text" name="story-title"  wire:model="name" />
+            <!-- //Banner -->
+
+            <div>
+                <div x-show="step == 1" class="px-8 border-x-2 border-[#e34e34]">
+                    <div class="flex flex-col items-center justify-center my-8">
+                        <div class="z-10">
+                            <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">اختر نوع القصيدة</h1>
+
+                            <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
+
+                                <div class="beep text-center relative hover:scale-95 cursor-pointer"
+                                    wire:click="selectedType('fosha')" x-on:click="step++">
+                                    <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
+                                    <span
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">فصحي</span>
+                                </div>
+
+
+                                <div class="beep text-center relative hover:scale-95 cursor-pointer"
+                                    wire:click="selectedType('nabati')" x-on:click="step++">
+                                    <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
+                                    <span
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">نبطية</span>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
-                    <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                    <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
-                </div>
-            </div>  
-                {{-- ############################ --}}
-              {{-- <div x-show="step==2" class="flex flex-col items-center justify-center h-screen animate__animated animate__backInDown">
-                    <div class="z-10">
-                        <div class="beep text-center relative hover:scale-95 mt-16">
-                            <div class="story-title-container">
-                                <img src="{{ asset('website/poem/poem-title1.PNG') }}" alt="" class="story-title-img" />
-                                <input type="text" name="story-title" wire:model="name" />
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
-                        <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                        <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl">التالي</button>
-                    </div>
-                </div>  --}}
-                
-                {{-- ############################ --}}
-                {{-- <div x-show="step==3" class="flex flex-col items-center justify-center  animate__animated animate__fadeInBottomRight">
-                    <div class="z-10">
-                        <div class="beep text-center relative hover:scale-95 ">
-                            <div class="write-story-container">
-                                <span>اكتب القصيده</span>
-                                <div class="input-container">
-                                    <img class="write-story-img" src="{{ 'website/story/imges/Path 115.svg' }}" alt="" />
-                                    <textarea  wire:model="poem"></textarea>
+                <div x-show="step==2"
+                    class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown">
+                    <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">شارك قصيدتك</h1>
+
+                    <div class="z-10 p-2" x-data="{ name: '' }">
+                        <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
+                            <div class="max-w-sm mx-auto pt-2">
+                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">إسم القصيدة</label>
+                                <input required min="2" type="text" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                    x-model="name" wire:model="name" placeholder="أدخل إسم القصيدة">
+                                <div x-show="name.length < 2" class="text-white mt-2">يجب ان يحتوي الإسم علي حرفين علي الأقل*
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class=" mt-3">
-                        <div class="d-flex justify-content-evenly  ">
-                            <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
-                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">التالي</button>
-                            </div>
-
-                            <!-- Add margin-right to create space between the two buttons -->
-                            <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step--">
-                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl  ">السابق</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
-
-                <div x-show="step==3" class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomRight p-4 border border-gray-300">
-                    <div class="z-10">
-                        <div class="beep text-center relative hover:scale-95">
-                            <div class="write-story-container">
-                                <span>اكتب القصيده</span>
-                                <div class="input-container">
-                                    <img class="write-story-img" src="{{ 'website/story/imges/Path 115.svg' }}" alt="" />
-                                    <textarea  wire:model="poem"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="mt-3">
-                        <div class="d-flex justify-content-evenly">
-                            <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step++">
-                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl">التالي</button>
-                            </div>
-                
-                            <!-- Add margin-right to create space between the two buttons -->
-                            <div class="beep text-center relative hover:scale-95 mt-5" x-on:click="step--">
-                                <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-3xl">السابق</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-       
-                
-
-                {{-- ############################ --}}
-                @if (!$this->completed)
-                <div x-show="step==4"
-                    class="flex flex-col items-center justify-center h-screen animate__animated animate__fadeInBottomLeft">
-                    <div class="z-10 p-8">
-                        <div class="bg-[#e34e34] py-8 px-2 rounded-lg flex flex-col gap-2"
-                            style="clip-path:polygon(100% 89%, 79% 90%, 80% 100%, 25% 100%, 23% 89%, 0% 89%, 0% 20%, 25% 20%, 23% 5%, 75% 6%, 75% 20%, 100% 20%)">
-
-                            <div class="max-w-sm mx-auto pt-16">
-                                <h1  class="block mb-2 font-medium text-[#f1e1c6] text-center">الشاعر </h1>
-                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="author" placeholder="أدخل الإسم">
-                            </div>
-                            <div class="max-w-sm mx-auto">
-                                <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد الإلكتروني</label>
-                                <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="email"
-                                    placeholder="أدخل البريد الإلكتروني">
-                            </div>
-                            <div class="max-w-sm mx-auto pb-10">
-                                <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                <input required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
-                                    wire:model="phone" placeholder="أدخل الهاتف">
-                            </div>
-                        </div>
-
-                        <div class="beep text-center relative hover:scale-95 mt-16" wire:click="submit">
-                            <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
+                        <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg"
+                            x-on:click="if(name.length >= 2) step++">
+                            <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
                             <button type="button"
-                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">إرسال</button>
+                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
                         </div>
-
-
-                        @error('author')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل اسمك الحقيقي.
-                            </div>
-                        @enderror
-
-                        @error('email')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل بريد إلكتروني صالح.
-                            </div>
-                        @enderror
-
-                        @error('phone')
-                            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                ادخل رقم هاتف صحيح.
-                            </div>
-                        @enderror
                     </div>
                 </div>
+
+                <div x-show="step==3"
+                    class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown">
+                    <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">شارك قصيدتك</h1>
+
+                    <div class="z-10 p-2" x-data="{ content: '' }">
+                        <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
+                            <div class="max-w-sm mx-auto pt-2">
+                                <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">القصيدة</label>
+                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                    x-model="content" wire:model="content">أدخل القصيدة</textarea>
+                                <div x-show="content.length < 12" class="text-white mt-2">يجب ان تحتوي القصيدة علي 12 حرف علي
+                                    الأقل*</div>
+                            </div>
+                        </div>
+
+                        <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg"
+                            x-on:click="if(content.length >= 12) step++">
+                            <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
+                            <button type="button"
+                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (!$this->completed)
+                    <div x-show="step==4"
+                        class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown">
+                        <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">ادخل بياناتك الشخصية</h1>
+
+                        <form wire:submit='submit'>
+                            <div class="z-10 p-2">
+                                <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
+                                    <div class="max-w-sm mx-auto pt-2">
+                                        <label for="author" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                        <input required min="2" type="text"
+                                            class="bg-[#f1e1c6] p-2.5 text-black  rounded-lg" wire:model="author"
+                                            placeholder="أدخل الإسم">
+                                        @error('author')
+                                            <div class="text-white">ادخل الإسم*</div>
+                                        @enderror
+                                    </div>
+                                    <div class="max-w-sm mx-auto">
+                                        <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
+                                            الإلكتروني</label>
+                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg"
+                                            wire:model="email" placeholder="أدخل البريد الإلكتروني">
+                                        @error('email')
+                                            <div class="text-white">ادخل البريد الإلكتروني*</div>
+                                        @enderror
+                                    </div>
+                                    <div class="max-w-sm mx-auto" wire:ignore>
+                                        <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
+                                        <input wire:ignore id="phone" required min="9" type="tel"
+                                        class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
+                                        placeholder="أدخل الهاتف">
+                                        @error('phone')
+                                            <div class="text-white">ادخل الهاتف*</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">
+                                    <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
+                                        alt="">
+                                    <button type="button"
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 @endif
 
-                {{-- ############################ --}}
-                {{-- ############################ --}}
-
                 @if ($this->completed)
-                <div class="flex flex-col items-center justify-center my-36 animate__animated animate__bounce">
-                    <div class="z-10">
-                        <h1 class="text-center text-4xl mt-16">تم ارسال البيانات!</h1>
-                        <div class="beep text-center relative hover:scale-95 mt-16">
-                            <img class="mx-auto" src="{{ asset('website/images/button.svg') }}" alt="">
-                            <a href="{{ url('/') }}" wire:navigate
-                                class="mt-2 absolute inset-0 flex items-center justify-center text-white text-4xl">الرئيسية</a>
+                    <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
+                        <div class="container mx-auto px-4 justify">
+                            <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تم ارسال قصيدتك</h1>
+
+                            <div class="z-10">
+                                <div class="beep text-center relative hover:scale-95 mb-8">
+                                    <a href="/poems" wire:navigate>
+                                        <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
+                                            alt="">
+                                        <span
+                                            class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الرئيسية</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-
-                    <div>
-
-
-                </div>
-            @endif
-            </div>
-            <div class="absolute top-0 left-8 z-0">
-                <img src="{{ asset('website/images/banner.svg') }}" class="w-20  p-2 md:p-2 ">
+                @endif
             </div>
         </div>
+
+        @assets
+            <link href=" https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+        @endassets
+
+        @script
+            <script>
+                const input = document.querySelector("#phone");
+                window.intlTelInput(input, {
+                    initialCountry: "auto",
+                    geoIpLookup: callback => {
+                        fetch("https://ipapi.co/json")
+                            .then(res => res.json())
+                            .then(data => callback(data.country_code))
+                            .catch(() => callback("sa"));
+                    },
+                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+                });
+            </script>
+        @endscript
     @endvolt
-
-
 @endsection
-

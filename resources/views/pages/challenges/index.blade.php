@@ -179,17 +179,17 @@ $submit = function () {
                         <div class="z-10 p-2">
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                 <div class="max-w-sm mx-auto pt-2">
-                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الإسم</label>
-                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
+                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                    <input required min="2" type="text" class="bg-[#f1e1c6] p-2.5 text-black  rounded-lg"
                                         wire:model="name" placeholder="أدخل الإسم">
                                     @error('name')
                                         <div class="text-white">ادخل الإسم*</div>
                                     @enderror
                                 </div>
                                 <div class="max-w-sm mx-auto">
-                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">البريد
+                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                         الإلكتروني</label>
-                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="email"
+                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg" wire:model="email"
                                         placeholder="أدخل البريد الإلكتروني">
                                     @error('email')
                                         <div class="text-white">ادخل البريد الإلكتروني*</div>
@@ -197,8 +197,8 @@ $submit = function () {
                                 </div>
                                 <div class="max-w-sm mx-auto">
                                     <label for="phone"
-                                        class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
-                                    <input id="phone" required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black"
+                                        class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
+                                    <input id="phone" wire:ignore required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg"
                                         wire:model="phone" placeholder="أدخل الهاتف">
                                     @error('phone')
                                         <div class="text-white">ادخل الهاتف*</div>
