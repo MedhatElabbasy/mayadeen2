@@ -559,7 +559,7 @@ $submit = function () {
                     @endforeach
                 }"
                     class="flex flex-col items-center justify-center animate__animated animate__backInDown">
-                    <h1 class="text-center text-3xl mb-4">ما احتمالية أن تنصح من حولك بحضور النسخ القادمة من المهرجان؟</h1>
+                    <h1 class="text-center text-3xl mb-4">كيف تقيم تجربتك لتفعيلات المهرجان؟</h1>
                     <h2 class="text-center text-1xl mb-4">
                         (1) تعني غير راضٍ جداً.
                         <br>
