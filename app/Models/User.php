@@ -52,6 +52,7 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasAnyRole(['superAdmin', 'admin']);
     }
     
+    /*
     // relations
     public function roles()
     {
@@ -65,4 +66,5 @@ class User extends Authenticatable implements FilamentUser
     {
         $this->attributes['model_type'] = 'App\Models\User';
     }
+    */
 }
