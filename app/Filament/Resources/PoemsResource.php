@@ -40,7 +40,7 @@ class PoemsResource extends Resource
                             ->placeholder('نوع القصيدة')
                             ->options([
                                 'nabati' => 'نبطية',
-                                'fosha' => 'الفصحى',
+                                'fosha' => 'فصحى',
                             ])
                             ->required()
                             ->rules('required', 'in:fosha,nabati'),
@@ -53,7 +53,7 @@ class PoemsResource extends Resource
                             ->required()
                             ->rules('max:255'),
 
-                        Forms\Components\Textarea::make('poem')
+                        Forms\Components\Textarea::make('content')
                             ->label('القصيدة')
                             ->placeholder('القصيدة')
                             ->required()
@@ -93,14 +93,12 @@ class PoemsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('type')
-                    ->label('نوع القصيدة'),
-
                 Tables\Columns\TextColumn::make('name')
                     ->label('إسم القصيدة'),
+
+                Tables\Columns\TextColumn::make('type')
+                    ->label('نوع القصيدة'),
                     
-                Tables\Columns\TextColumn::make('poem')
-                    ->label('القصيدة'),
 
                 Tables\Columns\TextColumn::make('author')
                     ->label('الشاعر'),
@@ -112,7 +110,13 @@ class PoemsResource extends Resource
                     ->label('البريد الإلكتروني'),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                ->label('نبطية او فصحى')
+                ->options([
+                    'nabati' => 'نبطية',
+                    'fosha' => 'فصحى',
+                ])
+                ->attribute('type')
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
