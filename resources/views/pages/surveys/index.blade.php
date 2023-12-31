@@ -630,26 +630,5 @@ $submit = function () {
                 </div>
             @endif
         </div>
-
-        @assets
-            <link href=" https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
-        @endassets
-
-        @script
-            <script>
-                const input = document.querySelector("#phone");
-                window.intlTelInput(input, {
-                    initialCountry: "auto",
-                    geoIpLookup: callback => {
-                        fetch("https://ipapi.co/json")
-                            .then(res => res.json())
-                            .then(data => callback(data.country_code))
-                            .catch(() => callback("sa"));
-                    },
-                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-                });
-            </script>
-        @endscript
     @endvolt
 @endsection
