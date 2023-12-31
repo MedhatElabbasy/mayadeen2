@@ -243,7 +243,7 @@ class SurveyResource extends Resource
                     ]),
                 ]),
 
-                \Filament\Infolists\Components\Section::make('رأيك')
+                \Filament\Infolists\Components\Section::make('التقييم')
                 ->schema([
                     \Filament\Infolists\Components\Grid::make(5)
                     ->schema([
