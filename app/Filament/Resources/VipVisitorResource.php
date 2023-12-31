@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class VipVisitorResource extends Resource
 {
@@ -21,11 +24,11 @@ class VipVisitorResource extends Resource
 
     protected static ?string $navigationGroup = 'الزوار';
 
-    protected static ?string $navigationLabel = 'كبار الزوار';
+    protected static ?string $navigationLabel = 'خريطة 35 ألف';
 
-    protected static ?string $pluralLabel = 'كبار زوار';
+    protected static ?string $pluralLabel = 'خريطة 35 ألف';
 
-    protected static ?string $modelLabel = 'زائر كبير';
+    protected static ?string $modelLabel = 'خريطة 35 ألف';
 
 
     public static function form(Form $form): Form
@@ -113,6 +116,14 @@ class VipVisitorResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('name')->heading('الإسم'),
+                            Column::make('email')->heading('البريد الإلكتروني'),
+                            Column::make('phone')->heading('الجوال'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

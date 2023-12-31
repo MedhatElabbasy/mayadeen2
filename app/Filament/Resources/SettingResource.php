@@ -69,6 +69,17 @@ class SettingResource extends Resource
                                     ->label($record->label)
                                     ->type('number')
                             ],
+                            'image' => [
+                                Forms\Components\FileUpload::make('value')
+                                    ->label($record->label)
+                                    ->image()
+                                    ->imageEditor()
+                                    ->reorderable()
+                                    ->appendFiles()
+                                    ->openable()
+                                    ->downloadable()
+                                    ->acceptedFileTypes(['image/*'])
+                            ],
                             default => [
                                 Forms\Components\TextInput::make('value')
                                     ->label($record->label)

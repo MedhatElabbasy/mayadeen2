@@ -7,9 +7,6 @@ use App\Models\Challenge;
 state([
     'completed' => false,
     'score' => 0,
-    'name' => null,
-    'email' => null,
-    'phone' => null,
 ]);
 
 $questions = computed(function () {
@@ -23,9 +20,7 @@ $questionsTotal = computed(function () {
 });
 
 rules([
-    'name' => 'required|min:2',
-    'email' => 'required|email',
-    'phone' => 'required|min:9',
+    'score' => 'required',
 ]);
 
 $incrementScore = function () {
@@ -36,9 +31,6 @@ $submit = function () {
     $this->validate();
 
     Challenge::create([
-        'name' => $this->name,
-        'email' => $this->email,
-        'phone' => $this->phone,
         'mark' => $this->score,
         'fullMark' => $this->questionsTotal,
     ]);
@@ -84,13 +76,13 @@ $submit = function () {
                 <div class="container mx-auto px-4">
                     <div class="z-10">
 
-                        <figure class="max-w-lg mx-auto">
+                        <figure class="max-w-lg mx-auto flex flex-col items-center">
                             <a target="_blank" :href="hint_image">
-                                <img class="h-auto max-w-full rounded-lg" :src="hint_image" alt="image description">
+                              <img class="h-64 w-64 rounded-lg object-fit:cover" :src="hint_image" alt="image description">
                             </a>
                             <figcaption class="mt-2 text-sm text-center text-black font-semibold" x-text="hint_text">
                             </figcaption>
-                        </figure>
+                          </figure>
 
                         <div class="beep text-center relative hover:scale-95 mt-4 cursor-pointer" x-on:click="nextQuestion">
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
@@ -153,8 +145,7 @@ $submit = function () {
                                             @foreach ($question->answers as $answer)
                                                 <div class="rounded-lg bg-[#e34e34] text-white p-8 items-center text-center font-semibold cursor-pointer beep hover:scale-95"
                                                     @if ($answer['isCorrect'] && $loop->index + 1) x-on:click="correctQuestion($event.target)" wire:click="incrementScore"
-                    @else
-                        x-on:click="wrongQuestion('{{ $answer['wrongText'] }}', '{{ asset('storage/' . $answer['wrongImage']) }}')" @endif>
+                                                    @else x-on:click="wrongQuestion('{{ $answer['wrongText'] }}', '{{ asset('storage/' . $answer['wrongImage']) }}')" @endif>
                                                     <span>{{ $answer['content'] }}</span>
                                                 </div>
                                             @endforeach
@@ -171,49 +162,19 @@ $submit = function () {
 
             <!-- Step 3 : Information -->
             @if (!$this->completed)
-                <div x-show="step==3"
-                    class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown">
-                    <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">ادخل بياناتك الشخصية</h1>
-
-                    <form wire:submit='submit'>
-                        <div class="z-10 p-2">
-                            <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
-                                <div class="max-w-sm mx-auto pt-2">
-                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                    <input required min="2" type="text" class="bg-[#f1e1c6] p-2.5 text-black  rounded-lg"
-                                        wire:model="name" placeholder="أدخل الإسم">
-                                    @error('name')
-                                        <div class="text-white">ادخل الإسم*</div>
-                                    @enderror
-                                </div>
-                                <div class="max-w-sm mx-auto">
-                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
-                                        الإلكتروني</label>
-                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg" wire:model="email"
-                                        placeholder="أدخل البريد الإلكتروني">
-                                    @error('email')
-                                        <div class="text-white">ادخل البريد الإلكتروني*</div>
-                                    @enderror
-                                </div>
-                                <div class="max-w-sm mx-auto">
-                                    <label for="phone"
-                                        class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                    <input id="phone" wire:ignore required min="9" type="number" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg"
-                                        wire:model="phone" placeholder="أدخل الهاتف">
-                                    @error('phone')
-                                        <div class="text-white">ادخل الهاتف*</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">
-                                <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button type="button"
-                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
-                            </div>
+            <div x-show="step==3" class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
+                <form wire:submit='submit'>
+                    <div class="container mx-auto px-4 justify">
+                    <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">شكراً لك!</h1>
+                    <div class="z-10">
+                        <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">
+                            <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
+                            <button type="button" class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
+                </form>
+            </div>
             @endif
             <!-- //Step 3 -->
 
@@ -228,7 +189,7 @@ $submit = function () {
                                 {{ $this->score . ' - ' . '' . $this->questionsTotal }}</h1>
 
                             <div class="beep text-center relative hover:scale-95 mb-8">
-                                <a href="/" wire:navigate>
+                                <a href="{{ url('/challenges') }}" wire:navigate>
                                     <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
                                         alt="">
                                     <span

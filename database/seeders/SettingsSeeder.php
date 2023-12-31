@@ -29,5 +29,13 @@ class SettingsSeeder extends Seeder
             'value' => 6,
             'type' => 'number',
         ]);
+
+        Setting::firstOrCreate([
+            'key' => 'shareYourPoemQrCode',
+        ], [
+            'label' => 'رمز الاستجابة السريعة لمشاركة قصيدتك',
+            'value' => null,
+            'type' => 'image',
+        ]);
     }
 }

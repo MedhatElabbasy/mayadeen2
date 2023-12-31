@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class UserResource extends Resource
 {
@@ -104,6 +107,15 @@ class UserResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('name')->heading('الإسم'),
+                            Column::make('email')->heading('البريد الإلكتروني'),
+                            Column::make('phone')->heading('الجوال'),
+                            Column::make('roles.name')->heading('الدور'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

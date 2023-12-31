@@ -74,7 +74,7 @@ $submit = function () {
                                     wire:click="selectedType('fosha')" x-on:click="step++">
                                     <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
                                     <span
-                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">فصحي</span>
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">فصحى</span>
                                 </div>
 
 
@@ -82,7 +82,7 @@ $submit = function () {
                                     wire:click="selectedType('nabati')" x-on:click="step++">
                                     <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
                                     <span
-                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">نبطية</span>
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">نبطي</span>
                                 </div>
 
                             </div>
@@ -193,7 +193,7 @@ $submit = function () {
 
                             <div class="z-10">
                                 <div class="beep text-center relative hover:scale-95 mb-8">
-                                    <a href="/poems" wire:navigate>
+                                    <a href="{{url('/poems')}}" wire:navigate>
                                         <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
                                             alt="">
                                         <span

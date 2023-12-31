@@ -48,11 +48,11 @@ state([
                             "link" => "/poems"
                         ],
                         [
-                            "title" => "جدول القصائد النبطية",
+                            "title" => "جدول القصائد النبطي",
                             "link" => "/poems/table/nabati"
                         ],
                         [
-                            "title" => "جدول القصائد الفصحي",
+                            "title" => "جدول القصائد الفصحى",
                             "link" => "/poems/table/fosha"
                         ],
                         [

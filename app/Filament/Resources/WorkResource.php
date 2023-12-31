@@ -9,10 +9,13 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use App\Filament\Resources\WorkResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\WorkResource\RelationManagers;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use App\Filament\Resources\WorkResource\RelationManagers\WritersRelationManager;
 
 class WorkResource extends Resource
@@ -100,6 +103,12 @@ class WorkResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('title')->heading('الإسم'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

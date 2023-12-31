@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\QuestionResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\QuestionResource\RelationManagers;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class QuestionResource extends Resource
 {
@@ -133,6 +136,11 @@ class QuestionResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('content')->heading('السؤال'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SurveyResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SurveyResource\RelationManagers;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class SurveyResource extends Resource
 {
@@ -123,13 +126,6 @@ class SurveyResource extends Resource
     {
         return $table
         ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label('الإسم'),
-                Tables\Columns\TextColumn::make('email')
-                    ->label('البريد الإلكتروني'),
-                Tables\Columns\TextColumn::make('phone')
-                    ->label('جوال'),
-
                 Tables\Columns\TextColumn::make('facilities')
                     ->label('السهولة')
                     ->badge(),
@@ -170,6 +166,10 @@ class SurveyResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

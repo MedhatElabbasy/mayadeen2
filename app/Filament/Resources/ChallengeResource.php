@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ChallengeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ChallengeResource\RelationManagers;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class ChallengeResource extends Resource
 {
@@ -32,35 +35,6 @@ class ChallengeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make("البيانات الشخصية")
-                    ->schema([
-                        Forms\Components\Grid::make(3)
-                        ->schema([
-                            Forms\Components\TextInput::make('name')
-                                ->label('الإسم')
-                                ->placeholder('إسم المتحدي')
-                                ->required()
-                                ->minLength(3)
-                                ->maxLength(255)
-                                ->rules('required|min:3|max:255'),
-
-                            Forms\Components\TextInput::make('email')
-                                ->label('البريد الإلكتروني')
-                                ->placeholder('بريد إلكتروني المتحدي')
-                                ->required()
-                                ->email()
-                                ->rules('required|email'),
-
-                            Forms\Components\TextInput::make('phone')
-                                ->label('جوال')
-                                ->placeholder('جوال المتحدي')
-                                ->required()
-                                ->tel()
-                                ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
-                                ->rules('required'),
-                        ])
-                    ]),
-
                     Forms\Components\Section::make("الدرجة")
                     ->schema([
                         Forms\Components\Grid::make(2)
@@ -87,18 +61,6 @@ class ChallengeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label('الإسم')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('email')
-                    ->label('البريد الإلكتروني')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('phone')
-                    ->label('الجوال')
-                    ->searchable(),
-
                 Tables\Columns\TextColumn::make('mark')
                     ->label('الدرجة')
                     ->searchable(),
@@ -128,6 +90,13 @@ class ChallengeResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('mark')->heading('الدرجة'),
+                            Column::make('fullMark')->heading('الدرجة الكاملة'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
@@ -138,23 +107,11 @@ class ChallengeResource extends Resource
         return $infolist
             ->schema([
                 \Filament\Infolists\Components\Section::make('الدرجة')
-                ->schema([
-                    \Filament\Infolists\Components\Grid::make(2)
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('name')
-                        ->label('الإسم'),
-
-                        \Filament\Infolists\Components\TextEntry::make('email')
-                            ->label('البريد الإلكتروني'),
-                    ]),
-                ]),
-
-                \Filament\Infolists\Components\Section::make('الدرجة')
                     ->schema([
                         \Filament\Infolists\Components\Grid::make(2)
                             ->schema([
                             \Filament\Infolists\Components\TextEntry::make('mark')
-                                ->label('درجة')
+                                ->label('الدرجة')
                                 ->badge(),
 
                             \Filament\Infolists\Components\TextEntry::make('fullMark')

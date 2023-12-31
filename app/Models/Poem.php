@@ -20,6 +20,6 @@ class Poem extends Model
     
     public function getTypeAttribute($value)
     {
-        return $value == 'fosha' ? 'فصحي' : 'نبطية';
+        return $value == 'fosha' ? 'فصحى' : 'نبطي';
     }
 }

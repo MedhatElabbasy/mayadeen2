@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class PoemsResource extends Resource
 {
@@ -39,7 +42,7 @@ class PoemsResource extends Resource
                             ->label('نوع القصيدة')
                             ->placeholder('نوع القصيدة')
                             ->options([
-                                'nabati' => 'نبطية',
+                                'nabati' => 'نبطي',
                                 'fosha' => 'فصحى',
                             ])
                             ->required()
@@ -99,7 +102,6 @@ class PoemsResource extends Resource
                 Tables\Columns\TextColumn::make('type')
                     ->label('نوع القصيدة'),
                     
-
                 Tables\Columns\TextColumn::make('author')
                     ->label('الشاعر'),
 
@@ -111,9 +113,9 @@ class PoemsResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('type')
-                ->label('نبطية او فصحى')
+                ->label('نبطي او فصحى')
                 ->options([
-                    'nabati' => 'نبطية',
+                    'nabati' => 'نبطي',
                     'fosha' => 'فصحى',
                 ])
                 ->attribute('type')
@@ -124,6 +126,16 @@ class PoemsResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('name')->heading('إسم القصيدة'),
+                            Column::make('type')->heading('نوع القصيدة'),
+                            Column::make('author')->heading('الإسم'),
+                            Column::make('email')->heading('البريد الإلكتروني'),
+                            Column::make('phone')->heading('الجوال'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

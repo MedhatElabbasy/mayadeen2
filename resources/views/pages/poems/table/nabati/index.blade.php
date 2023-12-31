@@ -27,11 +27,16 @@ $dates = computed(function () {
             <div class="px-0 md:px-48">
                 <div class="py-20 md:py-40 px-2 md:px-8 bg-[#ec6646]">
                     <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
-                
-                    <div class="mt-4 text-2xl font-bold flex flex-col justify-center items-center text-center">
+            
+                    <p class="text-center text-2xl md:text-4xl p-4 font-semibold text-black" style="line-height:normal">
+                        استعدوا لتجربة شعرية استثنائية،
+                        في هذه المساحة
+                        سيقوم الشاعر بإلقاء قصائد الشعر النبطي
+                        بصوت جهور مصحوب بإيقاعات موسيقية.
+                    </p>
+
+                    <div class="mb-4 text-2xl font-bold flex flex-col justify-center items-center text-center">
                         @if($this->currentDay)
-                        <h1 class="text-black mb-4">اليوم</h1>
-    
                         <select wire:model.change="currentDay" name="day" class="text-[#ec6646] bg-white py-1 px-2 cursor-pointer rounded-lg">
                             @foreach ($days as $day)
                                 <option value="{{ $day }}">{{\Carbon\Carbon::createFromDate($day)->translatedFormat('j F')}}</option>
@@ -39,13 +44,6 @@ $dates = computed(function () {
                         </select>
                         @endif
                     </div>
-
-                    <p class="text-center text-2xl md:text-4xl p-4 font-semibold text-black" style="line-height:normal">
-                        استعدوا لتجربة شعرية استثنائية،
-                        في هذه المساحة
-                        سيقوم الشاعر بإلقاء قصائد الشعر النبطي
-                        بصوت جهور مصحوب بإيقاعات موسيقية.
-                    </p>
 
                     <div class="relative overflow-x-auto shadow-md">
                         @if($this->currentDay)

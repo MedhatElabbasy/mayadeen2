@@ -9,12 +9,15 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Infolists\Components\TextEntry;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use App\Filament\Resources\WriterResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use App\Filament\Resources\WriterResource\RelationManagers;
 use App\Filament\Resources\WriterResource\RelationManagers\WorksRelationManager;
-use Filament\Infolists\Components\TextEntry;
 
 class WriterResource extends Resource
 {
@@ -190,6 +193,14 @@ class WriterResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('name')->heading('المشرف'),
+                            Column::make('birthday')->heading('يوم الميلاد'),
+                            Column::make('deathday')->heading('يوم الوفاة'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

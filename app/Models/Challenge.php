@@ -10,9 +10,6 @@ class Challenge extends Model
     use HasFactory;
 
     public $fillable = [
-        'name',
-        'email',
-        'phone',
         'mark',
         'fullMark',
     ];

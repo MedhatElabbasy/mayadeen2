@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DatesOfPoemResource\Pages;
 use App\Filament\Resources\DatesOfPoemResource\RelationManagers;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class DatesOfPoemResource extends Resource
 {
@@ -90,7 +93,7 @@ class DatesOfPoemResource extends Resource
                             ->label('النوع')
                             ->placeholder('النوع')
                             ->options([
-                                'nabati' => 'نبطية',
+                                'nabati' => 'نبطي',
                                 'fosha' => 'فصحى',
                             ])->required()
                             ->rules('required', 'in:fosha,nabati'),
@@ -136,9 +139,9 @@ class DatesOfPoemResource extends Resource
                 ->attribute('is_break'),
 
                 Tables\Filters\SelectFilter::make('type')
-                ->label('نبطية او فصحى')
+                ->label('نبطي او فصحى')
                 ->options([
-                    'nabati' => 'نبطية',
+                    'nabati' => 'نبطي',
                     'fosha' => 'فصحى',
                 ])
                 ->attribute('type')
@@ -148,6 +151,17 @@ class DatesOfPoemResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()->withColumns([
+                            Column::make('owner')->heading('الشاعر'),
+                            Column::make('details')->heading('التفاصيل'),
+                            Column::make('is_break')->heading('إستراحة'),
+                            Column::make('date')->heading('التاريخ'),
+                            Column::make('start_time')->heading('وقت البداية'),
+                            Column::make('end_time')->heading('وقت النهاية'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

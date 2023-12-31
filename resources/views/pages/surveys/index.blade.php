@@ -479,7 +479,7 @@ $submit = function () {
                         <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 mt-8 text-[#e34e34]">تم ارسال البيانات</h1>
 
                         <div class="beep text-center relative hover:scale-95 mb-8">
-                            <a href="/" wire:navigate>
+                            <a href="{{url('/surveys')}}" wire:navigate>
                                 <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
                                     alt="">
                                 <span
