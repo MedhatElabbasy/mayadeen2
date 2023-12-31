@@ -10,14 +10,15 @@ use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use App\Enums\Survey as SurveyEnum;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Enums\FiltersLayout;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use App\Filament\Resources\SurveyResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SurveyResource\RelationManagers;
-use pxlrbt\FilamentExcel\Columns\Column;
-use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use App\Filament\Resources\SurveyResource\RelationManagers;
 
 class SurveyResource extends Resource
 {
@@ -33,6 +34,15 @@ class SurveyResource extends Resource
 
     protected static ?string $modelLabel = 'إستبيان';
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -126,21 +136,25 @@ class SurveyResource extends Resource
     {
         return $table
         ->columns([
-                Tables\Columns\TextColumn::make('facilities')
-                    ->label('السهولة')
+                Tables\Columns\TextColumn::make('experience')
+                    ->label('التجربة العامة')
                     ->badge(),
 
-                Tables\Columns\TextColumn::make('organization')
-                    ->label('التنظيم')
+                Tables\Columns\TextColumn::make('guidelines')
+                    ->label('كفاية الإرشادات')
                     ->badge(),
 
-                Tables\Columns\TextColumn::make('events')
-                    ->label('الفعاليات')
+                Tables\Columns\TextColumn::make('literaryEvents')
+                    ->label('تنوع الفعاليات الأدبية')
                     ->badge(),
 
-                Tables\Columns\TextColumn::make('access')
-                    ->label('الوصول')
-                    ->badge(),
+                Tables\Columns\TextColumn::make('entertainmentEvents')
+                ->label('تنوع الفعاليات الترفيهية')
+                ->badge(),
+
+                Tables\Columns\TextColumn::make('restaurant')
+                ->label('تنوع المطاعم والمقاهي')
+                ->badge(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')
@@ -155,11 +169,8 @@ class SurveyResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\Filter::make('facilities')->label('بحث بالتسهيلات'),
-                Tables\Filters\Filter::make('organization')->label('بحث بالتنظيم'),
-                Tables\Filters\Filter::make('events')->label('بحث بالفعاليات'),
-                Tables\Filters\Filter::make('access')->label('بحث بالوصول'),
-            ], layout: FiltersLayout::AboveContent)
+                //
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
@@ -179,42 +190,87 @@ class SurveyResource extends Resource
     {
         return $infolist
             ->schema([
-                \Filament\Infolists\Components\Section::make('البيانات الشخصية')
-                    ->schema([
-                        \Filament\Infolists\Components\Grid::make(3)
-                        ->schema([
-                            \Filament\Infolists\Components\TextEntry::make('name')
-                                ->label('الإسم'),
-
-                            \Filament\Infolists\Components\TextEntry::make('email')
-                                ->label('البريد الإلكتروني'),
-
-                            \Filament\Infolists\Components\TextEntry::make('phone')
-                                ->label('جوال'),
-                        ]),
-                    ]),
-
                 \Filament\Infolists\Components\Section::make('الإستبيان')
                     ->schema([
-                        \Filament\Infolists\Components\Grid::make(4)
+                        \Filament\Infolists\Components\Grid::make(5)
                         ->schema([
-                            \Filament\Infolists\Components\TextEntry::make('facilities')
-                            ->label('التسهيلات')
+                            \Filament\Infolists\Components\TextEntry::make('experience')
+                            ->label('التجربة العامة')
                             ->badge(),
 
-                            \Filament\Infolists\Components\TextEntry::make('organization')
-                                ->label('التنظيم')
-                                ->badge(),
+                            \Filament\Infolists\Components\TextEntry::make('guidelines')
+                            ->label('كفاية الإرشادات')
+                            ->badge(),
 
-                            \Filament\Infolists\Components\TextEntry::make('events')
-                                ->label('الفعاليات')
-                                ->badge(),
+                            \Filament\Infolists\Components\TextEntry::make('literaryEvents')
+                            ->label('تنوع الفعاليات الأدبية')
+                            ->badge(),
 
-                            \Filament\Infolists\Components\TextEntry::make('access')
-                                ->label('الوصول')
-                                ->badge(),
+                            \Filament\Infolists\Components\TextEntry::make('entertainmentEvents')
+                            ->label('تنوع الفعاليات الترفيهية')
+                            ->badge(),
+                                
+                            \Filament\Infolists\Components\TextEntry::make('restaurant')
+                            ->label('تنوع المطاعم والمقاهي')
+                            ->badge(),
                         ]),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('المهرجات')
+                ->schema([
+                    \Filament\Infolists\Components\Grid::make(3)
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('referral')
+                        ->label('كيف سمعت عن المهرجان؟')
+                        ->badge(),
+
+                        \Filament\Infolists\Components\TextEntry::make('next')
+                        ->label('ما احتمالية حضورك للنسخ القادمة من المهرجان؟')
+                        ->badge(),
+
+                        \Filament\Infolists\Components\TextEntry::make('suggestion')
+                        ->label('ما احتمالية أن تنصح من حولك بحضور النسخ القادمة من المهرجان؟')
+                        ->badge(),
                     ]),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('رأيك')
+                ->schema([
+                    \Filament\Infolists\Components\Grid::make(3)
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('opinion')
+                        ->label('ما هي مقترحاتك لتطوير وتحسين النسخ القادمة من المهرجان؟'),
+                    ]),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('رأيك')
+                ->schema([
+                    \Filament\Infolists\Components\Grid::make(5)
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('rating.ksayd_byn_altrk')->label('قصائد بين الطرق'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.msrh_alsharaa_almthrk')->label('مسرح الشارع المتحرك'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.mns_alfn')->label('منصة الفن'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.gathby_alfk')->label('جاذبية الفك'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.omyd_alabgdy')->label('وميض الأبجدية'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.hkayat_alflk')->label('حكايات الفلك'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.msrh_alaarod_altrathy')->label('مسرح العروض التراثية'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.aaoalm_akhr')->label('عوالم اخرى'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.shab_adb')->label('سحابة ادب'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.thd_nfsk')->label('تحدى نفسك'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.almtah')->label('المتاهة'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.almghamron_alsghar')->label('المغامرون الصغار'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.albrnamg_althkafy')->label('البرنامج الثقافي'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.dor_alnshr')->label('دور النشر'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.msrhy_alloh_alakbr')->label('مسرحية اللوح الاكبر'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.alamasy_alghnayy')->label('الاماسي الغنائية'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.alamasy_alshaary')->label('الاماسي الشعرية'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.msrh_alsharaa_althabt')->label('مسرح الشارع الثابت'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.byn_aladb')->label('بين الادب'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.adbaaa_aabr_altarykh')->label('ادباء عبر التاريخ'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.alktb_almaalk')->label('الكتب المعلقة'),
+                    ]),
+                ]),
+
             ]);
     }
 

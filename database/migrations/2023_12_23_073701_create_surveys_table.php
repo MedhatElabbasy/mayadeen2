@@ -20,21 +20,35 @@ return new class extends Migration
             Survey::VERY_UPSET->value
         ];
 
-        Schema::create('surveys', function (Blueprint $table) use ($status) {
+        $statusB = [
+            Survey::SOCIALMEDIA->value,
+            Survey::BILLBOARDS->value,
+            Survey::WEABSITE->value,
+            Survey::FRIENDS->value,
+        ];
+
+        $statusC = [
+            Survey::HIGH->value,
+            Survey::MEDIUM->value,
+            Survey::WEAK->value,
+        ];
+
+        Schema::create('surveys', function (Blueprint $table) use ($status, $statusB, $statusC) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->enum('facilities', $status);
-            $table->enum('organization', $status);
-            $table->enum('events', $status);
-            $table->enum('access', $status);
-            $table->string('rating')->nullable();
+            $table->enum('experience', $status);
+            $table->enum('guidelines', $status);
+            $table->enum('literaryEvents', $status);
+            $table->enum('entertainmentEvents', $status);
+            $table->enum('restaurant', $status);
+            $table->json('rating')->nullable();
+            $table->enum('referral', $statusB);
+            $table->enum('next', $statusC);
+            $table->enum('suggestion', $statusC);
             $table->longText('opinion')->nullable();
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

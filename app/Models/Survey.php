@@ -11,21 +11,28 @@ class Survey extends Model
     use HasFactory;
 
     public $fillable = [
-        'name',
-        'email',
-        'phone',
-        'facilities',
-        'organization',
-        'events',
-        'access',
+        'experience',
+        'guidelines',
+        'literaryEvents',
+        'entertainmentEvents',
+        'restaurant',
+        'referral',
+        'next',
+        'suggestion',
         'rating',
         'opinion',
     ];
 
     protected $casts = [
-        'facilities' => SurveyEnum::class,
-        'organization' => SurveyEnum::class,
-        'events' => SurveyEnum::class,
-        'access' => SurveyEnum::class,
+        'experience'          => SurveyEnum::class,
+        'guidelines'          => SurveyEnum::class,
+        'literaryEvents'      => SurveyEnum::class,
+        'entertainmentEvents' => SurveyEnum::class,
+        'organization'        => SurveyEnum::class,
+        'restaurant'          => SurveyEnum::class,
+        'referral'            => SurveyEnum::class,
+        'next'                => SurveyEnum::class,
+        'suggestion'          => SurveyEnum::class,
+        'rating'              => 'array',
     ];
 }

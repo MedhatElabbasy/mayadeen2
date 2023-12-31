@@ -12,15 +12,30 @@ enum Survey: string implements HasLabel, HasColor
     case NEUTRAL = 'neutral';
     case UPSET = 'upset';
     case VERY_UPSET = 'veryUpset';
+    case HIGH = 'high';
+    case MEDIUM = 'medium';
+    case WEAK = 'weak';
+    case SOCIALMEDIA = 'socialmedia';
+    case BILLBOARDS = 'billboards';
+    case WEABSITE = 'website';
+    case FRIENDS = 'friends';
+
     
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::VERY_SATISFIED => 'راضٍ جدًا',
-            self::SATISFIED => 'راضي',
-            self::NEUTRAL => 'حيادي',
-            self::UPSET => 'منزعج',
-            self::VERY_UPSET => 'مستاء جدا'
+            self::VERY_SATISFIED => 'ممتاز',
+            self::SATISFIED => 'جيد',
+            self::NEUTRAL => 'مقبول',
+            self::UPSET => 'غير راضي',
+            self::VERY_UPSET => 'مستاء جدا',
+            self::HIGH => 'عالية',
+            self::MEDIUM => 'متوسطة',
+            self::WEAK => 'ضعيفه',
+            self::SOCIALMEDIA => 'مواقع التواصل الاجتماعي',
+            self::BILLBOARDS => 'اللوحات الإعلانية',
+            self::WEABSITE => 'الموقع الإلكتروني',
+            self::FRIENDS => 'الأصدقاء',
         };
     }
 
@@ -30,7 +45,14 @@ enum Survey: string implements HasLabel, HasColor
             self::SATISFIED => 'success',
             self::NEUTRAL => 'warning',
             self::UPSET => 'danger',
-            self::VERY_UPSET => 'danger'
+            self::VERY_UPSET => 'danger',
+            self::HIGH => 'success',
+            self::MEDIUM => 'warning',
+            self::WEAK => 'danger',
+            self::SOCIALMEDIA => 'success',
+            self::BILLBOARDS => 'success',
+            self::WEABSITE => 'success',
+            self::FRIENDS => 'success',
         };
     }
 }
