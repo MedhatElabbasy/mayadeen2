@@ -122,7 +122,7 @@ $submit = function () {
                         <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                             <div class="w-full">
                                 <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">القصيدة</label>
-                                <textarea class="w-full p-4" rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
                                     x-model="content" wire:model="content">أدخل القصيدة</textarea>
                                 <div x-show="content.length < 12" class="text-white mt-2">يجب ان تحتوي القصيدة علي 12 حرف علي
                                     الأقل*</div>

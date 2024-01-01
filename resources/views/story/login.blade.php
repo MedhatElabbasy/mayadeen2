@@ -34,32 +34,32 @@
             </div>
 
 
-            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white px-4 py-8 rounded-lg">
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-[#e34e34] px-4 py-8 rounded-lg">
                 <form class="space-y-6" action="{{ route('supervisor.login') }}" method="POST">
                     @csrf {{-- Add this to include the CSRF token --}}
 
-                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#e34e34]">تسجيل الدخول
+                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#f2e7d1]">تسجيل الدخول
                         للمشرف
                     </h2>
                     @if (session('error'))
-                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4">
+                        <div class="bg-[#f2e7d1] border-l-4 text-black p-4 my-4 rounded-lg">
                             <div class="text-center">
                                 <p>{{ session('error') }}</p>
                             </div>
                         </div>
                     @endif
                     <div>
-                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">البريد الالكتروني
+                        <label for="email" class="block text-sm font-medium leading-6 text-white">البريد الالكتروني
                         </label>
                         <div class="mt-2">
                             <input id="email" name="email" type="email" autocomplete="email" required
-                                class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                class="block w-full rounded-md border-0 py-2 px-4 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
 
                     <div>
                         <div class="flex items-center justify-between">
-                            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">كلمة
+                            <label for="password" class="block text-sm font-medium leading-6 text-white">كلمة
                                 المرور</label>
                             <div class="text-sm">
                                 {{-- <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot
@@ -68,13 +68,13 @@
                         </div>
                         <div class="mt-2">
                             <input id="password" name="password" type="password" autocomplete="current-password" required
-                                class="block w-full p-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                class="block w-full py-2 px-4 rounded-md border-0 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
 
                     <div>
                         <button type="submit"
-                            class="flex w-full justify-center rounded-md bg-[#e34e34] px-3 p-4 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            class="flex w-full justify-center rounded-md bg-[#f2e7d1] px-3 p-4 text-sm font-semibold leading-6 text-black shadow-sm hover:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             الدخول </button>
                     </div>
                 </form>
