@@ -96,9 +96,9 @@ $submit = function () {
 
                     <div class="z-10 p-2" x-data="{ name: '' }">
                         <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
-                            <div class="max-w-sm mx-auto pt-2">
+                            <div class="w-full">
                                 <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">إسم القصيدة</label>
-                                <input required min="2" type="text" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                <input required min="2" type="text" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg"
                                     x-model="name" wire:model="name" placeholder="أدخل إسم القصيدة">
                                 <div x-show="name.length < 2" class="text-white mt-2">يجب ان يحتوي الإسم علي حرفين علي الأقل*
                                 </div>
@@ -120,9 +120,9 @@ $submit = function () {
 
                     <div class="z-10 p-2" x-data="{ content: '' }">
                         <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
-                            <div class="max-w-sm mx-auto pt-2">
+                            <div class="w-full">
                                 <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">القصيدة</label>
-                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                <textarea class="w-full p-4" rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
                                     x-model="content" wire:model="content">أدخل القصيدة</textarea>
                                 <div x-show="content.length < 12" class="text-white mt-2">يجب ان تحتوي القصيدة علي 12 حرف علي
                                     الأقل*</div>
@@ -146,19 +146,19 @@ $submit = function () {
                         <form wire:submit='submit'>
                             <div class="z-10 p-2">
                                 <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
-                                    <div class="max-w-sm mx-auto pt-2">
+                                    <div class="w-full">
                                         <label for="author" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
                                         <input required min="2" type="text"
-                                            class="bg-[#f1e1c6] p-2.5 text-black  rounded-lg" wire:model="author"
+                                            class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full" wire:model="author"
                                             placeholder="أدخل الإسم">
                                         @error('author')
                                             <div class="text-white">ادخل الإسم*</div>
                                         @enderror
                                     </div>
-                                    <div class="max-w-sm mx-auto">
+                                    <div class="w-full">
                                         <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                             الإلكتروني</label>
-                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg"
+                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
                                             wire:model="email" placeholder="أدخل البريد الإلكتروني">
                                         @error('email')
                                             <div class="text-white">ادخل البريد الإلكتروني*</div>

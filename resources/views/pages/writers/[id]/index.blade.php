@@ -11,7 +11,7 @@ state([
 
 @extends('layouts.app')
 
-@section('title', 'ادباء عبر التاريخ')
+@section('title', 'أدباء عبر التاريخ')
 
 @section('bg', 'bg-[#eb6745]')
 

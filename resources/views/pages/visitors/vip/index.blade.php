@@ -63,24 +63,24 @@ $submit = function () {
                     <form wire:submit='submit' accept="file" enctype="multipart/form-data">
                         <div class="z-10 p-2">
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
-                                <div class="max-w-sm mx-auto pt-2">
+                                <div class="w-full">
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الإسم</label>
-                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black"
+                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black w-full"
                                         wire:model="name" placeholder="أدخل الإسم">
                                     @error('name')
                                         <div class="text-white">ادخل الإسم*</div>
                                     @enderror
                                 </div>
-                                <div class="max-w-sm mx-auto">
+                                <div class="w-full">
                                     <label for="email" class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">البريد
                                         الإلكتروني</label>
-                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black" wire:model="email"
+                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black w-full" wire:model="email"
                                         placeholder="أدخل البريد الإلكتروني">
                                     @error('email')
                                         <div class="text-white">ادخل البريد الإلكتروني*</div>
                                     @enderror
                                 </div>
-                                <div class="max-w-sm mx-auto">
+                                <div class="w-full">
                                     <label for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
                                     <input wire:ignore id="phone" required min="9" type="tel"
