@@ -113,7 +113,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
+        <div id="app" x-data="{ step: 10 }" class="border-x-2 border-[#e34e34]">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -606,15 +606,14 @@ $submit = function () {
                     </h2>
 
                     <div x-data="{rating_screen: 1}">
-                        <div class="z-10 p-2">
+                        <div class="z-10 p-2 text-center align-middle items-center">
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                 @foreach($rating_list as $rating)
                                     <div x-show="rating_screen=={{$loop->index+1}}" class="animate__animated animate__backInDown">
                                         @foreach($rating_list["screen".$loop->index+1] as $rating)
-                                            <div>
-                                                <label for="rating"
-                                                    class="block font-medium text-[#f1e1c6] rounded-lg">{{$rating}}</label>
-                                                <div class="flex items-center text-center w-full ">
+                                            <div class="mb-4">
+                                                <label for="rating" class="block font-medium text-[#f1e1c6] rounded-lg text-center mb-4">{{$rating}}</label>
+                                                <div class="flex items-center text-center w-full">
                                                     @foreach ([1, 2, 3, 4, 5] as $value)
                                                         <div class="contents cursor-pointer text-gray-300">
                                                             <div class="w-12 md:w-full">
