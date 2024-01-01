@@ -8,8 +8,10 @@ use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StoryPdfSendMail;
 use Dompdf\Options;
+// use function Laravel\Folio\{middleware};
+// middleware(['auth.login.superVisor'])
 
-middleware(['superviser', 'auth']);
+middleware(['superviser']);
 
 state([
     'completed' => false,

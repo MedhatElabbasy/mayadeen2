@@ -2,6 +2,7 @@
 
 use App\Models\Story;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthSuperVisorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,8 +67,7 @@ Route::get('story/{id}', function ($id) {
     );
 })->name('story.pdf');
 
+Route::get('supervisor/login', [AuthSuperVisorController::class,'showLoginForm'])->name('supervisor.showLogin');
+Route::post('supervisor/login', [AuthSuperVisorController::class,'login'])->name('supervisor.login');
 
-
-// Route::get('test', function () {
-
-// });
+Route::get('test',[AuthSuperVisorController::class,'logout'] );

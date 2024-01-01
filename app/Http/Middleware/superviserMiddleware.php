@@ -15,9 +15,12 @@ class superviserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()->hasRole('supervisor')) {
-            return redirect('/');
+        // && auth()->user()->hasRole('supervisor')
+        if (auth()->check() && auth()->user()->hasRole('supervisor')) {
+            return $next($request);
+        } else {
+            return redirect()->route('supervisor.showLogin');
         }
-        return $next($request);
+
     }
 }
