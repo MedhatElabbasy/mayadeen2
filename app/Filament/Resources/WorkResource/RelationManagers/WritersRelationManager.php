@@ -67,7 +67,7 @@ class WritersRelationManager extends RelationManager
                 Forms\Components\Grid::make(1)
                 ->schema([
                     Forms\Components\FileUpload::make('attachments')
-                        ->label('المرفقات')
+                        ->label('البودكاست')
                         ->multiple()
                         ->reorderable()
                         ->appendFiles()

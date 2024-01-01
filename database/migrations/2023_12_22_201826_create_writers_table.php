@@ -19,7 +19,8 @@ return new class extends Migration
             $table->longText('quote');
             $table->date('birthday');
             $table->date('deathday');
-            $table->json('attachments')->nullable();
+            $table->string('podcast')->nullable();
+            $table->string('qr')->nullable();
             $table->timestamps();
         });
     }

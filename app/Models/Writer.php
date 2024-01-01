@@ -9,10 +9,6 @@ class Writer extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'attachments' => 'array',
-    ];
-
     public $fillable = [
         'name',
         'about',
@@ -20,7 +16,8 @@ class Writer extends Model
         'birthday',
         'deathday',
         'image',
-        'attachments',
+        'podcast',
+        'qr',
     ];
 
     public function works(){

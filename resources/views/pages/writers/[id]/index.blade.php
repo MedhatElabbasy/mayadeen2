@@ -18,6 +18,7 @@ state([
 @section('content')
 @volt
 <div id="app">
+
     <div class="flex flex-col justify-center items-center p-8">
         <a href="{{ url('/') }}" wire:navigate>
             <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
@@ -41,6 +42,19 @@ state([
                 <img src="{{ asset('website/images/palm-horizontal.svg') }}" class="h-36 w-36">
             </div>
 
+            <div class="flex flex-col justify-center items-center">
+                @if($this->writer->podcast)
+                <audio controls class="mb-4 bg-gray-200 shadow-sm px-4 py-2 rounded-full">
+                    <source src="{{ asset("storage/".$this->writer->podcast) }}">
+                    تعذر بدأ مشغل الصوت.
+                </audio>
+                @endif
+
+                @if($this->writer->qr)
+                <img src="{{ asset("storage/".$this->writer->qr) }}" class="h-24 w-24 rounded-lg">
+                @endif
+            </div>
+
             <div class="flex justify-between mt-12">
                 <div>
                     <a href="{{ url('/writers/'.$writer->id.'/quote') }}" wire:navigate class="flex gap-2 justify-center items-start">
@@ -58,6 +72,12 @@ state([
             </div>
         </div>
     </div>
+
 </div>
+@script
+<script>
+Calamansi.autoload();
+</script>
+@endscript
 @endvolt
 @endsection
