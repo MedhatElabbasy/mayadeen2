@@ -155,10 +155,10 @@ $submit = function () {
                                             <div class="text-white">ادخل الإسم*</div>
                                         @enderror
                                     </div>
-                                    <div class="max-w-sm mx-auto">
+                                    <div class="w-full">
                                         <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                             الإلكتروني</label>
-                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg"
+                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
                                             wire:model="email" placeholder="أدخل البريد الإلكتروني">
                                         @error('email')
                                             <div class="text-white">ادخل البريد الإلكتروني*</div>

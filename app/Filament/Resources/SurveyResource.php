@@ -209,7 +209,7 @@ class SurveyResource extends Resource
                             \Filament\Infolists\Components\TextEntry::make('entertainmentEvents')
                             ->label('تنوع الفعاليات الترفيهية')
                             ->badge(),
-                                
+
                             \Filament\Infolists\Components\TextEntry::make('restaurant')
                             ->label('تنوع المطاعم والمقاهي')
                             ->badge(),
@@ -254,16 +254,16 @@ class SurveyResource extends Resource
                         \Filament\Infolists\Components\TextEntry::make('rating.omyd_alabgdy')->label('وميض الأبجدية'),
                         \Filament\Infolists\Components\TextEntry::make('rating.hkayat_alflk')->label('حكايات الفلك'),
                         \Filament\Infolists\Components\TextEntry::make('rating.msrh_alaarod_altrathy')->label('مسرح العروض التراثية'),
-                        \Filament\Infolists\Components\TextEntry::make('rating.aaoalm_akhr')->label('عوالم اخرى'),
-                        \Filament\Infolists\Components\TextEntry::make('rating.shab_adb')->label('سحابة ادب'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.aaoalm_akhr')->label('عوالم أخرى'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.shab_adb')->label('سحابة أدب'),
                         \Filament\Infolists\Components\TextEntry::make('rating.thd_nfsk')->label('تحدى نفسك'),
                         \Filament\Infolists\Components\TextEntry::make('rating.almtah')->label('المتاهة'),
                         \Filament\Infolists\Components\TextEntry::make('rating.almghamron_alsghar')->label('المغامرون الصغار'),
                         \Filament\Infolists\Components\TextEntry::make('rating.albrnamg_althkafy')->label('البرنامج الثقافي'),
                         \Filament\Infolists\Components\TextEntry::make('rating.dor_alnshr')->label('دور النشر'),
-                        \Filament\Infolists\Components\TextEntry::make('rating.msrhy_alloh_alakbr')->label('مسرحية اللوح الاكبر'),
-                        \Filament\Infolists\Components\TextEntry::make('rating.alamasy_alghnayy')->label('الاماسي الغنائية'),
-                        \Filament\Infolists\Components\TextEntry::make('rating.alamasy_alshaary')->label('الاماسي الشعرية'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.msrhy_alloh_alakbr')->label('مسرحية اللوح الأكبر'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.alamasy_alghnayy')->label('الأماسي الغنائية'),
+                        \Filament\Infolists\Components\TextEntry::make('rating.alamasy_alshaary')->label('الأماسي الشعرية'),
                         \Filament\Infolists\Components\TextEntry::make('rating.msrh_alsharaa_althabt')->label('مسرح الشارع الثابت'),
                         \Filament\Infolists\Components\TextEntry::make('rating.byn_aladb')->label('بين الادب'),
                         \Filament\Infolists\Components\TextEntry::make('rating.adbaaa_aabr_altarykh')->label('ادباء عبر التاريخ'),
