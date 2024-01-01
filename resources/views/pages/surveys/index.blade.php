@@ -113,7 +113,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 11 }" class="border-x-2 border-[#e34e34]">
+        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -661,7 +661,7 @@ $submit = function () {
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                 <div class="w-full">
                                     <label for="opinion" class="block mb-2 font-medium text-[#f1e1c6]">رأيك</label>
-                                    <textarea class="w-full" rows="5" required min="2" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg" wire:model="opinion"
+                                    <textarea class="w-full p-4" rows="5" required min="2" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg" wire:model="opinion"
                                         placeholder="أكتب لنا رأيك"></textarea>
                                     @error('opinion')
                                         <div class="text-white">ادخل رأيك*</div>
