@@ -67,79 +67,7 @@ $submit = function () {
     $this->completed = true;
 };
 
-// $sendMail = function () {
-//     // $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
 
-//     $recipientEmails = [
-//         // auth()->user()->email,
-//         $this->w1_email,
-//         $this->w2_email,
-//         $this->w3_email,
-//     ];
-
-//     $data['title'] = $this->title;
-//     $data['content'] = $this->content;
-//     $data['body'] = 'from mayadeen';
-
-//     $pdf = FacadePdf::loadView('story.pdf', ['title' => $data['title'], 'content' => $data['content']]);
-//     $data['pdf'] = $pdf;
-
-//     // Send email with the PDF attached using Laravel Mail
-//     foreach ($recipientEmails as $recipientEmail) {
-//         $data['email'] = $recipientEmail;
-//         Mail::to($recipientEmail)->send(new StoryPdfSendMail($data));
-//     }
-//     $this->mailersSend = true;
-//     //save pdf
-//     $pdfPath = public_path('pdfs/' . $this->title . '.pdf');
-//     $pdf->save($pdfPath);
-// };
-
-$sendMail = function () {
-    // $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
-
-    $recipientEmails = [
-        // auth()->user()->email,
-        $this->w1_email,
-        $this->w2_email,
-        $this->w3_email,
-    ];
-
-    $data['title'] = $this->title;
-    $data['content'] = $this->content;
-    $data['body'] = 'from mayadeen';
-    $title= $data['title'];
-    $content= $data['content'];
-    $html = view('story.pdf', compact('title', 'content'))->toArabicHTML();
-
-    // Create an instance of the PDF class with options
-    $options = new Options();
-    $options->set('isHtml5ParserEnabled', true);
-    $options->set('isPhpEnabled', true);
-    $pdf = app()->make('dompdf.wrapper', ['options' => $options]);
-
-    // Load HTML on the instance
-    $pdf= $pdf->loadHTML($html);
-    // Output the PDF content
-    // $output = $pdf->output();
-
-    $data['pdf'] = $pdf;
-
-    // Send email with the PDF attached using Laravel Mail
-    foreach ($recipientEmails as $recipientEmail) {
-        $data['email'] = $recipientEmail;
-        Mail::to($recipientEmail)->send(new StoryPdfSendMail($data));
-    }
-    $this->mailersSend = true;
-    //save pdf
-    // $pdfPath = public_path('pdfs/' . $this->title . '.pdf');
-    // $pdf->save($pdfPath);
-};
-
-$downloadPdf = function () {
-    $pdf = FacadePdf::loadView('story.pdf', ['title' => $this->title, 'content' => $this->content]);
-    $pdf->download($this->title . '.pdf');
-};
 
 ?>
 @extends('layouts.app')
@@ -410,7 +338,7 @@ $downloadPdf = function () {
                             @if ($this->mailersSend)
                                 <h1 class="text-center text-4xl mt-16">تم ارسال الاأقصوصة عبر البريد </h1>
                             @endif
-                            @if (!$this->mailersSend)
+                            {{-- @if (!$this->mailersSend)
                                 <div class="beep text-center relative hover:scale-95 mt-16"
                                     style="cursor: pointer;"
                                     wire:click="sendMail()">
@@ -419,7 +347,7 @@ $downloadPdf = function () {
                                         ارسال
                                         الأقصوصة الي الأعضاء</div>
                                 </div>
-                            @endif
+                            @endif --}}
 
                             <br>
                             <br>

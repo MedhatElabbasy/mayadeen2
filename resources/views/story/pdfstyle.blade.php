@@ -10,58 +10,69 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css.map">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css.map">
 
     {{-- <link rel="stylesheet" href="{{ asset('pdfstyle/css/main.css') }}"> --}}
 
     <title>Document</title>
     <style>
-
-* {
+        * {
             font-family: DejaVu Sans !important;
         }
-        body{
 
-background-color: #EB6745;
-}
-@font-face {
-font-family: 'riyad';
-src: url('riyad.ttf') ;
+        body {
 
-}
-.header{
-padding: 50px 0;
+            background-color: #EB6745;
+        }
 
-}
-.headr-img img{
-width: 70%;
-margin-bottom: 20px
-}
-.conten-text{
-text-align: center;
-width: 89%;
-margin: auto;
-height: 666px;
-border: 2px solid #F2E7D1;
-background-color: #F2E7D1;
-border-radius: 32px /* clip-path: polygon(0 8%, 21% 7%, 15% 0%, 83% 0, 77% 9%, 100% 9%, 100% 80%, 78% 80%, 85% 100%, 15% 100%, 21% 80%, 0 80%); */;
-margin-top: 23px ;
-font-family: riyad;
+        @font-face {
+            font-family: 'riyad';
+            src: url('riyad.ttf');
 
-}
-.conten-text h1{
-font-size: 19px;
-font-weight: bold;
-}
-.conten-text img{
-width: 24%;
-margin-top: 25px;
-border-radius: 27px
-}
-.conten-text div{
-text-wrap:balance ;
-font-size: 17px;
-}
+        }
+
+        .header {
+            padding: 50px 0;
+
+        }
+
+        .headr-img img {
+            width: 70%;
+            margin-bottom: 20px
+        }
+
+        .conten-text {
+            /* text-align: center; */
+            width: auto;
+            margin: auto;
+            height: auto;
+            border: 2px solid #F2E7D1;
+            background-color: #F2E7D1;
+            border-radius: 32px
+                /* clip-path: polygon(0 8%, 21% 7%, 15% 0%, 83% 0, 77% 9%, 100% 9%, 100% 80%, 78% 80%, 85% 100%, 15% 100%, 21% 80%, 0 80%); */
+            ;
+            margin-top: 23px;
+            font-family: riyad;
+
+        }
+
+        .conten-text h1 {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .conten-text img {
+            width: auto;
+            margin-top: 25px;
+            border-radius: 27px
+        }
+
+        .conten-text div {
+            text-wrap: balance;
+            font-size: 17px;
+        }
+
+        /*
 @media (max-width: 477px) {
 .conten-text img {
 width: 41%;
@@ -69,7 +80,8 @@ margin-top: 5px;
 border-radius: 27px;
 }
 .conten-text{
-height: 517px;
+height: auto;
+width: auto;
 }
 .conten-text div{
 font-size: 15px;
@@ -89,7 +101,7 @@ height: 48%;
 .foot-img img{
 margin-bottom: 12px;
 width: 16%;
-}
+} */
     </style>
 
 </head>
@@ -99,55 +111,58 @@ width: 16%;
         <div class="container">
             <div class="row">
                 <div class="headr-img text-center">
-                    <img src="{{ ('pdfstyle/imgs/Group 40.svg') }}" alt="">
+                    <img src="{{ 'pdfstyle/imgs/Group 40.svg' }}" alt="">
                 </div>
-                <div class="conten-text">
-                    {{-- <img src="{{ ('pdfstyle/imgs/photo1703672560.jpeg') }}" alt=""> --}}
-                    <h1 class="mt-1">
-                        {{ $title  }}
+                <div class="conten-text" style="width: 100%">
+                    <h1 class="mt-1"> {{ $title }}
                     </h1>
-                    <p class="fw-bold">(<span>
-                        {{ $user->name }}
-                    </span> - <span>المشرف</span>)</p>
-                    <h1>المحتوى</h1>
-                    <p>
-                        {{ $content }}
-                    </p>
-                    <div class="foot-img mt-2 mb-1">
-                        <img src="{{ ('pdfstyle/imgs/Group 33.svg') }}" alt="">
+                    {{-- <p class="fw-bold">(<span>١٩٤٢م</span> - <span>الأن</span>)</p> --}}
+                    {{-- <h1>المقدمة</h1> --}}
+                    <div class="">{{ $content }}</div>
+                    <hr>
+                    <div class="">
+                        <p>اسم المشرف </p>
+                        <span> {{ Auth::user()->name }}</span>
                     </div>
-                    {{-- create table style to displat w1_name, w1_email , w1_number --}}
-                    <h1>المشاركين</h1>
-                    <table class="table table-striped table-hover"
-                        style="direction: ltr; text-align: center; width: 100%;"
-                        >
-                        <thead>
+                    <div class="foot-img mt-2 mb-1">
+                        <img src="{{ 'pdfstyle/imgs/Group 33.svg' }}" alt="">
+                    </div>
+                </div>
+                <div class="conten-text" style="width: 100%" !important>
+                    <h1 class="mt-1"> الاعضاء المشاركون
+                    </h1>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
                             <tr>
-                                <th scope="col">رقم الهاتف</th>
-                                <th scope="col">البريد الالكتروني</th>
-                                <th scope="col">الاسم</th>
+                                <th scope="col">الهاتف </th>
+                                <th scope="col">البريد</th>
+                                <th scope="col">اسم الكاتب</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ $w1_number }}</td>
-                                <td>{{ $w1_email }}</td>
-                                <td>{{ $w1_name }}</td>
+                                <td class="border">{{ $w1_number }}</td>
+                                <td class="border">{{ $w1_email }}</td>
+                                <td class="border">{{ $w1_name }}</td>
                             </tr>
                             <tr>
-                                <td>{{ $w2_number }}</td>
-                                <td>{{ $w2_email }}</td>
-                                <td>{{ $w2_name }}</td>
+                                <td class="border">{{ $w2_number }}</td>
+                                <td class="border">{{ $w2_email }}</td>
+                                <td class="border">{{ $w2_name }}</td>
                             </tr>
                             <tr>
-                                 <td>{{ $w3_number }}</td>
-                                <td>{{ $w3_email }}</td>
-                                <td>{{ $w3_name }}</td>
+                                <td class="border">{{ $w3_number }}</td>
+                                <td class="border">{{ $w3_email }}</td>
+                                <td class="border">{{ $w3_name }}</td>
                             </tr>
                         </tbody>
                     </table>
+
+
+
+
                     <div class="foot-img mt-2 mb-1">
-                        <img src="{{ ('pdfstyle/imgs/Group 33.svg') }}" alt="">
+                        <img src="{{ 'pdfstyle/imgs/Group 33.svg' }}" alt="">
                     </div>
                 </div>
             </div>

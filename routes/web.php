@@ -13,13 +13,7 @@ use App\Http\Controllers\AuthSuperVisorController;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
-// Route::get('story/{id}', function ($id) {
-//     $story = Story::find($id);
-//     $title = $story->title;
-//     $content = $story->content;
-//     $pdf = FacadePdf::loadView('story.pdf', ['title' => $title, 'content' => $content]);
-//     return $pdf->download($title . '.pdf');
-// })->name('story.pdf');
+
 
 Route::get('story/{id}', function ($id) {
     // Fetch the story by ID
@@ -52,22 +46,20 @@ Route::get('story/{id}', function ($id) {
 
     $pdf->loadHTML($html);
 
-// Output the PDF content
     $output = $pdf->output();
 
     $headers = array(
         "Content-type" => "application/pdf",
     );
 
-// Create a stream response as a file download
     return response()->streamDownload(
         fn() => print($output), // add the content to the stream
-        $story->title.".pdf", // the name of the file/stream
+        $story->title.time().".pdf", // the name of the file/stream
         $headers
     );
-})->name('story.pdf');
+})->name('story.pdf')->middleware('superviser');
 
 Route::get('supervisor/login', [AuthSuperVisorController::class,'showLoginForm'])->name('supervisor.showLogin');
 Route::post('supervisor/login', [AuthSuperVisorController::class,'login'])->name('supervisor.login');
 
-Route::get('test',[AuthSuperVisorController::class,'logout'] );
+Route::get('supervisor/logout',[AuthSuperVisorController::class,'logout'] )->name('supervisor.logout');
