@@ -16,16 +16,6 @@ state([
 @section('content')
 @volt
 <div id="app">
-    <!-- Banner -->
-    <div class="hidden md:block w-full cursor-pointer">
-        <a href="{{url('/')}}" wire:navigate>
-            <div class="absolute top-0 left-8 -z-50">
-                <img src="{{ asset('website/images/banner.svg') }}" class="h-36 md:h-64 w-full">
-            </div>
-        </a>
-    </div>
-    <!-- //Banner -->
-
     <div class="px-8 border-x-2 border-[#e34e34]">
         <div class="flex flex-col items-center justify-center my-8">
             <div class="z-10">
