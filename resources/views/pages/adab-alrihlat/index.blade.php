@@ -15,6 +15,28 @@
     <link rel="stylesheet" href="{{ asset('adab/css/general-style.css') }}" />
     <!-- bootstrap link-->
     <link rel="stylesheet" href="{{ asset('adab/css/bootstrap.min.css') }}" />
+
+    <style>
+        /* Scrollbar */
+        body::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        body::-webkit-scrollbar-track {
+            border-radius: 8px;
+            background-color: #e7e7e7;
+            border: 1px solid #cacaca;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+            background-color: #e34e34;
+        }
+
+        /* End scrollbar */
+        </style>
   </head>
 
   <body>

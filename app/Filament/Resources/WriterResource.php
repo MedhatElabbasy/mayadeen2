@@ -83,9 +83,9 @@ class WriterResource extends Resource
                     ->rules('required'),
                 ]),
 
-                Forms\Components\Section::make('الصورة والمرفقات')
+                Forms\Components\Section::make('المرفقات')
                 ->schema([
-                    Forms\Components\Grid::make(2)
+                    Forms\Components\Grid::make(3)
                     ->schema([
                         Forms\Components\FileUpload::make('image')
                             ->label('الصورة')
@@ -97,15 +97,21 @@ class WriterResource extends Resource
                             ->required()
                             ->rules('required'),
 
-                        Forms\Components\FileUpload::make('attachments')
-                            ->label('المرفقات')
-                            ->multiple()
+                        Forms\Components\FileUpload::make('podcast')
+                            ->label('البودكاست')
                             ->reorderable()
                             ->appendFiles()
                             ->openable()
                             ->downloadable()
-                            ->maxFiles(10)
-                            ->acceptedFileTypes(['audio/*', 'image/*', 'video/*', 'application/pdf', 'application/msword', 'text/plain']),
+                            ->acceptedFileTypes(['audio/*']),
+
+                            Forms\Components\FileUpload::make('qr')
+                            ->label('رمز الإستجابة السريع')
+                            ->reorderable()
+                            ->appendFiles()
+                            ->openable()
+                            ->downloadable()
+                            ->acceptedFileTypes(['image/*']),
                     ]),
                 ]),
 
@@ -229,9 +235,14 @@ class WriterResource extends Resource
                     ->circular(),
                 ]),
 
-                \Filament\Infolists\Components\Section::make('المرفقات')->columns(1)->schema([
-                    \Filament\Infolists\Components\TextEntry::make('attachments')
-                    ->label('مرفقات للأديب'),
+                \Filament\Infolists\Components\Section::make('البودكاست')->columns(1)->schema([
+                    \Filament\Infolists\Components\TextEntry::make('podcast')
+                    ->label('البودكاست'),
+                ]),
+
+                \Filament\Infolists\Components\Section::make('رمز الإستجابة السريع')->columns(1)->schema([
+                    \Filament\Infolists\Components\ImageEntry::make('qr')
+                    ->label('رمز الإستجابة السريع'),
                 ]),
 
                 \Filament\Infolists\Components\Section::make('الإضافة')->columns(2)->schema([

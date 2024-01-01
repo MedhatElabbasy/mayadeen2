@@ -8,8 +8,7 @@
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap"rel="stylesheet" />
 
     <!-- css -->
     <style>
@@ -55,6 +54,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/@voerro/calamansi-js@1.0.0/dist/calamansi.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@voerro/calamansi-js@1.0.0/dist/calamansi.min.css" rel="stylesheet">
+
     <title>@yield('title') | {{ setting('siteName') }}</title>
 
     <link src="{{ asset('website/css/star-rating.min.css') }}" rel="stylesheet">
@@ -88,6 +90,15 @@
     @endforeach
 
     <script>
+        function podcast() {
+            let playe = document.getElementById('podcastPlayer');
+            playe.pause();
+            playe.currentTime = 0;
+            playe.play();
+        }
+    </script>
+
+    <script>
         function soundEffectPlay(player, background = false) {
             if (!background) {
                 const audioElements = document.querySelectorAll('audio');
@@ -112,11 +123,11 @@
     </script>
     <!-- // Sound Effect -->
 
-    <!-- Livewir back -->
+    <!-- Livewire back -->
     <script>
         window.addEventListener("popstate", function (event) { window.location.reload(); });
     </script>
-    <!-- // Livewir back -->
+    <!-- // Livewire back -->
 </body>
 
 </html>
