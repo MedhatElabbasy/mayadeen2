@@ -73,17 +73,48 @@ $dates = computed(function () {
 
                 </div>
 
-                <!--
-                    <div class="mt-24 text-4xl font-bold flex flex-col justify-center items-center">
-                        <h1>اسم القصيدة</h1>
-                        <span class="m-12 p-4 text-4xl bg-[#ec6646] text-white font-bold">1.30.1</span>
+                <div x-data="{ currentDate: 0 }">
+                    @foreach ($this->dates as $item)
+                        <div x-data="{
+                            showContent: false,
+                            countDownDate: new Date('{{ \Carbon\Carbon::now()->format("Y-m-d") }}T{{$item->start_time}}').getTime(),
+                            pad: function(num) {
+                            return num < 10 ? '0' + num : num;
+                            },
+                            intervalId: null,
+                            initCountdown: function() {
+                            this.intervalId = setInterval(() => {
+                                const now = new Date().getTime();
+                                const distance = this.countDownDate - now;
+                                this.showContent = true;
+                        
+                                if (distance >= 0) {
+                                const hours = this.pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                                const minutes = this.pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                                const seconds = this.pad(Math.floor((distance % (1000 * 60)) / 1000));
+                                this.formatCountdown = `${hours}:${minutes}:${seconds}`;
+                                } else {
+                                this.formatCountdown = 'بدأت';
+                                this.currentDate++;
+                                this.showContent = false;
+                                clearInterval(this.intervalId);
+                                }
+                            }, 1000);
+                            },
+                            formatCountdown: '00h 00m 00s',
+                        }" x-init="initCountdown" x-show="showContent && currentDate=={{$loop->index}}" class="mt-24 text-4xl font-bold flex flex-col justify-center items-center">
+                            <h1>
+                                {{ !$item->is_break ? $item->owner : 'استراحة' }}
+                            </h1>
+                            <p x-text="formatCountdown" class="m-12 rounded-lg p-4 text-4xl bg-[#ec6646] text-white font-bold"></p>
+                        </div>
+                    @endforeach
                     </div>
-                -->
 
                 <div class="flex flex-col justify-center items-center px-4">
-                    <!--
-                    <img class="py-8" src="{{ asset('website/images/qr.png') }}">
-                    -->
+                    @if(asset('website/images/qr.png'))
+                        <img class="py-8 rounded-lg" src="{{ asset('website/images/qr.png') }}">
+                    @endif
 
                     <span class="text-3xl md:text-4xl text-center font-bold py-8">شاركنا قصيدتك بالفصحى !</span>
                     <img class="py-8" src="{{ asset('website/images/palm-horizontal.svg') }}">
@@ -91,5 +122,58 @@ $dates = computed(function () {
 
             </div>
         </div>
+
+    @script
+    function timer(expiry) {
+        return {
+            expiry: expiry,
+            remaining:null,
+            init() {
+            this.setRemaining()
+            setInterval(() => {
+                this.setRemaining();
+            }, 1000);
+            },
+            setRemaining() {
+            const diff = this.expiry - new Date().getTime();
+            this.remaining =  parseInt(diff / 1000);
+            },
+            days() {
+            return {
+                value:this.remaining / 86400,
+                remaining:this.remaining % 86400
+            };
+            },
+            hours() {
+            return {
+                value:this.days().remaining / 3600,
+                remaining:this.days().remaining % 3600
+            };
+            },
+            minutes() {
+                return {
+                value:this.hours().remaining / 60,
+                remaining:this.hours().remaining % 60
+            };
+            },
+            seconds() {
+                return {
+                value:this.minutes().remaining,
+            };
+            },
+            format(value) {
+            return ("0" + parseInt(value)).slice(-2)
+            },
+            time(){
+                return {
+                days:this.format(this.days().value),
+                hours:this.format(this.hours().value),
+                minutes:this.format(this.minutes().value),
+                seconds:this.format(this.seconds().value),
+            }
+            },
+        }
+        }          
+    @endscript
     @endvolt
 @endsection

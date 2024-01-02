@@ -64,25 +64,25 @@ $submit = function () {
                         <div class="z-10 p-2">
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                 <div class="w-full">
-                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الإسم</label>
-                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black w-full"
+                                    <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
+                                    <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black w-full rounded-lg"
                                         wire:model="name" placeholder="أدخل الإسم">
                                     @error('name')
                                         <div class="text-white">ادخل الإسم*</div>
                                     @enderror
                                 </div>
                                 <div class="w-full">
-                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">البريد
+                                    <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                         الإلكتروني</label>
-                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black w-full" wire:model="email"
+                                    <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black w-full rounded-lg" wire:model="email"
                                         placeholder="أدخل البريد الإلكتروني">
                                     @error('email')
                                         <div class="text-white">ادخل البريد الإلكتروني*</div>
                                     @enderror
                                 </div>
-                                <div class="w-full">
+                                <div wire:ignore class="w-full">
                                     <label for="phone"
-                                        class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
+                                        class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
                                     <input wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
@@ -91,7 +91,7 @@ $submit = function () {
                                     @enderror
                                 </div>
 
-                                <div class="max-w-sm mx-auto">
+                                <div class="w-full">
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الصورة</label>
 
                                     <label for="uploadFile"
@@ -107,18 +107,13 @@ $submit = function () {
                                         <span class="font-sans">رفع الصورة</span>
                                         <input type="file" id='uploadFile' class="hidden" wire:model="image" />
                                         <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
+                                        <div wire:loading wire:target="image" class="text-sm text-gray-500 italic mt-4">يتم الرفع ...</div>
+                                        @if($this->image) <div class="text-center text-sm text-gray-500 italic mt-4">الملف: <br> {{ $this->image?->getClientOriginalName() }}</div> @endif
                                     </label>
                                     @error('image')
                                         <div class="text-white">اختر الصورة*</div>
                                     @enderror
-
-                                    @if ($this->image)
-                                        <div class="mt-4 rounded-lg" id="imagePreviewContainer">
-                                            <div class="text-gray-700">الملف: {{ $this->image?->getClientOriginalName() }}</div>
-                                        </div>
-                                    @endif
                                 </div>
-
                             </div>
 
                             <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">

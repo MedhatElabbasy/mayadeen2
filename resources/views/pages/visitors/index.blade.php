@@ -60,7 +60,7 @@ $submit = function () {
             <!-- Step 1 : Form -->
             @if (!$this->completed)
                 <div class="flex flex-col items-center justify-center animate__animated animate__backInDown">
-                    <form wire:submit='submit' accept="file" enctype="multipart/form-data">
+                    <form wire:submit.prevent='submit' accept="file" enctype="multipart/form-data">
                         <div class="z-10 p-2">
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                 <div class="w-full">
@@ -82,7 +82,7 @@ $submit = function () {
                                     @enderror
                                 </div>
 
-                                <div class="max-w-sm mx-auto">
+                                <div wire:ignore class="w-full">
                                     <label for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
                                     <input wire:ignore id="phone" required min="9" type="tel"
@@ -93,7 +93,7 @@ $submit = function () {
                                     @enderror
                                 </div>
 
-                                <div class="max-w-sm mx-auto">
+                                <div class="w-full">
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الصورة</label>
 
                                     <label for="uploadFile"
@@ -109,16 +109,12 @@ $submit = function () {
                                         <span class="font-sans">رفع الصورة</span>
                                         <input type="file" id='uploadFile' class="hidden" wire:model="image" />
                                         <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
+                                        <div wire:loading wire:target="image" class="text-sm text-gray-500 italic mt-4">يتم الرفع ...</div>
+                                        @if($this->image) <div class="text-center text-sm text-gray-500 italic mt-4">الملف: <br> {{ $this->image?->getClientOriginalName() }}</div> @endif
                                     </label>
                                     @error('image')
                                         <div class="text-white">اختر الصورة*</div>
                                     @enderror
-
-                                    @if ($this->image)
-                                        <div class="mt-4 rounded-lg" id="imagePreviewContainer">
-                                            <div class="text-gray-700">الملف: {{ $this->image?->getClientOriginalName() }}</div>
-                                        </div>
-                                    @endif
                                 </div>
                             </div>
 
