@@ -33,7 +33,13 @@ state([
             </div>
             <h1 class="font-semibold mt-4">{{$this->writer->name}}</h1>
 
-            <p class="font-semibold mt-2">({{ $this->writer->birthday.' / '.$this->writer->deathday }})</p>
+            <p class="font-semibold mt-2">
+                (
+                <span>{{ Carbon\Carbon::parse($this->writer->birthday)->translatedFormat('d F Y') }}</span>
+                /
+                <span>{{ ($this->writer->deathday > $this->writer->birthday) ? 'الآن' : Carbon\Carbon::parse($this->writer->deathday)->translatedFormat('d F Y') }}</span>
+                )
+            </p>
 
             <h1 class="font-semibold mt-4">المقدمة</h1>
             <p class="mb-4">{!! $this->writer->about !!}</p>
