@@ -204,7 +204,7 @@ $submit = function () {
                                         alt="">
                                     <button type="button"
                                         x-on:click="if(name.length >= 2 && email.length >= 9 && number.length >= 9) step++"
-                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">التالي</button>
                                 </div>
                             </div>
                     </div>
@@ -249,7 +249,7 @@ $submit = function () {
                                         alt="">
                                     <button type="button"
                                         x-on:click="if(name.length >= 2 && email.length >= 9 && number.length >= 9) step++"
-                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
+                                        class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">التالي</button>
                                 </div>
                             </div>
                     </div>
