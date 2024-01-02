@@ -179,6 +179,16 @@ class SurveyResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     ExportBulkAction::make()->exports([
                         ExcelExport::make()->withColumns([
+                            Column::make('experience')->heading('التجربة العامة'),
+                            Column::make('guidelines')->heading('كفاية الإرشادات'),
+                            Column::make('literaryEvents')->heading('تنوع الفعاليات الأدبية'),
+                            Column::make('entertainmentEvents')->heading('تنوع الفعاليات الترفيهية'),
+                            Column::make('restaurant')->heading('تنوع المطاعم والمقاهي'),
+                            Column::make('referral')->heading('كيف سمعت عن المهرجان؟'),
+                            Column::make('next')->heading('ما احتمالية حضورك للنسخ القادمة من المهرجان؟'),
+                            Column::make('suggestion')->heading('ما احتمالية أن تنصح من حولك بحضور النسخ القادمة من المهرجان؟'),
+                            Column::make('opinion')->heading('ما هي مقترحاتك لتطوير وتحسين النسخ القادمة من المهرجان؟'),
+                            Column::make('created_at')->heading('تاريخ الإضافة'),
                         ]),
                     ]),
                     Tables\Actions\DeleteBulkAction::make(),
