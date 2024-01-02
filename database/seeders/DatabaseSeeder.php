@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             SettingsSeeder::class,
             CompetitionsSeeder::class,
-            GamesSeeder::class,
             TeamsSeeder::class,
+
+
         ]);
     }
 }

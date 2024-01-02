@@ -13,7 +13,7 @@ class TeamsSeeder extends Seeder
      */
     public function run(): void
     {
-        Team::create(['game_id' => 1, 'name' => 'Team A']);
-        Team::create(['game_id' => 1, 'name' => 'Team B']);
+        Team::create(['name' => 'Team A','competition_id'=>'1']);
+        Team::create(['name' => 'Team B','competition_id'=>'2']);
     }
 }

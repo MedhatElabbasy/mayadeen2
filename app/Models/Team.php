@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Team extends Model
 {
     use HasFactory;
-    protected $fillable = ['game_id', 'name'];
+    protected $fillable = [ 'name', 'competition_id'];
 
-    public function game()
+    public function competition()
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Competition::class);
     }
 }
