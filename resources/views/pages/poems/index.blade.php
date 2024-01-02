@@ -164,7 +164,7 @@ $submit = function () {
                                             <div class="text-white">ادخل البريد الإلكتروني*</div>
                                         @enderror
                                     </div>
-                                    <div class="max-w-sm mx-auto" wire:ignore>
+                                    <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
                                         <input wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"

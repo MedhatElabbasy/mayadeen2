@@ -189,7 +189,7 @@ $submit = function () {
                                             x-model="email" wire:model="w1_email" placeholder="أدخل البريد الإلكتروني">
                                             <div x-show="email.length < 9" class="text-white">ادخل البريد الإلكتروني*</div>
                                     </div>
-                                    <div class="max-w-sm mx-auto" wire:ignore>
+                                    <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
                                         <input wire:ignore required min="9" type="tel" id="phone1"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w1_number"
@@ -234,7 +234,7 @@ $submit = function () {
                                             x-model="email" wire:model="w2_email" placeholder="أدخل البريد الإلكتروني">
                                             <div x-show="email.length < 9" class="text-white">ادخل البريد الإلكتروني*</div>
                                     </div>
-                                    <div class="max-w-sm mx-auto" wire:ignore>
+                                    <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
                                         <input wire:ignore required min="9" type="tel" id="phone2"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w2_number"
@@ -279,7 +279,7 @@ $submit = function () {
                                             x-model="email" wire:model="w3_email" placeholder="أدخل البريد الإلكتروني">
                                             <div x-show="email.length < 9" class="text-white">ادخل البريد الإلكتروني*</div>
                                     </div>
-                                    <div class="max-w-sm mx-auto" wire:ignore>
+                                    <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
                                         <input wire:ignore required min="9" type="tel" id="phone3"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w3_number"

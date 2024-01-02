@@ -76,7 +76,7 @@ $submit = function () {
                 <div class="container mx-auto px-4">
                     <div class="z-10">
 
-                        <figure class="max-w-lg mx-auto flex flex-col items-center">
+                        <figure class="max-w-lg mx-auto flex flex-col items-center mt-4">
                             <a target="_blank" :href="hint_image">
                               <img class="h-64 w-64 rounded-lg object-fit:cover" :src="hint_image" alt="image description">
                             </a>
