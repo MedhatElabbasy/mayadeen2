@@ -102,7 +102,7 @@ $dates = computed(function () {
                             }, 1000);
                             },
                             formatCountdown: '00h 00m 00s',
-                        }" x-init="initCountdown" x-show="showContent && currentDate=={{$loop->index}}" class="mt-24 text-4xl font-bold flex flex-col justify-center items-center">
+                        }" x-init="initCountdown" x-show="showContent && currentDate=={{$loop->index}}" class="mt-4 text-4xl font-bold flex flex-col justify-center items-center">
                             <h1>
                                 {{ !$item->is_break ? $item->owner : 'استراحة' }}
                             </h1>
@@ -112,7 +112,7 @@ $dates = computed(function () {
                                 {{ $item->details }}
                             </p>
                             @endif
-                            <p x-text="formatCountdown" class="rounded-lg p-4 text-2xl bg-[#ec6646] text-white font-bold"></p>
+                            <p x-text="formatCountdown" class="mt-2 rounded-lg py-2 px-4 text-2xl bg-[#ec6646] text-white font-bold"></p>
                         </div>
                     @endforeach
                     </div>
