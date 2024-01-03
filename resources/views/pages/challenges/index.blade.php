@@ -57,7 +57,7 @@ $submit = function () {
                 this.step = this.stepTemp;
                 this.currentQuestion++;
             }
-        }" class="border-x-2 border-[#e34e34] mb-4">
+        }" class="mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">

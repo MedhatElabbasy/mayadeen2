@@ -48,7 +48,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34] mb-4">
+        <div id="app" x-data="{ step: 1 }" class="mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -63,7 +63,7 @@ $submit = function () {
             <!-- //Banner -->
 
             <div>
-                <div x-show="step == 1" class="px-8 border-x-2 border-[#e34e34]">
+                <div x-show="step == 1" class="px-8">
                     <div class="flex flex-col items-center justify-center my-8">
                         <div class="z-10">
                             <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">اختر نوع القصيدة</h1>
@@ -127,7 +127,7 @@ $submit = function () {
                         <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                             <div class="w-full">
                                 <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">القصيدة</label>
-                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg w-full"
                                     x-model="content" wire:model="content">أدخل القصيدة</textarea>
                                 <div x-show="content.length < 12" class="text-white mt-2">يجب أن تحتوي القصيدة على 12 حرف على
                                     الأقل*</div>
@@ -171,7 +171,7 @@ $submit = function () {
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                        <input wire:ignore id="phone" required min="9" type="tel"
+                                        <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                         @error('phone')

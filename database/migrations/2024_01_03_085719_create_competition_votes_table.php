@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $rounds = [1, 2];
+        $teams = [1, 2];
+        $rounds = [1, 2,3];
 
-        Schema::create('competition_votes', function (Blueprint $table) use ($rounds) {
+        Schema::create('competition_votes', function (Blueprint $table) use ($rounds,$teams) {
             $table->id();
-            $table->enum('team', $rounds);
+            $table->enum('team', $teams);
             $table->enum('round', $rounds);
             $table->timestamps();
         });

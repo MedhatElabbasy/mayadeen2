@@ -32,7 +32,7 @@ state([
                     <img src="{{ asset('storage/'.$work->image) }}" class="w-48 h-72 rounded-lg">
                     <div class="text-right mt-2">
                         <h1 class="font-semibold" style="line-height:normal">{{ $work->title }}</h1>
-                        <p class="m-2" style="line-height:normal">{!! $work->description !!}</p>
+                        <p class="m-2 text-justify" style="line-height:normal">{!! $work->description !!}</p>
                     </div>
                 </div>
             </div>

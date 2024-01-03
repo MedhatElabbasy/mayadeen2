@@ -15,10 +15,10 @@ state([
 
 @section('content')
 @volt
-<div class="px-8 border-x-2 border-[#e34e34] mb-4">
+<div class="px-8 mb-4">
     <div class="flex flex-col items-center justify-center my-8">
         <div class="z-10">
-            <img src="{{ asset('website/images/navbar.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+            <img src="{{ asset('website/images/navbar.svg') }}" class="mt-4 w-[100%] h-[70px] md:h-[100px] mx-auto">
 
                 <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
 

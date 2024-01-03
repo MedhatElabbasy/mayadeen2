@@ -85,7 +85,7 @@ $submit = function () {
                                 <div wire:ignore class="w-full">
                                     <label for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
-                                    <input wire:ignore id="phone" required min="9" type="tel"
+                                    <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] p-2.5 rounded-lg text-black w-full" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                     @error('phone')

@@ -7,11 +7,10 @@
     <!-- <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map"> -->
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css.map"> --}}
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="css/main.css"> --}}
+    
 
     <title>Document</title>
 
@@ -155,16 +154,18 @@
         <div class="container">
             <div class="row">
                 <div class="headr-img text-center">
-                    <img src="{{ ('pdfstyle/imgs/Group 40.svg') }}" alt="">
+                    <img src="<?php echo e(('pdfstyle/imgs/Group 40.svg')); ?>" alt="">
                 </div>
                 <div class="conten-text" style="text-overflow: auto;">
                     <!-- <img src="imgs/photo1703672560.jpeg" alt=""> -->
-                    <h1 class="mt-5"> {{ $title }}
+                    <h1 class="mt-5"> <?php echo e($title); ?>
+
                     </h1>
-                    <h1 class="mt-3 mb-5">  {{ $user }} اسم المشرف :   
+                    <h1 class="mt-3 mb-5">  <?php echo e($user); ?> اسم المشرف :   
                     </h1>
                     <h1 class="mb-4">محتوى الاقصوصه</h1>
-                    <div class="paragraphe-content">{{ $content }}
+                    <div class="paragraphe-content"><?php echo e($content); ?>
+
                     </div>
                 </div>
                 <div class="conten-text">
@@ -177,24 +178,24 @@
                                 <th>الجوال</th>
                             </tr>
                             <tr>
-                                <td>{{ $w1_name }} </td>
-                                <td>{{ $w1_email }}</td>
-                                <td>{{ $w1_name }}</td>
+                                <td><?php echo e($w1_name); ?> </td>
+                                <td><?php echo e($w1_email); ?></td>
+                                <td><?php echo e($w1_name); ?></td>
                             </tr>
                             <tr>
-                                <td>{{ $w2_name }} </td>
-                                <td>{{ $w2_email }}</td>
-                                <td>{{ $w2_number }}</td>
+                                <td><?php echo e($w2_name); ?> </td>
+                                <td><?php echo e($w2_email); ?></td>
+                                <td><?php echo e($w2_number); ?></td>
                             </tr>
                             <tr>
-                                <td>{{ $w3_name }} </td>
-                                <td>{{ $w3_email }}</td>
-                                <td>{{ $w3_number }}</td>
+                                <td><?php echo e($w3_name); ?> </td>
+                                <td><?php echo e($w3_email); ?></td>
+                                <td><?php echo e($w3_number); ?></td>
                             </tr>
                         </table>
                     </div>
                     <div class="foot-img mt-2 mb-1">
-                        <img src="{{ ('pdfstyle/imgs/Group 33.svg') }}" alt="">
+                        <img src="<?php echo e(('pdfstyle/imgs/Group 33.svg')); ?>" alt="">
                     </div>
                 </div>
             </div>
@@ -203,3 +204,4 @@
 </body>
 
 </html>
+<?php /**PATH E:\Qutell\mayadeen2\resources\views/story/pdfstyle.blade.php ENDPATH**/ ?>

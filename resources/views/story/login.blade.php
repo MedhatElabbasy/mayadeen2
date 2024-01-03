@@ -25,7 +25,7 @@
 
     @section('content')
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <img src="{{ asset('website/images/navbar.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+            <img src="{{ asset('website/images/navbar.svg') }}" class="mt-4 w-[100%] h-[70px] md:h-[100px] mx-auto">
 
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 {{-- <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
