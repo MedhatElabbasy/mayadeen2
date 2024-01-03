@@ -19,7 +19,7 @@ state([
     <div class="px-8 border-x-2 border-[#e34e34]">
         <div class="flex flex-col items-center justify-center my-8">
             <div class="z-10">
-                <img src="{{ asset('website/images/navbar.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+                <img src="{{ asset('website/images/navbar.svg') }}" class="mt-4 w-[100%] h-[70px] md:h-[100px] mx-auto">
                 <h1 class="text-center text-2xl md:text-4xl font-bold my-8 text-[#e34e34]">أدباء عبر التاريخ!</h1>
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto items-center justify-center mt-12 gap-4">
                         @foreach ($writers as $writer)
