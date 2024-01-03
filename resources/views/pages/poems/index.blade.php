@@ -48,7 +48,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34] mb-4">
+        <div id="app" x-data="{ step: 1 }" class="mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -63,7 +63,7 @@ $submit = function () {
             <!-- //Banner -->
 
             <div>
-                <div x-show="step == 1" class="px-8 border-x-2 border-[#e34e34]">
+                <div x-show="step == 1" class="px-8">
                     <div class="flex flex-col items-center justify-center my-8">
                         <div class="z-10">
                             <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">اختر نوع القصيدة</h1>
