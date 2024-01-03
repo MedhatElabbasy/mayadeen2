@@ -25,7 +25,7 @@ $dates = computed(function () {
         <div id="app" class="mb-4">
             <div class="px-0 md:px-4">
                 <div class="py-2 px-2 md:px-8 bg-[#ec6646]">
-                    <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full min-h-6 min-w-6 md:w-auto mx-auto">
+                    <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-[100%] h-[70px] md:h-[100px] mx-auto">
 
                     <p class="text-center text-1xl md:text-2xl p-4 font-semibold text-black" style="line-height:normal">
                         استعدوا لتجربة شعرية استثنائية،
