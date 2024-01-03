@@ -76,8 +76,7 @@ $dates = computed(function () {
 
                 </div>
 
-                @if($this->currentDay)
-                <div x-data="{ currentDate: 0 }">
+                <div wire:ignore x-data="{ currentDate: 0 }">
                     @foreach ($this->dates as $item)
                         <div x-data="{
                             showContent: false,
@@ -120,7 +119,6 @@ $dates = computed(function () {
                         </div>
                     @endforeach
                     </div>
-                    @endif
 
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(asset('website/images/qr.png'))
