@@ -93,7 +93,7 @@ $submit = function () {
                                     @enderror
                                 </div>
 
-                                <div class="w-full" wire:ignore>
+                                <div class="w-full">
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الصورة</label>
 
                                     <label for="uploadFile"
