@@ -102,7 +102,7 @@ $dates = computed(function () {
                             }, 1000);
                             },
                             formatCountdown: '00h 00m 00s',
-                        }" x-init="initCountdown" x-show="showContent && currentDate=={{$loop->index}}" class="mt-4 text-4xl font-bold flex flex-col justify-center items-center">
+                        }" x-init="initCountdown" x-show="showContent && currentDate=={{$loop->index}}" class="mt-4 text-2xl font-bold flex flex-col justify-center items-center">
                             <h1>
                                 {{ !$item->is_break ? $item->owner : 'استراحة' }}
                             </h1>
