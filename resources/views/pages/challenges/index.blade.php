@@ -42,7 +42,7 @@ $submit = function () {
 
 @extends('layouts.app')
 
-@section('title', 'تحد نفسك')
+@section('title', 'تحدّ نفسك')
 
 @section('content')
     @volt
@@ -57,7 +57,7 @@ $submit = function () {
                 this.step = this.stepTemp;
                 this.currentQuestion++;
             }
-        }" class="border-x-2 border-[#e34e34] mb-4">
+        }" class="mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -99,7 +99,7 @@ $submit = function () {
             <div x-show="step==1" class="flex flex-col items-center justify-center animate__animated animate__backInDown">
                 <div class="container mx-auto px-4 justify">
                     <div class="z-10">
-                        <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تحدَّ نفسك!</h1>
+                        <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تحدّ نفسك!</h1>
 
                         <div class="beep text-center relative hover:scale-95 mb-8 cursor-pointer" x-on:click="step++">
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">

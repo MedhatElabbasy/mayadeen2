@@ -92,7 +92,7 @@ $submit = function () {
     @volt
         <div id="app" class="mb-4">
 
-            <div x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
+            <div x-data="{ step: 1 }">
 
                <!-- Banner -->
                 <div class="h-36 md:h-64 w-full">
@@ -301,7 +301,7 @@ $submit = function () {
                 {{-- @endif --}}
 
                 @if ($this->completed)
-                    <div class="px-8 border-x-2 border-[#e34e34]" x-show="step==6">
+                    <div class="px-8" x-show="step==6">
                         <div class="flex flex-col items-center justify-center my-8">
                             <div class="z-10">
                                 <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تم انشاء الأقصوصة</h1>

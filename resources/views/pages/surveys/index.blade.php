@@ -85,7 +85,6 @@ rules([
     'next'                => 'required',
     'suggestion'          => 'required',
     'rating'              => 'required|array',
-    'opinion'             => 'required|min:2',
 ]);
 
 $submit = function () {
@@ -113,7 +112,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34] mb-4">
+        <div id="app" x-data="{ step: 1 }" class="mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -560,7 +559,7 @@ $submit = function () {
                         ],
                         "screen3" => [
                             'سحابة أدب',
-                            'تحد نفسك',
+                            'تحدّ نفسك',
                             'المتاهة',
                             'المغامرون الصغار',
                         ],
@@ -661,11 +660,8 @@ $submit = function () {
                             <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                 <div class="w-full">
                                     <label for="opinion" class="block mb-2 font-medium text-[#f1e1c6]">رأيك</label>
-                                    <textarea rows="5" required min="2" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg" wire:model="opinion"
+                                    <textarea rows="5" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg" wire:model="opinion"
                                         placeholder="أكتب لنا رأيك"></textarea>
-                                    @error('opinion')
-                                        <div class="text-white">أدخل رأيك*</div>
-                                    @enderror
                                 </div>
                             </div>
 
