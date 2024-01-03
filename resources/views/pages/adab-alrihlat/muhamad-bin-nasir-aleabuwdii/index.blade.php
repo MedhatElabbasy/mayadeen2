@@ -44,7 +44,7 @@
       <div class="m-0 p-0 row justify-content-center">
     <div class="col-12 col-md-6 m-0 p-0 ">
 
-      <img src="{{ asset('adab/imgs/navbar.svg') }}" class="nav-img" />
+      <img src="{{ asset('adab/imgs/navbar.svg') }}" class="nav-img mt-4" />
 
     </div>
   </div>

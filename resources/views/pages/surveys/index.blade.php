@@ -113,7 +113,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
+        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34] mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -511,7 +511,7 @@ $submit = function () {
                             </div>
                             <div wire:click="updateNext('weak')" x-on:click="step++"
                                 class="rounded-lg bg-[#e34e34] text-white p-8 items-center text-center font-semibold cursor-pointer beep hover:scale-95">
-                                <span>ضيفة</span>
+                                <span>ضعيفة</span>
                             </div>
                         </div>
                     </div>
@@ -536,7 +536,7 @@ $submit = function () {
                             </div>
                             <div wire:click="updateSuggestion('weak')" x-on:click="step++"
                                 class="rounded-lg bg-[#e34e34] text-white p-8 items-center text-center font-semibold cursor-pointer beep hover:scale-95">
-                                <span>ضيفة</span>
+                                <span>ضعيفة</span>
                             </div>
                         </div>
                     </div>
@@ -664,7 +664,7 @@ $submit = function () {
                                     <textarea rows="5" required min="2" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg" wire:model="opinion"
                                         placeholder="أكتب لنا رأيك"></textarea>
                                     @error('opinion')
-                                        <div class="text-white">ادخل رأيك*</div>
+                                        <div class="text-white">أدخل رأيك*</div>
                                     @enderror
                                 </div>
                             </div>
@@ -684,7 +684,7 @@ $submit = function () {
             @if ($this->completed)
                 <div class="flex flex-col items-center justify-center animate__animated animate__backInDown">
                     <div class="z-10">
-                        <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 mt-8 text-[#e34e34]">تم ارسال البيانات</h1>
+                        <h1 class="text-center text-2xl md:text-6xl font-bold mb-8 mt-8 text-[#e34e34]">تم إرسال البيانات</h1>
 
                         <div class="beep text-center relative hover:scale-95 mb-8">
                             <a href="{{ url('/surveys') }}" wire:navigate>

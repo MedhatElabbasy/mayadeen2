@@ -37,5 +37,13 @@ class SettingsSeeder extends Seeder
             'value' => null,
             'type' => 'image',
         ]);
+
+        Setting::firstOrCreate([
+            'key' => 'shareYourPoemTerms',
+        ], [
+            'label' => 'شروط المشاركة بالقصائد',
+            'value' => null,
+            'type' => 'editor',
+        ]);
     }
 }

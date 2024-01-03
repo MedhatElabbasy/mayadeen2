@@ -17,10 +17,10 @@ state([
 
 @section('content')
 @volt
-<div id="app">
+<div id="app" class="mb-4">
     <div class="flex flex-col justify-center items-center p-8">
-        <a href="{{ url('/') }}" wire:navigate>
-            <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+        <a href="{{ url('/writers') }}" wire:navigate>
+            <img src="{{ asset('website/images/navbar-light.svg') }}">
         </a>
 
         <div class="bg-[#f2e7d1] mt-8 rounded-3xl p-8 text-center justify-center items-center w-12/12 md:w-8/12">
@@ -31,8 +31,8 @@ state([
                 <div class="block md:flex gap-4">
                     <img src="{{ asset('storage/'.$work->image) }}" class="w-48 h-72 rounded-lg">
                     <div class="text-right mt-2">
-                        <h1 class="font-semibold">{{ $work->title }}</h1>
-                        <p class="m-2">{!! $work->description !!}</p>
+                        <h1 class="font-semibold" style="line-height:normal">{{ $work->title }}</h1>
+                        <p class="m-2 text-justify" style="line-height:normal">{!! $work->description !!}</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ state([
 
                 <div>
                     <a href="{{ url('/writers/'.$writer->id.'/quote') }}" wire:navigate class="flex gap-2 justify-center items-start">
-                        <p class="font-semibold">الأعمال</p>
+                        <p class="font-semibold">الإقتباسات</p>
                         <img src="{{ asset('website/images/arrow-left.svg') }}" class="w-6">
                     </a>
                 </div>

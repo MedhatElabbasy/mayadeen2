@@ -90,9 +90,9 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div>
+        <div id="app" class="mb-4">
 
-            <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
+            <div x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
 
                <!-- Banner -->
                 <div class="h-36 md:h-64 w-full">
@@ -114,10 +114,10 @@ $submit = function () {
                     <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                         <div class="w-full">
                             <label for="title" class="block mb-2 font-medium text-[#f1e1c6]">إسم الأقصوصة</label>
-                            <input required min="2" type="text" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg"
+                            <input  wire:ignore required min="2" type="text" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg"
                                 x-model="titel" wire:model="title" placeholder="أدخل إسم الأقصوصة">
                                 <div x-show="titel.length < 2" class="text-white mt-2">
-                                    يجب ان يحتوي الإسم علي حرفين علي الأقل*
+                                    يجب ان يحتوي الإسم على حرفين على الأقل*
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ $submit = function () {
                     <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                         <div class="w-full">
                             <label for="content" class="block mb-2 font-medium text-[#f1e1c6]">الأقصوصة</label>
-                            <textarea
+                            <textarea  wire:ignore
                                 class="bg-[#f1e1c6] text-black rounded-lg w-full p-4"
                                 rows="6"
                                 required
@@ -149,7 +149,7 @@ $submit = function () {
                                 x-model="content"
                                 wire:model="content"
                                 >أدخل القصة</textarea>
-                            <div x-show="content.length < 12" class="text-white mt-2">يجب ان يزيد طول القصة عن 12 حرف علي
+                            <div x-show="content.length < 12" class="text-white mt-2">يجب أن يزيد طول القصة عن 12 حرف على
                                 الأقل*</div>
                         </div>
                     </div>
@@ -176,26 +176,26 @@ $submit = function () {
                                 <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                     <div class="w-full">
                                         <label for="author" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                        <input required min="2" type="text"
+                                        <input wire:ignore required min="2" type="text"
                                             class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full" wire:model="w1_name"
                                             x-model="name"
                                             placeholder="أدخل الإسم">
-                                            <div x-show="name.length < 2" class="text-white">ادخل الإسم*</div>
+                                            <div x-show="name.length < 2" class="text-white">أدخل الإسم*</div>
                                     </div>
                                     <div class="w-full">
                                         <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                             الإلكتروني</label>
-                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
+                                        <input wire:ignore required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
                                             x-model="email" wire:model="w1_email" placeholder="أدخل البريد الإلكتروني">
-                                            <div x-show="email.length < 9" class="text-white">ادخل البريد الإلكتروني*</div>
+                                            <div x-show="email.length < 9" class="text-white">أدخل البريد الإلكتروني*</div>
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                        <input wire:ignore required min="9" type="tel" id="phone1"
+                                        <input dir="rtl" wire:ignore required min="9" type="tel" id="phone1"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w1_number"
                                         x-model="number"
                                         placeholder="أدخل الهاتف">
-                                            <div x-show="number.length < 9" class="text-white">ادخل الهاتف*</div>
+                                            <div x-show="number.length < 9" class="text-white">أدخل الهاتف*</div>
                                     </div>
                                 </div>
 
@@ -221,18 +221,18 @@ $submit = function () {
                                 <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                     <div class="w-full">
                                         <label for="author" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                        <input required min="2" type="text"
+                                        <input  wire:ignore required min="2" type="text"
                                             class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full" wire:model="w2_name"
                                             x-model="name"
                                             placeholder="أدخل الإسم">
-                                            <div x-show="name.length < 2" class="text-white">ادخل الإسم*</div>
+                                            <div x-show="name.length < 2" class="text-white">أدخل الإسم*</div>
                                     </div>
                                     <div class="w-full">
                                         <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                             الإلكتروني</label>
-                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
+                                        <input  wire:ignore required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
                                             x-model="email" wire:model="w2_email" placeholder="أدخل البريد الإلكتروني">
-                                            <div x-show="email.length < 9" class="text-white">ادخل البريد الإلكتروني*</div>
+                                            <div x-show="email.length < 9" class="text-white">أدخل البريد الإلكتروني*</div>
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
@@ -240,7 +240,7 @@ $submit = function () {
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w2_number"
                                         x-model="number"
                                         placeholder="أدخل الهاتف">
-                                            <div x-show="number.length < 9" class="text-white">ادخل الهاتف*</div>
+                                            <div x-show="number.length < 9" class="text-white">أدخل الهاتف*</div>
                                     </div>
                                 </div>
 
@@ -266,18 +266,18 @@ $submit = function () {
                                 <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                                     <div class="w-full">
                                         <label for="author" class="block mb-2 font-medium text-[#f1e1c6]">الإسم</label>
-                                        <input required min="2" type="text"
+                                        <input wire:ignore required min="2" type="text"
                                             class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full" wire:model="w3_name"
                                             x-model="name"
                                             placeholder="أدخل الإسم">
-                                            <div x-show="name.length < 2" class="text-white">ادخل الإسم*</div>
+                                            <div x-show="name.length < 2" class="text-white">أدخل الإسم*</div>
                                     </div>
                                     <div class="w-full">
                                         <label for="email" class="block mb-2 font-medium text-[#f1e1c6]">البريد
                                             الإلكتروني</label>
-                                        <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
+                                        <input wire:ignore required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
                                             x-model="email" wire:model="w3_email" placeholder="أدخل البريد الإلكتروني">
-                                            <div x-show="email.length < 9" class="text-white">ادخل البريد الإلكتروني*</div>
+                                            <div x-show="email.length < 9" class="text-white">أدخل البريد الإلكتروني*</div>
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
@@ -285,7 +285,7 @@ $submit = function () {
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w3_number"
                                         x-model="number"
                                         placeholder="أدخل الهاتف">
-                                            <div x-show="number.length < 9" class="text-white">ادخل الهاتف*</div>
+                                            <div x-show="number.length < 9" class="text-white">أدخل الهاتف*</div>
                                     </div>
                                 </div>
 

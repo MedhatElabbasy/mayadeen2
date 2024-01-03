@@ -15,6 +15,7 @@ class Writer extends Model
         'quote',
         'birthday',
         'deathday',
+        'is_alive',
         'image',
         'podcast',
         'qr',

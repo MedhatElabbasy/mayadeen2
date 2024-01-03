@@ -48,7 +48,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
+        <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34] mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -88,6 +88,11 @@ $submit = function () {
                             </div>
                         </div>
                     </div>
+
+                    <div class="text-center p-4 my-4" style="line-height:normal">
+                        <h1 class="text-center text-2xl font-bold mt-4 mb-2 text-[#e34e34]">شروط المشاركة بالقصائد:</h1>
+                        {!! setting("shareYourPoemTerms") !!}
+                    </div>
                 </div>
 
                 <div x-show="step==2"
@@ -100,7 +105,7 @@ $submit = function () {
                                 <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">إسم القصيدة</label>
                                 <input required min="2" type="text" class="w-full bg-[#f1e1c6] p-4 text-black rounded-lg"
                                     x-model="name" wire:model="name" placeholder="أدخل إسم القصيدة">
-                                <div x-show="name.length < 2" class="text-white mt-2">يجب ان يحتوي الإسم علي حرفين علي الأقل*
+                                <div x-show="name.length < 2" class="text-white mt-2">يجب أن يحتوي الإسم على حرفين على الأقل*
                                 </div>
                             </div>
                         </div>
@@ -122,9 +127,9 @@ $submit = function () {
                         <div class="bg-[#e34e34] py-4 px-4 rounded-lg flex flex-col gap-2">
                             <div class="w-full">
                                 <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">القصيدة</label>
-                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg"
+                                <textarea rows="6" required min="12" type="name" class="bg-[#f1e1c6] p-4 text-black rounded-lg w-full"
                                     x-model="content" wire:model="content">أدخل القصيدة</textarea>
-                                <div x-show="content.length < 12" class="text-white mt-2">يجب ان تحتوي القصيدة علي 12 حرف علي
+                                <div x-show="content.length < 12" class="text-white mt-2">يجب أن تحتوي القصيدة على 12 حرف على
                                     الأقل*</div>
                             </div>
                         </div>
@@ -138,10 +143,10 @@ $submit = function () {
                     </div>
                 </div>
 
-                @if (!$this->completed)
+                @if(!$this->completed)
                     <div x-show="step==4"
                         class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown">
-                        <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">ادخل بياناتك الشخصية</h1>
+                        <h1 class="block mb-2 font-semibold text-[#e34e34] text-center text-3xl">أدخل بياناتك الشخصية</h1>
 
                         <form wire:submit='submit'>
                             <div class="z-10 p-2">
@@ -152,7 +157,7 @@ $submit = function () {
                                             class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full" wire:model="author"
                                             placeholder="أدخل الإسم">
                                         @error('author')
-                                            <div class="text-white">ادخل الإسم*</div>
+                                            <div class="text-white">أدخل الإسم*</div>
                                         @enderror
                                     </div>
                                     <div class="w-full">
@@ -161,16 +166,16 @@ $submit = function () {
                                         <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black rounded-lg w-full"
                                             wire:model="email" placeholder="أدخل البريد الإلكتروني">
                                         @error('email')
-                                            <div class="text-white">ادخل البريد الإلكتروني*</div>
+                                            <div class="text-white">أدخل البريد الإلكتروني*</div>
                                         @enderror
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                        <input wire:ignore id="phone" required min="9" type="tel"
+                                        <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                         @error('phone')
-                                            <div class="text-white">ادخل الهاتف*</div>
+                                            <div class="text-white">أدخل الهاتف*</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -186,10 +191,10 @@ $submit = function () {
                     </div>
                 @endif
 
-                @if ($this->completed)
+                @if($this->completed)
                     <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
                         <div class="container mx-auto px-4 justify">
-                            <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تم ارسال قصيدتك</h1>
+                            <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تم إرسال قصيدتك</h1>
 
                             <div class="z-10">
                                 <div class="beep text-center relative hover:scale-95 mb-8">

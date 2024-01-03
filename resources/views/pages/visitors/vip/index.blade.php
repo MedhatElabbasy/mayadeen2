@@ -43,7 +43,7 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div id="app">
+        <div id="app" class="mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -68,7 +68,7 @@ $submit = function () {
                                     <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black w-full rounded-lg"
                                         wire:model="name" placeholder="أدخل الإسم">
                                     @error('name')
-                                        <div class="text-white">ادخل الإسم*</div>
+                                        <div class="text-white">أدخل الإسم*</div>
                                     @enderror
                                 </div>
                                 <div class="w-full">
@@ -77,17 +77,17 @@ $submit = function () {
                                     <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black w-full rounded-lg" wire:model="email"
                                         placeholder="أدخل البريد الإلكتروني">
                                     @error('email')
-                                        <div class="text-white">ادخل البريد الإلكتروني*</div>
+                                        <div class="text-white">أدخل البريد الإلكتروني*</div>
                                     @enderror
                                 </div>
                                 <div wire:ignore class="w-full">
                                     <label for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                    <input wire:ignore id="phone" required min="9" type="tel"
+                                    <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                     @error('phone')
-                                        <div class="text-white">ادخل الهاتف*</div>
+                                        <div class="text-white">أدخل الهاتف*</div>
                                     @enderror
                                 </div>
 
@@ -105,7 +105,7 @@ $submit = function () {
                                                 data-original="#000000" />
                                         </svg>
                                         <span class="font-sans">رفع الصورة</span>
-                                        <input type="file" id='uploadFile' class="hidden" wire:model="image" />
+                                        <input type="file" capture id='uploadFile' class="hidden" wire:model="image" />
                                         <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
                                         <div wire:loading wire:target="image" class="text-sm text-gray-500 italic mt-4">يتم الرفع ...</div>
                                         @if($this->image) <div class="text-center text-sm text-gray-500 italic mt-4">الملف: <br> {{ $this->image?->getClientOriginalName() }}</div> @endif
