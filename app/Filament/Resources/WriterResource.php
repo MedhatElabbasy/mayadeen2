@@ -229,17 +229,12 @@ class WriterResource extends Resource
     {
         return $infolist
             ->schema([
-                \Filament\Infolists\Components\Section::make('معلومات شخصية')->columns(3)->schema([
+                \Filament\Infolists\Components\Section::make('معلومات شخصية')->columns(2)->schema([
                     \Filament\Infolists\Components\TextEntry::make('name')
                     ->label('الإسم'),
 
                 \Filament\Infolists\Components\TextEntry::make('birthday')
                     ->label('يوم الميلاد'),
-
-                \Filament\Infolists\Components\TextEntry::make('deathday')
-                    ->label('يوم الوفاة')
-                    ->dateTime('M j, Y'),
-                ]),
 
                 \Filament\Infolists\Components\Section::make('الصورة الشخصية')->columns(1)->schema([
                     \Filament\Infolists\Components\ImageEntry::make('image')
