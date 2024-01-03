@@ -23,7 +23,7 @@ $dates = computed(function () {
 @section('content')
     @volt
         <div id="app" class="mb-4">
-            <div class="px-0 md:px-4">
+            <div class="px-0">
                 <div class="py-2 px-2 md:px-8 bg-[#ec6646]">
                     <img src="{{ asset('website/images/navbar-light.svg') }}" class="mt-4 w-[100%] h-[70px] md:h-[100px] mx-auto">
 
