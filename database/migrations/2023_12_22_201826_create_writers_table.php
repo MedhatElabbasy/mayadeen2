@@ -18,7 +18,8 @@ return new class extends Migration
             $table->longText('about');
             $table->longText('quote');
             $table->date('birthday');
-            $table->date('deathday');
+            $table->date('deathday')->nullable();
+            $table->boolean('is_alive')->default(false);
             $table->string('podcast')->nullable();
             $table->string('qr')->nullable();
             $table->timestamps();

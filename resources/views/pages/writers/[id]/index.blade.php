@@ -36,8 +36,12 @@ state([
             <p class="font-semibold mt-2">
                 (
                 <span>{{ Carbon\Carbon::parse($this->writer->birthday)->translatedFormat('Y') }}</span>
-                /
-                <span>{{ (Carbon\Carbon::parse($this->writer->deathday) > Carbon\Carbon::parse($this->writer->birthday)) ? Carbon\Carbon::parse($this->writer->deathday)->translatedFormat('Y') : 'الآن' }}</span>
+                -
+                @if($this->writer->is_alive)
+                    <span>الآن</span>
+                @else
+                    <span>{{ Carbon\Carbon::parse($this->writer->deathday)->translatedFormat('Y') }}</span>
+                @endif
                 )
             </p>
 

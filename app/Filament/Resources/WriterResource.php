@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Writer;
+use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
@@ -37,9 +38,10 @@ class WriterResource extends Resource
     {
         return $form
             ->schema([
+
                 Forms\Components\Section::make('البيانات الشخصية')
                 ->schema([
-                    Forms\Components\Grid::make(3)
+                    Forms\Components\Grid::make(1)
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label('الإسم')
@@ -48,18 +50,29 @@ class WriterResource extends Resource
                             ->minLength(3)
                             ->maxLength(255)
                             ->rules('required|min:3|max:255'),
+                    ]),
 
-                        Forms\Components\DatePicker::make('birthday')
+                    Forms\Components\Section::make("تاريخ ميلاده")
+                    ->schema([
+                        Forms\Components\Grid::make(3)
+                        ->schema([
+                            Forms\Components\Toggle::make('is_alive')
+                            ->label('هل الأديب حي')
+                            ->required()
+                            ->live(),
+
+                            Forms\Components\DatePicker::make('birthday')
                             ->label('يوم الميلاد')
                             ->placeholder('يوم ميلاد الأديب')
                             ->required()
                             ->rules('required'),
 
-                        Forms\Components\DatePicker::make('deathday')
+                            Forms\Components\DatePicker::make('deathday')
                             ->label('يوم الوفاة')
                             ->placeholder('يوم وفاة الأديب')
-                            ->required()
-                            ->rules('required'),
+                            ->required(fn (Get $get): bool => !$get('is_alive'))
+                            ->visible(fn (Get $get): bool => !$get('is_alive')),
+                        ]),
                     ]),
                 ]),
 
