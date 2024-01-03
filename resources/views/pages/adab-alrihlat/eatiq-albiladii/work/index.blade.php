@@ -52,17 +52,17 @@
       <div class="row">
         <div class="text-foot text-center">
           <h2 class="fw-bold fs-2">بعض من كتب</h2>
-          <p class="fw-bold fs-2">عاتق البلادى فى الرحلات</p>
+          <p class="fw-bold fs-2">عاتق البلادي فى الرحلات</p>
         </div>
         <ul class="text-des fw500 px-5" dir="rtl">
-          <li>معالم مكة التاريخيه والاثرية</li>
-          <li>رحلات فى بلاد العرب</li>
+          <li>معالم مكة التاريخية والأثرية</li>
+          <li>رحلات في بلادالعرب</li>
           <li>الرحلة النجدية</li>
           <li>طرائف وأمثال شعبية</li>
           <li>بين مكة وحضرموت</li>
           <li>بين مكة واليمن</li>
           <li>اخلاق البدو</li>
-          <li>على زيى نجد</li>
+          <li>على ربى نجد</li>
         </ul>
         <div class="img-des text-center">
           <img src="{{ asset('adab/imgs/Group 105.svg') }}" alt="" />

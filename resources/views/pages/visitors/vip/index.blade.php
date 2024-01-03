@@ -68,7 +68,7 @@ $submit = function () {
                                     <input required min="2" type="name" class="bg-[#f1e1c6] p-2.5 text-black w-full rounded-lg"
                                         wire:model="name" placeholder="أدخل الإسم">
                                     @error('name')
-                                        <div class="text-white">ادخل الإسم*</div>
+                                        <div class="text-white">أدخل الإسم*</div>
                                     @enderror
                                 </div>
                                 <div class="w-full">
@@ -77,7 +77,7 @@ $submit = function () {
                                     <input required type="email" class="bg-[#f1e1c6] p-2.5 text-black w-full rounded-lg" wire:model="email"
                                         placeholder="أدخل البريد الإلكتروني">
                                     @error('email')
-                                        <div class="text-white">ادخل البريد الإلكتروني*</div>
+                                        <div class="text-white">أدخل البريد الإلكتروني*</div>
                                     @enderror
                                 </div>
                                 <div wire:ignore class="w-full">
@@ -87,7 +87,7 @@ $submit = function () {
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                     @error('phone')
-                                        <div class="text-white">ادخل الهاتف*</div>
+                                        <div class="text-white">أدخل الهاتف*</div>
                                     @enderror
                                 </div>
 
