@@ -93,7 +93,7 @@ $submit = function () {
                                     @enderror
                                 </div>
 
-                                <div class="w-full" x-init="document.getElementById('sendBtn').click()">
+                                <div class="w-full">
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الصورة</label>
 
                                     <label for="uploadFile"
@@ -120,7 +120,7 @@ $submit = function () {
 
                             <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg" wire:click="submit">
                                 <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">
-                                <button id="sendBtn" type="button"
+                                <button type="button"
                                     class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">إرسال</button>
                             </div>
                         </div>
