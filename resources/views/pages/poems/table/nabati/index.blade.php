@@ -122,7 +122,7 @@ $dates = computed(function () {
 
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(setting('shareYourPoemQrCode'))
-                        <img class="py-8 rounded-lg" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
+                        <img class="py-8 rounded-lg max-w-72 max-h-72" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
                     @endif
 
                     <span class="text-3xl md:text-4xl text-center font-bold py-8">شاركنا قصيدتك بالنبطي !</span>
