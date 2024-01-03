@@ -77,7 +77,7 @@ $dates = computed(function () {
                     @foreach ($this->dates as $item)
                         <div x-data="{
                             showContent: false,
-                            countDownDate: new Date('{{ \Carbon\Carbon::now()->format("Y-m-d") }}T{{$item->start_time}}').getTime(),
+                            countDownDate: new Date('{{ $this->currentDay }}T{{$item->start_time}}').getTime(),
                             pad: function(num) {
                             return num < 10 ? '0' + num : num;
                             },
