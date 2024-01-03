@@ -24,10 +24,10 @@ $dates = computed(function () {
     @volt
         <div id="app" class="mb-4">
             <div class="px-0 md:px-48">
-                <div class="py-20 md:py-40 px-2 md:px-8 bg-[#ec6646]">
+                <div class="py-2 px-2 md:px-8 bg-[#ec6646]">
                     <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
 
-                    <p class="text-center text-2xl md:text-4xl p-4 font-semibold text-black" style="line-height:normal">
+                    <p class="text-center text-1xl md:text-2xl p-4 font-semibold text-black" style="line-height:normal">
                         استعدوا لتجربة شعرية استثنائية،
                         في هذه المساحة
                         سيقوم الشاعر بإلقاء قصائد الشعر الفصيح
@@ -36,7 +36,7 @@ $dates = computed(function () {
 
                     <div class="mb-4 text-2xl font-bold flex flex-col justify-center items-center text-center">
                         @if($this->currentDay)
-                        <select wire:model.change="currentDay" name="day" class="text-[#ec6646] bg-white py-1 px-2 cursor-pointer rounded-lg">
+                        <select wire:model.change="currentDay" name="day" class="text-[#ec6646] bg-white py-1 px-2 cursor-pointer rounded-lg text-sm">
                             @foreach ($days as $day)
                                 <option value="{{ $day }}">{{\Carbon\Carbon::createFromDate($day)->translatedFormat('j F')}}</option>
                             @endforeach
@@ -48,21 +48,21 @@ $dates = computed(function () {
                         <table class="w-full text-sm text-right text-black border-2 border-black">
                             <thead class="text-sm md:text-2xl text-black bg-[#f1e1c6] text-center">
                                 <tr>
-                                    <th class="border-2 border-black px-4 py-6">صاحب القصيده</th>
-                                    <th class="border-2 border-black px-4 py-6">الوقت (التاريخ: {{\Carbon\Carbon::createFromDate($this->currentDay)->translatedFormat('j F')}})</th>
-                                    <th class="border-2 border-black px-4 py-6">التفاصيل</th>
+                                    <th class="border-2 border-black p-2 text-base">صاحب القصيده</th>
+                                    <th class="border-2 border-black p-2 text-base">الوقت (التاريخ: {{\Carbon\Carbon::createFromDate($this->currentDay)->translatedFormat('j F')}})</th>
+                                    <th class="border-2 border-black p-2 text-base">التفاصيل</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($this->dates as $item)
                                     <tr class="text-sm md:text-lg text-black bg-[#f1e1c6] text-center">
-                                        <td @if($item->is_break) class="border-2 border-black px-2 py-4 bg-[#f4ceb0]" @else class="border-2 border-black px-2 py-4" @endif>
+                                        <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
                                             {{ !$item->is_break ? $item->owner : 'استراحة' }}
                                         </td>
-                                        <td @if($item->is_break) class="border-2 border-black px-2 py-4 bg-[#f4ceb0]" @else class="border-2 border-black px-2 py-4" @endif>
+                                        <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
                                             {{ $item->start_time.' - '.$item->end_time }}
                                         </td>
-                                        <td @if($item->is_break) class="border-2 border-black px-2 py-4 bg-[#f4ceb0]" @else class="border-2 border-black px-2 py-4" @endif>
+                                        <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
                                             {{ !$item->is_break ? $item->details : 'استراحة' }}
                                         </td>
                                     </tr>
@@ -108,21 +108,21 @@ $dates = computed(function () {
                             </h1>
 
                             @if(!$item->is_break)
-                            <p class="mt-4 text-center font-normal text-2xl">
+                            <p class="mt-2 text-center font-normal text-2xl">
                                 {{ $item->details }}
                             </p>
                             @endif
-                            <p x-text="formatCountdown" class="m-12 rounded-lg p-4 text-4xl bg-[#ec6646] text-white font-bold"></p>
+                            <p x-text="formatCountdown" class="rounded-lg p-4 text-2xl bg-[#ec6646] text-white font-bold"></p>
                         </div>
                     @endforeach
                     </div>
 
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(setting('shareYourPoemQrCode'))
-                        <img class="py-8 rounded-lg max-w-72 max-h-72" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
+                        <img class="py-8 rounded-lg max-w-20 max-h-20" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
                     @endif
 
-                    <span class="text-3xl md:text-4xl text-center font-bold py-8">شاركنا قصيدتك بالفصحى !</span>
+                    <span class="text-1xl md:text-2xl text-center font-bold py-8">شاركنا قصيدتك بالفصحى !</span>
                     <img class="py-8" src="{{ asset('website/images/palm-horizontal.svg') }}">
                 </div>
 
