@@ -1,6 +1,5 @@
 <?php
 
-use function Livewire\Volt\{rules, state};
 use function Laravel\Folio\{middleware};
 
 use App\Models\Story;
@@ -8,88 +7,10 @@ use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StoryPdfSendMail;
 use Dompdf\Options;
-// use function Laravel\Folio\{middleware};
-// middleware(['auth.login.superVisor'])
-
-middleware(['superviser']);
-
-state([
-    'completed' => false,
-    'mailersSend' => false,
-    'title' => null,
-    'content' => null,
-    'w1_name' => null,
-    'w1_number' => null,
-    'w1_email' => null,
-    'w2_name' => null,
-    'w2_number' => null,
-    'w2_email' => null,
-    'w3_name' => null,
-    'w3_number' => null,
-    'w3_email' => null,
-    'story' => null,
-    'id' => null,
-]);
-
-rules([
-
-    'title' => 'required|min:2',
-    'content' => 'required',
-    'w1_name' => 'required|min:2',
-    'w1_number' => 'required|min:9',
-    'w1_email' => 'required|email',
-    'w2_name' => 'required|min:2',
-    'w2_number' => 'required|min:9',
-    'w2_email' => 'required|email',
-    'w3_name' => 'required|min:2',
-    'w3_number' => 'required|min:9',
-    'w3_email' => 'required|email',
-]);
-
-$submit = function () {
-    // $this->validate();
-    $story = new Story();
-    $story->user_id = auth()->user()->id;
-    $story->title = $this->title;
-    $story->content = $this->content;
-    $story->w1_name = $this->w1_name;
-    $story->w1_number = $this->w1_number;
-    $story->w1_email = $this->w1_email;
-    $story->w2_name = $this->w2_name;
-    $story->w2_number = $this->w2_number;
-    $story->w2_email = $this->w2_email;
-    $story->w3_name = $this->w3_name;
-    $story->w3_number = $this->w3_number;
-    $story->w3_email = $this->w3_email;
-
-    $story->save();
-    $this->id = $story->id;
-    $this->completed = true;
-};
-
-
 
 ?>
-@extends('layouts.app')
-@push('head')
-    <link rel="stylesheet" href="{{ asset('website/css/poll-quesition.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/css/global-style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/css/story-title.css') }}" />
 
-    <!-- css files-->
-    <link rel="stylesheet" href="{{ asset('website/story/css/story-title.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/story/css/write-story.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/story/css/global-style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('website/story/css/writers.css') }}" />
-    <!-- bootstrap link-->
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> --}}
-@endpush
 
-@section('title', 'الأقصوصة')
-
-@section('content')
-    @volt
         <div>
 
             <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
@@ -165,7 +86,7 @@ $submit = function () {
 
                 {{-- ############################ --}}
 
-                {{-- @if (!$this->completed) --}}
+                @if (!$this->completed)
                     <div x-show="step==3"
                         class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown"
                         x-data="{name: '', email: '', number: ''}"
@@ -208,9 +129,9 @@ $submit = function () {
                                 </div>
                             </div>
                     </div>
-                {{-- @endif --}}
+                @endif
 
-                {{-- @if (!$this->completed) --}}
+                @if (!$this->completed)
                     <div x-show="step==4"
                         class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown"
                         x-data="{name: '', email: '', number: ''}"
@@ -253,9 +174,9 @@ $submit = function () {
                                 </div>
                             </div>
                     </div>
-                {{-- @endif --}}
+                @endif
 
-                {{-- @if (!$this->completed) --}}
+                @if (!$this->completed)
                     <div x-show="step==5"
                         class="flex flex-col items-center justify-center my-2 md:my-4 animate__animated animate__backInDown"
                         x-data="{name: '', email: '', number: ''}"
@@ -289,7 +210,7 @@ $submit = function () {
                                     </div>
                                 </div>
 
-                                <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg"  x-on:click="step++">
+                                <div class="beep text-center relative hover:scale-95 mt-4 rounded-lg">
                                     <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
                                         alt="">
                                     <button type="button"
@@ -298,10 +219,10 @@ $submit = function () {
                                 </div>
                             </div>
                     </div>
-                {{-- @endif --}}
+                @endif
 
                 @if ($this->completed)
-                    <div class="px-8 border-x-2 border-[#e34e34]" x-show="step==6">
+                    <div class="px-8 border-x-2 border-[#e34e34]">
                         <div class="flex flex-col items-center justify-center my-8">
                             <div class="z-10">
                                 <h1 class="text-center text-2xl md:text-6xl font-bold my-8 text-[#e34e34]">تم انشاء الأقصوصة</h1>
@@ -374,5 +295,4 @@ $submit = function () {
             });
         </script>
     @endscript
-    @endvolt
-@endsection
+    

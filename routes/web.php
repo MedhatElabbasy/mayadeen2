@@ -24,7 +24,7 @@ Route::get('story/{id}', function ($id) {
 
     $title = $story->title;
     $content = $story->content;
-    $user = $story->user;
+    $user = $story->user->name;
     $w1_name = $story->w1_name;
     $w1_email = $story->w1_email;
     $w1_number = $story->w1_number;
