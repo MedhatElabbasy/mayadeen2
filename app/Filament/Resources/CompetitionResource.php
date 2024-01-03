@@ -69,7 +69,7 @@ class CompetitionResource extends Resource
                                     ->label($record->label)
                             ],
                             'date' => [
-                                Forms\Components\DateTimePicker::make('value')
+                                Forms\Components\DatePicker::make('value')
                                     ->label($record->label)
                             ],
                             default => [
