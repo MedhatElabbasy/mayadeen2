@@ -32,10 +32,10 @@ use Dompdf\Options;
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split("volt-anonymous-fragment-eyJuYW1lIjoidm9sdC1hbm9ueW1vdXMtZnJhZ21lbnQtZTNlNmRiMmM2MzM0NzkwNGI4ODYwNzI2YzIyMmE0ZTAiLCJwYXRoIjoicmVzb3VyY2VzXFx2aWV3c1xccGFnZXNcXHN0b3J5XFxpbmRleC5ibGFkZS5waHAifQ==", Livewire\Volt\Precompilers\ExtractFragments::componentArguments([...get_defined_vars(), ...array (
+[$__name, $__params] = $__split("volt-anonymous-fragment-eyJuYW1lIjoidm9sdC1hbm9ueW1vdXMtZnJhZ21lbnQtMGFlYzRjMjhiMGJjZmQ1ZjM0NjRiMGQ0NDFkZGEwNTciLCJwYXRoIjoicmVzb3VyY2VzXFx2aWV3c1xccGFnZXNcXHN0b3J5XFxpbmRleC5ibGFkZS5waHAifQ==", Livewire\Volt\Precompilers\ExtractFragments::componentArguments([...get_defined_vars(), ...array (
 )]));
 
-$__html = app('livewire')->mount($__name, $__params, 'zpqVS5k', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'vhAk0p1', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

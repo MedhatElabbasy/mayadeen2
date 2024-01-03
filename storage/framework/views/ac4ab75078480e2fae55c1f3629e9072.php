@@ -161,10 +161,10 @@
                     <h1 class="mt-5"> <?php echo e($title); ?>
 
                     </h1>
-                    <h1 class="mt-3 mb-5">  <?php echo e($user); ?> اسم المشرف :   
+                    <h1 class="mt-3 mb-5">  <?php echo e($user); ?> اسم المشرف :
                     </h1>
                     <h1 class="mb-4">محتوى الاقصوصه</h1>
-                    <div class="paragraphe-content"><?php echo e($content); ?>
+                    <div class="paragraphe-content text-center"><?php echo e($content); ?>
 
                     </div>
                 </div>
@@ -173,24 +173,28 @@
                         <h1 class="mb-3">بيانات المشاركين</h1>
                         <table>
                             <tr>
-                                <th>اسم الكاتب</th>
                                 <th>البريد الإلكتروني</th>
                                 <th>الجوال</th>
+                                <th>اسم الكاتب</th>
+
                             </tr>
                             <tr>
-                                <td><?php echo e($w1_name); ?> </td>
                                 <td><?php echo e($w1_email); ?></td>
                                 <td><?php echo e($w1_name); ?></td>
+                                <td><?php echo e($w1_name); ?> </td>
+
                             </tr>
                             <tr>
-                                <td><?php echo e($w2_name); ?> </td>
                                 <td><?php echo e($w2_email); ?></td>
                                 <td><?php echo e($w2_number); ?></td>
+                                <td><?php echo e($w2_name); ?> </td>
+
                             </tr>
                             <tr>
-                                <td><?php echo e($w3_name); ?> </td>
                                 <td><?php echo e($w3_email); ?></td>
                                 <td><?php echo e($w3_number); ?></td>
+                                <td><?php echo e($w3_name); ?> </td>
+
                             </tr>
                         </table>
                     </div>

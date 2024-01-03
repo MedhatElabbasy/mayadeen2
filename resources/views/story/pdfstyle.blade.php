@@ -161,10 +161,10 @@
                     <!-- <img src="imgs/photo1703672560.jpeg" alt=""> -->
                     <h1 class="mt-5"> {{ $title }}
                     </h1>
-                    <h1 class="mt-3 mb-5">  {{ $user }} اسم المشرف :   
+                    <h1 class="mt-3 mb-5">  {{ $user }} اسم المشرف :
                     </h1>
                     <h1 class="mb-4">محتوى الاقصوصه</h1>
-                    <div class="paragraphe-content">{{ $content }}
+                    <div class="paragraphe-content text-center">{{ $content }}
                     </div>
                 </div>
                 <div class="conten-text">
@@ -172,24 +172,28 @@
                         <h1 class="mb-3">بيانات المشاركين</h1>
                         <table>
                             <tr>
-                                <th>اسم الكاتب</th>
                                 <th>البريد الإلكتروني</th>
                                 <th>الجوال</th>
+                                <th>اسم الكاتب</th>
+
                             </tr>
                             <tr>
-                                <td>{{ $w1_name }} </td>
                                 <td>{{ $w1_email }}</td>
                                 <td>{{ $w1_name }}</td>
+                                <td>{{ $w1_name }} </td>
+
                             </tr>
                             <tr>
-                                <td>{{ $w2_name }} </td>
                                 <td>{{ $w2_email }}</td>
                                 <td>{{ $w2_number }}</td>
+                                <td>{{ $w2_name }} </td>
+
                             </tr>
                             <tr>
-                                <td>{{ $w3_name }} </td>
                                 <td>{{ $w3_email }}</td>
                                 <td>{{ $w3_number }}</td>
+                                <td>{{ $w3_name }} </td>
+
                             </tr>
                         </table>
                     </div>
