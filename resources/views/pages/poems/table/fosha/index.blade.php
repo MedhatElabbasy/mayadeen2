@@ -34,7 +34,7 @@ $dates = computed(function () {
                         بصوت جهور مصحوب بإيقاعات موسيقية.
                     </p>
 
-                    <div class="mb-4 text-2xl font-bold flex flex-col justify-center items-center text-center">
+                    <div class="mb-2 text-2xl font-bold flex flex-col justify-center items-center text-center">
                         @if($this->currentDay)
                         <select wire:model.change="currentDay" name="day" class="text-[#ec6646] bg-white py-1 px-2 cursor-pointer rounded-lg text-sm">
                             @foreach ($days as $day)
@@ -119,11 +119,11 @@ $dates = computed(function () {
 
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(setting('shareYourPoemQrCode'))
-                        <img class="py-8 rounded-lg max-w-20 max-h-20" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
+                        <img class="py-8 rounded-lg max-w-40 max-h-40" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
                     @endif
 
-                    <span class="text-1xl md:text-2xl text-center font-bold py-8">شاركنا قصيدتك بالفصحى !</span>
-                    <img class="py-8" src="{{ asset('website/images/palm-horizontal.svg') }}">
+                    <span class="text-1xl md:text-2xl text-center font-bold py-2">شاركنا قصيدتك بالفصحى !</span>
+                    <img class="py-2" src="{{ asset('website/images/palm-horizontal.svg') }}">
                 </div>
 
             </div>
