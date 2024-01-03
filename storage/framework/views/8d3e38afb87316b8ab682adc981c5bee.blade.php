@@ -1,22 +1,10 @@
 <?php
 
-use function Livewire\Volt\{state};
 use App\Models\Writer;
-
-state([
-    'writer' => Writer::find(request('id')),
-]);
 
 ?>
 
-@extends('layouts.app')
 
-@section('title', 'أدباء عبر التاريخ')
-
-@section('bg', 'bg-[#eb6745]')
-
-@section('content')
-@volt
 <div id="app" class="mb-4">
 
     <div class="flex flex-col justify-center items-center p-8">
@@ -35,9 +23,9 @@ state([
 
             <p class="font-semibold mt-2">
                 (
-                <span>{{ Carbon\Carbon::parse($this->writer->birthday)->translatedFormat('Y') }}</span>
+                <span>{{ Carbon\Carbon::parse($this->writer->birthday)->translatedFormat('d F Y') }}</span>
                 /
-                <span>{{ (Carbon\Carbon::parse($this->writer->deathday) > Carbon\Carbon::parse($this->writer->birthday)) ? 'الآن' : Carbon\Carbon::parse($this->writer->deathday)->translatedFormat('Y') }}</span>
+                <span>{{ (Carbon\Carbon::parse($this->writer->deathday) > Carbon\Carbon::parse($this->writer->birthday)) ? 'الآن' : Carbon\Carbon::parse($this->writer->deathday)->translatedFormat('d F Y') }}</span>
                 )
             </p>
 
@@ -85,5 +73,3 @@ state([
 Calamansi.autoload();
 </script>
 @endscript
-@endvolt
-@endsection
