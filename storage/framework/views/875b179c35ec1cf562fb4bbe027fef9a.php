@@ -13,10 +13,10 @@ use App\Models\Visitor;
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split("volt-anonymous-fragment-eyJuYW1lIjoidm9sdC1hbm9ueW1vdXMtZnJhZ21lbnQtOTU4ODU1NTExZjA4ZDg2YWUxZjFkNDkxNTBlOGJmNTQiLCJwYXRoIjoicmVzb3VyY2VzXFx2aWV3c1xccGFnZXNcXHZpc2l0b3JzXFxpbmRleC5ibGFkZS5waHAifQ==", Livewire\Volt\Precompilers\ExtractFragments::componentArguments([...get_defined_vars(), ...array (
+[$__name, $__params] = $__split("volt-anonymous-fragment-eyJuYW1lIjoidm9sdC1hbm9ueW1vdXMtZnJhZ21lbnQtY2M1NjkyMDUyY2NjM2M0OWEzNzBlZTgyYWU3NjgyNWYiLCJwYXRoIjoicmVzb3VyY2VzXFx2aWV3c1xccGFnZXNcXHZpc2l0b3JzXFxpbmRleC5ibGFkZS5waHAifQ==", Livewire\Volt\Precompilers\ExtractFragments::componentArguments([...get_defined_vars(), ...array (
 )]));
 
-$__html = app('livewire')->mount($__name, $__params, 'YLUHl3r', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'hsjxlt9', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

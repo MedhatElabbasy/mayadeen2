@@ -1,32 +1,14 @@
 <?php
 
-use function Livewire\Volt\{rules, state, computed};
 use App\Models\DatesOfPoem;
-
-$days = DatesOfPoem::select('date')->where('type', 'nabati')->distinct()->orderBy('date', 'asc')->get()->pluck('date');
-
-state([
-    'days' => $days,
-    'currentDay' => $days->first(),
-]);
-
-$dates = computed(function () {
-    return DatesOfPoem::where('type', 'nabati')->where('date', $this->currentDay)->get();
-});
 
 ?>
 
-@extends('layouts.app')
 
-@section('title', 'جدول القصائد')
-
-
-@section('content')
-    @volt
         <div id="app" class="mb-4">
             <div class="px-0 md:px-8 lg:px-48">
                 <div class="py-20 md:py-40 px-2 md:px-8 bg-[#ec6646]">
-                    <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+                    <img src="{{ asset('website/images/navbar-light.svg') }}">
 
                     <p class="text-center text-2xl md:text-4xl p-4 font-semibold text-black" style="line-height:normal">
                         استعدوا لتجربة شعرية استثنائية،
@@ -110,12 +92,6 @@ $dates = computed(function () {
                             <h1>
                                 {{ !$item->is_break ? $item->owner : 'استراحة' }}
                             </h1>
-
-                            @if(!$item->is_break)
-                            <p class="mt-4 text-center font-normal text-2xl">
-                                {{ $item->details }}
-                            </p>
-                            @endif
                             <p x-text="formatCountdown" class="m-12 rounded-lg p-4 text-4xl bg-[#ec6646] text-white font-bold"></p>
                         </div>
                     @endforeach
@@ -132,5 +108,4 @@ $dates = computed(function () {
                 </div>
             </div>
         </div>
-    @endvolt
-@endsection
+    

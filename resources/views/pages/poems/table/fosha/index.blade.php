@@ -106,6 +106,12 @@ $dates = computed(function () {
                             <h1>
                                 {{ !$item->is_break ? $item->owner : 'استراحة' }}
                             </h1>
+
+                            @if(!$item->is_break)
+                            <p class="mt-4 text-center font-normal text-2xl">
+                                {{ $item->details }}
+                            </p>
+                            @endif
                             <p x-text="formatCountdown" class="m-12 rounded-lg p-4 text-4xl bg-[#ec6646] text-white font-bold"></p>
                         </div>
                     @endforeach

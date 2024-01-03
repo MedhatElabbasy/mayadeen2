@@ -1,48 +1,10 @@
 <?php
 
-use function Livewire\Volt\{rules, state, usesFileUploads};
 use App\Models\Visitor;
 
-usesFileUploads();
-
-state([
-    'name' => null,
-    'email' => null,
-    'phone' => null,
-    'image' => null,
-    'completed' => false,
-]);
-
-rules([
-    'name' => 'required|min:2',
-    'email' => 'required|email',
-    'phone' => 'required|min:9',
-    'image' => 'required|image',
-]);
-
-$submit = function () {
-    $this->validate();
-
-    $image_name = time() . '.' . $this->image->getFilename();
-    $image = $this->image->storeAs('/public/', $image_name);
-
-    Visitor::create([
-        'name' => $this->name,
-        'email' => $this->email,
-        'phone' => $this->phone,
-        'image' => $image_name,
-    ]);
-
-    $this->completed = true;
-};
 ?>
 
-@extends('layouts.app')
 
-@section('title', 'تسجيل الزوار')
-
-@section('content')
-    @volt
         <div id="app" class="mb-4">
 
             <!-- Banner -->
@@ -172,5 +134,4 @@ $submit = function () {
                 });
             </script>
         @endscript
-    @endvolt
-@endsection
+    
