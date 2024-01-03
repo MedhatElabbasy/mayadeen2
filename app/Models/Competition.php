@@ -12,6 +12,7 @@ class Competition extends Model
     protected $fillable = [
         'key',
         'value',
-        'type'
+        'type',
+        'lable'
     ];
 }

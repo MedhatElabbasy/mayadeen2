@@ -32,87 +32,60 @@ class CompetitionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('الإسم')
-                    ->placeholder('إسم المسابقة')
-                    ->required()
-                    ->minLength(3)
-                    ->maxLength(255)
-                    ->rules('required'),
+
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+        ->defaultSort('created_at', 'asc')
             ->columns([
 
-                Tables\Columns\TextColumn::make('name')
-                    ->label('اسم المسابقة')
-                    ->alignCenter()
+                Tables\Columns\TextColumn::make('label')
+                    ->label('الخاصية')
+                    ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('تاريخ الإضافة')
-                    ->dateTime('M j, Y')
-                    ->toggleable()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('value')
+                    ->label('القيمة')
+                    ->formatStateUsing(fn ($state) => $state === null ? 'Empty' : $state)
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    ExportBulkAction::make()->exports([
-                        ExcelExport::make()->withColumns([
-                            Column::make('name')->heading('الاسم '),
-                            Column::make('created_at')->heading('تاريخ الإضافة'),
-                        ]),
-                    ]),
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\EditAction::make()
+                    ->form(function (Competition $record) {
+                        return match ($record->type) {
+                            'bool' => [
+                                Forms\Components\Toggle::make('value')
+                                    ->label($record->label)
+                            ],
+                            'time' => [
+                                Forms\Components\TimePicker::make('value')
+                                    ->label($record->label)
+                            ],
+                            'date' => [
+                                Forms\Components\DateTimePicker::make('value')
+                                    ->label($record->label)
+                            ],
+                            default => [
+                                Forms\Components\TextInput::make('value')
+                                    ->label($record->label)
+                            ]
+                        };
+                    }),
             ]);
-    }
 
-    public static function infolist(Infolist $infolist): Infolist
-    {
-        return $infolist
-            ->schema([
-                \Filament\Infolists\Components\Section::make('إسم المسابقة')
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('name')
-                        ->label('الإسم'),
-                    ]),
-
-
-                    \Filament\Infolists\Components\Section::make(' الفرق المشاركة ')
-                    ->schema([
-                        \Filament\Infolists\Components\TextEntry::make('teams.name')
-                            ->label('الإسم'),
-                    ]),
-
-
-
-            ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            TeamsRelationManager::class,
-        ];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListCompetitions::route('/'),
-            'create' => Pages\CreateCompetition::route('/create'),
-            'edit' => Pages\EditCompetition::route('/{record}/edit'),
         ];
     }
 }

@@ -18,43 +18,75 @@ class CompetitionsSeeder extends Seeder
             [
                 "key"   => "is_end",
                 "value" => false,
-                "type"  => "bool"
+                "type"  => "bool",
+                'label' => ' منتهية ام لا',
+
             ],
             [
                 "key"   => "round_1_day",
                 "value" => null,
-                "type"  => "date"
+                "type"  => "date",
+                'label' => 'يوم الجولة الاولي    ',
+
             ],
             [
                 "key"   => "round_1_start_time",
                 "value" => null,
-                "type"  => "time"
+                "type"  => "time",
+                'label' => 'وقت بدء الجولة الأولي',
             ],
             [
                 "key"   => "round_1_start_end",
                 "value" => null,
-                "type"  => "time"
+                "type"  => "time",
+                'label' => 'وقت انتهاء الجولة الأولي',
             ],
             [
                 "key"   => "round_2_day",
                 "value" => null,
-                "type"  => "date"
+                "type"  => "date",
+                'label' => 'يوم الجولة الثانية ',
+
             ],
             [
                 "key"   => "round_2_start_time",
                 "value" => null,
-                "type"  => "time"
+                "type"  => "time",
+                'label' => 'وقت بدء الجولة الثانية',
+
             ],
             [
-                "key"   => "round_2_start_end",
+                "key"   => "round_2_start_time",
                 "value" => null,
-                "type"  => "time"
+                "type"  => "time",
+                'label' => 'وقت انتهاء الجولة الثانية',
+
+            ],
+            [
+                "key"   => "round_3_day",
+                "value" => null,
+                "type"  => "date",
+                'label' => 'يوم الجولة الثالثة    ',
+
+            ],
+            [
+                "key"   => "round_3_start_time",
+                "value" => null,
+                "type"  => "time",
+                'label' => 'وقت بدء الجولة الثالثة',
+            ],
+            [
+                "key"   => "round_3_end_time",
+                "value" => null,
+                "type"  => "time",
+                'label' => 'وقت انتهاء الجولة الثالثة',
             ],
         ] as $row) {
             Competition::create([
                 'key'   => $row['key'],
                 'value' => $row['value'],
-                'type'  => $row['type']
+                'type'  => $row['type'],
+                'label'  => $row['label']
             ]);
         }
     }
