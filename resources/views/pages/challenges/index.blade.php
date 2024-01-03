@@ -78,11 +78,11 @@ $submit = function () {
 
                         <figure class="max-w-lg mx-auto flex flex-col items-center mt-4">
                             <a target="_blank" :href="hint_image">
-                              <img class="h-64 w-64 rounded-lg object-fit:cover" :src="hint_image" alt="image description">
+                            <img class="h-64 w-64 rounded-lg object-fit:cover" :src="hint_image" alt="image description">
                             </a>
                             <figcaption class="mt-2 text-sm text-center text-black font-semibold" x-text="hint_text">
                             </figcaption>
-                          </figure>
+                        </figure>
 
                         <div class="beep text-center relative hover:scale-95 mt-4 cursor-pointer" x-on:click="nextQuestion">
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}" alt="">

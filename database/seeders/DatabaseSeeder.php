@@ -19,10 +19,6 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             SettingsSeeder::class,
             CompetitionsSeeder::class,
-            TeamsSeeder::class,
-            // SurveyCompetitionsSeeder::class,
-            // SurveyCompetitionsRoundsSeeder::class,
-            // SurveyCompetitionVotesSeeder::class,
         ]);
     }
 }

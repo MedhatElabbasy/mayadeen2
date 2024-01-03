@@ -201,7 +201,7 @@ $submit = function () {
                         </li>
                     </ul>
 
-                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 1 من إجمالي 5 سؤال.</h1>
+                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 1 من إجمالي 5 أسئلة.</h1>
                 </div>
             </div>
 
@@ -262,7 +262,7 @@ $submit = function () {
                         </li>
                     </ul>
 
-                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 2 من إجمالي 5 سؤال.</h1>
+                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 2 من إجمالي 5 أسئلة.</h1>
 
                 </div>
             </div>
@@ -327,7 +327,7 @@ $submit = function () {
                         </li>
                     </ul>
 
-                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 3 من إجمالي 5 سؤال.</h1>
+                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 3 من إجمالي 5 أسئلة.</h1>
 
                 </div>
             </div>
@@ -396,7 +396,7 @@ $submit = function () {
                         </li>
                     </ul>
 
-                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 4 من إجمالي 5 سؤال.</h1>
+                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 4 من إجمالي 5 أسئلة.</h1>
 
                 </div>
             </div>
@@ -459,7 +459,7 @@ $submit = function () {
                         </li>
                     </ul>
 
-                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 5 من إجمالي 5 سؤال.</h1>
+                    <h1 class="text-center text-1xl mt-16 text-gray-500">رقم السؤال: 5 من إجمالي 5 أسئلة.</h1>
 
                 </div>
             </div>
@@ -497,7 +497,7 @@ $submit = function () {
                 <div class="animate__animated animate__backInDown">
                     <div class="flex flex-col items-center justify-center mt-4">
                         <h1 class="text-center text-2xl md:text-4xl font-bold my-8 px-2 text-[#e34e34]" style="line-height:normal">
-                            ما احتمالية حضورك للنسخ القادمة من المهرجان؟
+                            ما إحتمالية حضورك للنسخ القادمة من المهرجان؟
                         </h1>
 
                         <div class="grid sm:grid-cols-1 md:grid-cols-3 mx-auto justify-center mt-4 gap-4">
@@ -511,7 +511,7 @@ $submit = function () {
                             </div>
                             <div wire:click="updateNext('weak')" x-on:click="step++"
                                 class="rounded-lg bg-[#e34e34] text-white p-8 items-center text-center font-semibold cursor-pointer beep hover:scale-95">
-                                <span>ضعيفه</span>
+                                <span>ضيفة</span>
                             </div>
                         </div>
                     </div>
@@ -522,7 +522,7 @@ $submit = function () {
                 <div>
                     <div class="flex flex-col items-center justify-center mt-4">
                         <h1 class="text-center text-2xl md:text-4xl font-bold my-8 px-2 text-[#e34e34]" style="line-height:normal">
-                            ما احتمالية أن تنصح من حولك بحضور النسخ القادمة من المهرجان؟
+                            ما إحتمالية أن تنصح من حولك بحضور النسخ القادمة من المهرجان؟
                         </h1>
 
                         <div class="grid sm:grid-cols-1 md:grid-cols-3 mx-auto justify-center mt-4 gap-4">
@@ -536,7 +536,7 @@ $submit = function () {
                             </div>
                             <div wire:click="updateSuggestion('weak')" x-on:click="step++"
                                 class="rounded-lg bg-[#e34e34] text-white p-8 items-center text-center font-semibold cursor-pointer beep hover:scale-95">
-                                <span>ضعيفه</span>
+                                <span>ضيفة</span>
                             </div>
                         </div>
                     </div>
@@ -550,7 +550,7 @@ $submit = function () {
                             'قصائد بين الطرق',
                             'مسرح الشارع المتحرك',
                             'منصة الفن',
-                            'جاذبية الفك',
+                            'جاذبية الفلك',
                         ],
                         "screen2" => [
                             'وميض الأبجدية',
@@ -560,7 +560,7 @@ $submit = function () {
                         ],
                         "screen3" => [
                             'سحابة أدب',
-                            'تحدى نفسك',
+                            'تحد نفسك',
                             'المتاهة',
                             'المغامرون الصغار',
                         ],

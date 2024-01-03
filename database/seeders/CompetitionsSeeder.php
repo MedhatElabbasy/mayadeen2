@@ -14,8 +14,48 @@ class CompetitionsSeeder extends Seeder
      */
     public function run(): void
     {
-        Competition::create(['name' => 'Competition 1']);
-         Competition::create(['name' => 'Competition 2']);
-
+        foreach ([
+            [
+                "key"   => "is_end",
+                "value" => false,
+                "type"  => "bool"
+            ],
+            [
+                "key"   => "round_1_day",
+                "value" => null,
+                "type"  => "date"
+            ],
+            [
+                "key"   => "round_1_start_time",
+                "value" => null,
+                "type"  => "time"
+            ],
+            [
+                "key"   => "round_1_start_end",
+                "value" => null,
+                "type"  => "time"
+            ],
+            [
+                "key"   => "round_2_day",
+                "value" => null,
+                "type"  => "date"
+            ],
+            [
+                "key"   => "round_2_start_time",
+                "value" => null,
+                "type"  => "time"
+            ],
+            [
+                "key"   => "round_2_start_end",
+                "value" => null,
+                "type"  => "time"
+            ],
+        ] as $row) {
+            Competition::create([
+                'key'   => $row['key'],
+                'value' => $row['value'],
+                'type'  => $row['type']
+            ]);
+        }
     }
 }
