@@ -68,11 +68,11 @@
     @yield('content')
 
     <!-- Palms -->
-    <div class="hidden md:block absolute bottom-8 left-8 -z-50">
+    <div class="hidden lg:block absolute bottom-8 left-8 -z-50">
         <img src="{{ asset('website/images/palm.svg') }}" class="w-full md:w-auto sm:w-6">
     </div>
 
-    <div class="hidden md:block absolute top-8 right-8 -z-50">
+    <div class="hidden lg:block absolute top-8 right-8 -z-50">
         <img src="{{ asset('website/images/palm.svg') }}" class="w-full md:w-auto sm:w-6">
     </div>
     <!-- End Palms -->

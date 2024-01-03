@@ -90,7 +90,7 @@ unset($__errorArgs, $__bag); ?> <!--[if ENDBLOCK]><![endif]-->
                                                 data-original="#000000" />
                                         </svg>
                                         <span class="font-sans">رفع الصورة</span>
-                                        <input type="file" id='uploadFile' class="hidden" wire:model="image" />
+                                        <input type="file" capture id='uploadFile' class="hidden" wire:model="image" />
                                         <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
                                     </label>
                                     <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['image'];

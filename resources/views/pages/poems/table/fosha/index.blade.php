@@ -22,11 +22,11 @@ $dates = computed(function () {
 
 @section('content')
     @volt
-        <div id="app">
+        <div id="app" class="mb-4">
             <div class="px-0 md:px-48">
                 <div class="py-20 md:py-40 px-2 md:px-8 bg-[#ec6646]">
                     <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
-                
+
                     <p class="text-center text-2xl md:text-4xl p-4 font-semibold text-black" style="line-height:normal">
                         استعدوا لتجربة شعرية استثنائية،
                         في هذه المساحة
@@ -87,7 +87,7 @@ $dates = computed(function () {
                                 const now = new Date().getTime();
                                 const distance = this.countDownDate - now;
                                 this.showContent = true;
-                        
+
                                 if (distance >= 0) {
                                 const hours = this.pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
                                 const minutes = this.pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
@@ -173,7 +173,7 @@ $dates = computed(function () {
             }
             },
         }
-        }          
+        }
     @endscript
     @endvolt
 @endsection

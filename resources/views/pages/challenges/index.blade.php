@@ -42,7 +42,7 @@ $submit = function () {
 
 @extends('layouts.app')
 
-@section('title', 'تحدي نفسك')
+@section('title', 'تحد نفسك')
 
 @section('content')
     @volt
@@ -57,7 +57,7 @@ $submit = function () {
                 this.step = this.stepTemp;
                 this.currentQuestion++;
             }
-        }" class="border-x-2 border-[#e34e34]">
+        }" class="border-x-2 border-[#e34e34] mb-4">
 
             <!-- Banner -->
             <div class="h-36 md:h-64 w-full">
@@ -78,7 +78,7 @@ $submit = function () {
 
                         <figure class="max-w-lg mx-auto flex flex-col items-center mt-4">
                             <a target="_blank" :href="hint_image">
-                            <img class="h-64 w-64 rounded-lg object-fit:cover" :src="hint_image" alt="image description">
+                            <img class="max-h-96 w-full rounded-lg object-fit:cover" :src="hint_image" alt="image description">
                             </a>
                             <figcaption class="mt-2 text-sm text-center text-black font-semibold" x-text="hint_text">
                             </figcaption>
@@ -138,7 +138,7 @@ $submit = function () {
                                 <div x-show="currentQuestion=={{ $loop->index + 1 }}"
                                     class="animate__animated animate__backInDown">
                                     <div class="flex flex-col items-center justify-center mt-4">
-                                        <h1 class="text-1xl md:text-4xl font-bold mb-8 text-[#e34e34]">{{ $question->content }}
+                                        <h1 class="text-1xl md:text-4xl font-bold mb-8 text-[#e34e34] text-center" style="line-height:normal">{{ $question->content }}
                                         </h1>
 
                                         <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-4 gap-4">

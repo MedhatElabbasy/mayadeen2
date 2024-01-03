@@ -13,10 +13,10 @@ use App\Models\Question;
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split("volt-anonymous-fragment-eyJuYW1lIjoidm9sdC1hbm9ueW1vdXMtZnJhZ21lbnQtNTJjNDlmOTU5MzI2MWVjYzkxODAxODRjMDA5MWY0MmMiLCJwYXRoIjoicmVzb3VyY2VzXFx2aWV3c1xccGFnZXNcXGluZGV4LmJsYWRlLnBocCJ9", Livewire\Volt\Precompilers\ExtractFragments::componentArguments([...get_defined_vars(), ...array (
+[$__name, $__params] = $__split("volt-anonymous-fragment-eyJuYW1lIjoidm9sdC1hbm9ueW1vdXMtZnJhZ21lbnQtYWZlNmY5NmZkZjU5M2Q4Mzg3ZjBmMDhlNTA4ZTAyNGIiLCJwYXRoIjoicmVzb3VyY2VzXFx2aWV3c1xccGFnZXNcXGluZGV4LmJsYWRlLnBocCJ9", Livewire\Volt\Precompilers\ExtractFragments::componentArguments([...get_defined_vars(), ...array (
 )]));
 
-$__html = app('livewire')->mount($__name, $__params, 'eBn6gCE', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'Msn5BzG', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

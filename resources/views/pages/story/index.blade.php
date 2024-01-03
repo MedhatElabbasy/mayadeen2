@@ -90,9 +90,9 @@ $submit = function () {
 
 @section('content')
     @volt
-        <div>
+        <div id="app" class="mb-4">
 
-            <div id="app" x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
+            <div x-data="{ step: 1 }" class="border-x-2 border-[#e34e34]">
 
                <!-- Banner -->
                 <div class="h-36 md:h-64 w-full">

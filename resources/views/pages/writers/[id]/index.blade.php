@@ -17,18 +17,18 @@ state([
 
 @section('content')
 @volt
-<div id="app">
+<div id="app" class="mb-4">
 
     <div class="flex flex-col justify-center items-center p-8">
-        <a href="{{ url('/') }}" wire:navigate>
-            <img src="{{ asset('website/images/navbar-light.svg') }}" class="w-full md:w-auto sm:w-6 mx-auto">
+        <a href="{{ url('/writers') }}" wire:navigate>
+            <img src="{{ asset('website/images/navbar-light.svg') }}">
         </a>
 
         <div class="bg-[#f2e7d1] mt-8 rounded-3xl p-8 text-center justify-center items-center w-12/12 md:w-8/12">
             <div class="flex flex-col justify-center items-center">
                 <img
                 src="{{asset('storage/'.$this->writer->image)}}"
-                class="rounded-3xl h-60 w-60"
+                class="rounded-3xl h-60 w-60 mt-4"
                 >
             </div>
             <h1 class="font-semibold mt-4">{{$this->writer->name}}</h1>
@@ -63,9 +63,9 @@ state([
 
             <div class="flex justify-between mt-12">
                 <div>
-                    <a href="{{ url('/writers/'.$writer->id.'/quote') }}" wire:navigate class="flex gap-2 justify-center items-start">
+                    <a href="{{ url('/writers') }}" wire:navigate class="flex gap-2 justify-center items-start">
                         <img src="{{ asset('website/images/arrow-right.png') }}" class="w-6">
-                        <p class="font-semibold">الإقتباسات</p>
+                        <p class="font-semibold">الأدباء</p>
                     </a>
                 </div>
 

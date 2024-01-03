@@ -51,6 +51,7 @@ class SettingResource extends Resource
 
                 Tables\Columns\TextColumn::make('value')
                     ->label('القيمة')
+                    ->html()
                     ->formatStateUsing(fn ($state) => $state === null ? 'Empty' : $state)
                     ->sortable()
                     ->searchable(),
@@ -69,12 +70,15 @@ class SettingResource extends Resource
                                     ->label($record->label)
                                     ->type('number')
                             ],
+                            'editor' => [
+                                Forms\Components\RichEditor::make('value')
+                                ->label($record->label)
+                            ],
                             'image' => [
                                 Forms\Components\FileUpload::make('value')
                                     ->label($record->label)
                                     ->image()
                                     ->imageEditor()
-                                    ->reorderable()
                                     ->appendFiles()
                                     ->openable()
                                     ->downloadable()
