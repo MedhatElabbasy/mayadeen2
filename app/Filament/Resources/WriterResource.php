@@ -235,6 +235,7 @@ class WriterResource extends Resource
 
                 \Filament\Infolists\Components\TextEntry::make('birthday')
                     ->label('يوم الميلاد'),
+                ]),
 
                 \Filament\Infolists\Components\Section::make('الصورة الشخصية')->columns(1)->schema([
                     \Filament\Infolists\Components\ImageEntry::make('image')
