@@ -60,7 +60,7 @@ $dates = computed(function () {
                                             {{ !$item->is_break ? $item->owner : 'استراحة' }}
                                         </td>
                                         <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
-                                            {{ $item->start_time.' - '.$item->end_time }}
+                                            {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->start_time)->translatedFormat('h:i A').' - '.\Carbon\Carbon::createFromFormat('H:i:s', $item->end_time)->translatedFormat('h:i A') }}
                                         </td>
                                         <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
                                             {{ !$item->is_break ? $item->details : 'استراحة' }}
