@@ -84,10 +84,5 @@ state([
     </div>
 
 </div>
-@script
-<script>
-Calamansi.autoload();
-</script>
-@endscript
 @endvolt
 @endsection
