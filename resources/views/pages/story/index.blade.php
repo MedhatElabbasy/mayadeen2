@@ -236,7 +236,7 @@ $submit = function () {
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                        <input wire:ignore required min="9" type="tel" id="phone2"
+                                        <input dir="rtl" wire:ignore required min="9" type="tel" id="phone2"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w2_number"
                                         x-model="number"
                                         placeholder="أدخل الهاتف">
@@ -281,7 +281,7 @@ $submit = function () {
                                     </div>
                                     <div class="w-full" wire:ignore>
                                         <label for="phone" class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                        <input wire:ignore required min="9" type="tel" id="phone3"
+                                        <input dir="rtl" wire:ignore required min="9" type="tel" id="phone3"
                                         class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="w3_number"
                                         x-model="number"
                                         placeholder="أدخل الهاتف">
