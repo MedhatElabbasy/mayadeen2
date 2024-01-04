@@ -18,7 +18,6 @@ class ViewStory extends ViewRecord
             Actions\EditAction::make(),
             Action::make('PDF')
             ->label('PDF')
-            ->icon('heroicon-o-book-open')
             ->action(function (Story $story) {
                 redirect()->route('story.download.pdf', $story->id);
             }),
