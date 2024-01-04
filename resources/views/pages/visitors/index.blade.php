@@ -35,6 +35,10 @@ $submit = function () {
 
     $this->completed = true;
 };
+
+state([
+    'image' => '  ',
+]);
 ?>
 
 @extends('layouts.app')
