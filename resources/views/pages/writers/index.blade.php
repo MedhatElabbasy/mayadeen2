@@ -23,7 +23,6 @@ state([
                 <h1 class="text-center text-2xl md:text-4xl font-bold my-8 text-[#e34e34]">أدباء عبر التاريخ!</h1>
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto items-center justify-center mt-12 gap-4">
                         @foreach ($writers as $writer)
-
                         <a wire:navigate href="{{ url('/writers/'.$writer->id) }}" class="mt-2 items-center justify-center text-white text-1xl md:text-2xl font-semibold">
                             <div class="beep text-center rounded-lg hover:scale-95 px-4 py-5 bg-[#e34e34]">
                             {{$writer->name}}
