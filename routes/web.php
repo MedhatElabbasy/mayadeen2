@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Story;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoryReportController;
 use App\Http\Controllers\AuthSuperVisorController;
