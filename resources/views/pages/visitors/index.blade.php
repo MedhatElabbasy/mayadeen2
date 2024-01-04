@@ -35,6 +35,8 @@ $submit = function () {
 
     $this->completed = true;
 };
+
+$this->submit();
 ?>
 
 @extends('layouts.app')
