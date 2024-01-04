@@ -195,7 +195,7 @@ $submit = function () {
                                             class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
                                             <div class="flex bg-[#f1e1c6] rounded-lg p-2.5 items-center">
                                                 <img src="{{ asset('website/images/sa-flag.webp') }}" alt="SA" class="bg-[#f1e1c6] w-6 h-4">
-                                                <input wire:model="w1_number" dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" placeholder="أدخل الهاتف">
+                                                <input x-model="number" wire:model="w1_number" dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" placeholder="أدخل الهاتف">
                                             </div>
                                         @error('phone1')
                                             <div class="text-white">أدخل الهاتف*</div>
@@ -244,7 +244,7 @@ $submit = function () {
                                             class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
                                             <div class="flex bg-[#f1e1c6] rounded-lg p-2.5 items-center">
                                                 <img src="{{ asset('website/images/sa-flag.webp') }}" alt="SA" class="bg-[#f1e1c6] w-6 h-4">
-                                                <input wire:model="w2_number" dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" placeholder="أدخل الهاتف">
+                                                <input x-model="number" wire:model="w2_number" dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" placeholder="أدخل الهاتف">
                                             </div>
                                         @error('phone2')
                                             <div class="text-white">أدخل الهاتف*</div>
@@ -293,7 +293,7 @@ $submit = function () {
                                             class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
                                             <div class="flex bg-[#f1e1c6] rounded-lg p-2.5 items-center">
                                                 <img src="{{ asset('website/images/sa-flag.webp') }}" alt="SA" class="bg-[#f1e1c6] w-6 h-4">
-                                                <input wire:model="w3_number" dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" placeholder="أدخل الهاتف">
+                                                <input x-model="number" wire:model="w3_number" dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" placeholder="أدخل الهاتف">
                                             </div>
                                         @error('phone3')
                                             <div class="text-white">أدخل الهاتف*</div>
