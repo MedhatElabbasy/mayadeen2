@@ -85,9 +85,10 @@ $submit = function () {
                                 <div wire:ignore class="w-full">
                                     <label wire:ignore for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
-                                    <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
-                                        class="bg-[#f1e1c6] p-2.5 rounded-lg text-black w-[120%]" wire:model="phone"
-                                        placeholder="أدخل الهاتف">
+                                        <div class="flex bg-[#f1e1c6] rounded-lg p-2.5 items-center">
+                                            <img src="{{ asset('website/images/sa-flag.webp') }}" alt="SA" class="bg-[#f1e1c6] w-6 h-4">
+                                            <input dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" wire:model="phone" placeholder="أدخل الهاتف">
+                                        </div>
                                     @error('phone')
                                         <div class="text-white">أدخل الهاتف*</div>
                                     @enderror
@@ -155,21 +156,5 @@ $submit = function () {
             <link href=" https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
         @endassets
-
-        @script
-            <script>
-            const input = document.querySelector("#phone");
-                window.intlTelInput(input, {
-                    initialCountry: "auto",
-                    geoIpLookup: callback => {
-                        fetch("https://ipapi.co/json")
-                            .then(res => res.json())
-                            .then(data => callback(data.country_code))
-                            .catch(() => callback("sa"));
-                    },
-                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-                });
-            </script>
-        @endscript
     @endvolt
 @endsection
