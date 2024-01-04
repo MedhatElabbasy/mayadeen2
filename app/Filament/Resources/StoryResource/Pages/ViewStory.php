@@ -19,7 +19,7 @@ class ViewStory extends ViewRecord
             Action::make('PDF')
             ->label('PDF')
             ->action(function (Story $story) {
-                redirect()->route('story.download.pdf', $story->id);
+                redirect()->route('story.report.pdf', $story->id);
             }),
         ];
     }
