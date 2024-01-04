@@ -106,7 +106,6 @@ $submit = function () {
                                         </svg>
                                         <span class="font-sans">رفع الصورة</span>
                                         <input type="file" accept="image/*" id='uploadFile' class="hidden" wire:model="image" />
-                                        <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
                                         <div wire:loading wire:target="image" class="text-sm text-gray-500 italic mt-4">يتم الرفع ...</div>
                                         @if($this->image) <div class="text-center text-sm text-gray-500 italic mt-4">تم اختيار الصورة</div> @endif
                                     </label>

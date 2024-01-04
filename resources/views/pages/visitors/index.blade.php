@@ -35,10 +35,6 @@ $submit = function () {
 
     $this->completed = true;
 };
-
-state([
-    'image' => '123.png',
-]);
 ?>
 
 @extends('layouts.app')
@@ -89,7 +85,7 @@ state([
                                 <div wire:ignore class="w-full">
                                     <label for="phone"
                                         class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
-                                    <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
+                                    <input dir="rtl" wire:ignore id="phoneeee" required min="9" type="tel"
                                         class="bg-[#f1e1c6] p-2.5 rounded-lg text-black w-full" wire:model="phone"
                                         placeholder="أدخل الهاتف">
                                     @error('phone')
@@ -111,8 +107,7 @@ state([
                                                 data-original="#000000" />
                                         </svg>
                                         <span class="font-sans">رفع الصورة</span>
-                                        <input type="file" accept="image/*" id='uploadFile' class="contents" wire:model="image"/>
-                                        <p class="text-xs text-gray-400 mt-2 font-sans">مسموح بالصورة فقط.</p>
+                                        <input type="file" accept="image/*" id='uploadFile' class="hidden" wire:model="image" />
                                         <div wire:loading wire:target="image" class="text-sm text-gray-500 italic mt-4">يتم الرفع ...</div>
                                         @if($this->image) <div class="text-center text-sm text-gray-500 italic mt-4">تم اختيار الصورة</div> @endif
                                     </label>
