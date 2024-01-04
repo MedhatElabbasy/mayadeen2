@@ -37,7 +37,7 @@ $submit = function () {
 };
 
 state([
-    'image' => '  ',
+    'image' => '123.png',
 ]);
 ?>
 
