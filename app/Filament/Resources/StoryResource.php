@@ -58,7 +58,7 @@ class StoryResource extends Resource
                                     ->maxLength(255)
                                     ->rules('required'),
 
-                                Forms\Components\RichEditor::make('content')
+                                Forms\Components\Textarea::make('content')
                                     ->label('المحتوي')
                                     ->placeholder('محتوي الأقصوصة')
                                     //->toolbarButtons(['bold', 'italic', 'link', 'clean'])
