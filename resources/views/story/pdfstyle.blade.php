@@ -16,6 +16,12 @@
     <title>Document</title>
 
     <style>
+        @media dompdf {
+           * { line-height: 1.2; }
+        }
+        </style>
+        
+    <style>
 
  * {
             font-family: DejaVu Sans !important;

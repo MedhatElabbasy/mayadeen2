@@ -2,20 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StoryResource\Pages;
-use App\Models\Story;
 use Filament\Forms;
+use Filament\Tables;
+use App\Models\Story;
 use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Table;
-use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
-use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
-use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use pxlrbt\FilamentExcel\Columns\Column;
+use Filament\Tables\Filters\SelectFilter;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use App\Filament\Resources\StoryResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+
 class StoryResource extends Resource
 {
     protected static ?string $model = Story::class;
@@ -181,8 +183,14 @@ class StoryResource extends Resource
                     ->relationship('user', 'name'),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Action::make('PDF')
+                ->label('PDF')
+                ->icon('heroicon-o-book-open')
+                ->action(function (Story $story) {
+                    redirect()->route('story.download.pdf', $story->id);
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

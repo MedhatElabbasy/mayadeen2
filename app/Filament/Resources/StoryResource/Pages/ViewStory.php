@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\StoryResource\Pages;
 
-use App\Filament\Resources\StoryResource;
+use App\Models\Story;
 use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
+use App\Filament\Resources\StoryResource;
 
 class ViewStory extends ViewRecord
 {
@@ -14,6 +16,12 @@ class ViewStory extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
+            Action::make('PDF')
+            ->label('PDF')
+            ->icon('heroicon-o-book-open')
+            ->action(function (Story $story) {
+                redirect()->route('story.download.pdf', $story->id);
+            }),
         ];
     }
 }
