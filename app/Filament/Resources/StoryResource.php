@@ -9,7 +9,6 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\Filter;
 use pxlrbt\FilamentExcel\Columns\Column;
 use Filament\Tables\Filters\SelectFilter;
@@ -185,12 +184,6 @@ class StoryResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
-                Action::make('PDF')
-                ->label('PDF')
-                ->icon('heroicon-o-book-open')
-                ->action(function (Story $story) {
-                    redirect()->route('story.download.pdf', $story->id);
-                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
