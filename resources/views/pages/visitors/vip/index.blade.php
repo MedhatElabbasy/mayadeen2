@@ -80,22 +80,25 @@ $submit = function () {
                                         <div class="text-white">أدخل البريد الإلكتروني*</div>
                                     @enderror
                                 </div>
+
                                 <div wire:ignore class="w-full">
-                                    <label for="phone"
-                                        class="block mb-2 font-medium text-[#f1e1c6]">الهاتف</label>
-                                    <input dir="rtl" wire:ignore id="phone" required min="9" type="tel"
-                                        class="bg-[#f1e1c6] w-80 p-2.5 rounded-lg text-black" wire:model="phone"
-                                        placeholder="أدخل الهاتف">
+                                    <label wire:ignore for="phone"
+                                        class="block mb-2 font-medium text-[#f1e1c6] rounded-lg">الهاتف</label>
+                                        <div class="flex bg-[#f1e1c6] rounded-lg p-2.5 items-center">
+                                            <img src="{{ asset('website/images/sa-flag.webp') }}" alt="SA" class="bg-[#f1e1c6] w-6 h-4">
+                                            <input dir="rtl" wire:ignore required min="9" type="tel" class="text-black w-full bg-[#f1e1c6] px-2 p-1" wire:model="phone" placeholder="أدخل الهاتف">
+                                        </div>
                                     @error('phone')
                                         <div class="text-white">أدخل الهاتف*</div>
                                     @enderror
                                 </div>
 
+
                                 <div class="w-full">
                                     <label for="name" class="block mb-2 font-medium text-[#f1e1c6]">الصورة</label>
 
                                     <label for="uploadFile"
-                                        class="bg-[#f1e1c6] text-black text-base rounded w-80 h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]">
+                                        class="bg-[#f1e1c6] text-black text-base rounded h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 mb-2 fill-black" viewBox="0 0 32 32">
                                             <path
                                                 d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
@@ -161,21 +164,5 @@ $submit = function () {
             <link href=" https://cdn.jsdelivr.net/npm/intl-tel-input@18.3.3/build/css/intlTelInput.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
         @endassets
-
-        @script
-            <script>
-                const input = document.querySelector("#phone");
-                window.intlTelInput(input, {
-                    initialCountry: "auto",
-                    geoIpLookup: callback => {
-                        fetch("https://ipapi.co/json")
-                            .then(res => res.json())
-                            .then(data => callback(data.country_code))
-                            .catch(() => callback("sa"));
-                    },
-                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-                });
-            </script>
-        @endscript
     @endvolt
 @endsection
