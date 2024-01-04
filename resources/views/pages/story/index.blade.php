@@ -318,7 +318,7 @@ $submit = function () {
                                     <div class="beep text-center relative hover:scale-95 cursor-pointer">
                                         <a href="{{ route('story.pdf', $this->id) }}">
                                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
-                                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">تحميل الأقصوصة PDF</span>
+                                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">PDF</span>
                                         </a>
                                     </div>
 
