@@ -5,10 +5,10 @@ namespace App\Filament\Resources\CompetitionVoteResource\Pages;
 use Filament\Actions;
 use Filament\Actions\Action;
 use App\Models\CompetitionVote;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 use App\Filament\Resources\CompetitionVoteResource;
 
-class ListCompetitionVotes extends ListRecords
+class ManageCompetitionVotes extends ManageRecords
 {
     protected static string $resource = CompetitionVoteResource::class;
 

@@ -27,6 +27,7 @@ class CompetitionVoteResource extends Resource
 
     protected static ?string $modelLabel = 'تصويت المنافسة';
 
+
     public static function form(Form $form): Form
     {
         return $form
@@ -69,11 +70,25 @@ class CompetitionVoteResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('team')
+                ->label('الفريق')
+                ->options([
+                    "1" => 'الفريق الأول',
+                    "2" => 'الفريق الثاني',
+                ])
+                ->attribute('team'),
+                Tables\Filters\SelectFilter::make('round')
+                ->label('الجولة')
+                ->options([
+                    "1" => 'الجولة الأولي',
+                    "2" => 'الجولة الثانية',
+                    "3" => 'الجولة الثالثة',
+                ])
+                ->attribute('round'),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -82,20 +97,10 @@ class CompetitionVoteResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCompetitionVotes::route('/'),
-            'create' => Pages\CreateCompetitionVote::route('/create'),
-            'view' => Pages\ViewCompetitionVote::route('/{record}'),
-            'edit' => Pages\EditCompetitionVote::route('/{record}/edit'),
+            'index' => Pages\ManageCompetitionVotes::route('/'),
         ];
     }
 }
