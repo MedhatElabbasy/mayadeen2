@@ -89,7 +89,7 @@ $vote = function ($team, $round) {
                         $this->day == now('Asia/Riyadh')->format('Y-m-d') 
                         && now('Asia/Riyadh')->gt($this->end_time)
                     )
-                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الفائز💪</h1>
+                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]"> الفائز فى الجولة {{request('round')}}💪</h1>
                     
                         @if($this->votes->count()!=0 && $this->votes_team_1 > $this->votes_team_2)
                             <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المعارض ( الأدب ) 🤚</h2>
