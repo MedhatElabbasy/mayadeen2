@@ -76,7 +76,7 @@ $nowDates = computed(function () {
                     </div>
 
                 </div>
-
+{{-- 
                 <div wire:ignore x-data="{ currentDate: 0 }">
                     @foreach ($this->nowDates as $item)
                         <div x-data="{
@@ -120,7 +120,7 @@ $nowDates = computed(function () {
                         </div>
                     @endforeach
                     </div>
-
+ --}}
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(setting('shareYourPoemQrCode'))
                         <img class="py-2 rounded-lg max-w-32 max-h-32" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">

@@ -77,7 +77,7 @@ $nowDates = computed(function () {
 
                 </div>
 
-                <div wire:ignore x-data="{ currentDate: 0 }">
+{{--                 <div wire:ignore x-data="{ currentDate: 0 }">
                     @foreach ($this->nowDates as $item)
                         <div x-data="{
                             showContent: false,
@@ -119,14 +119,14 @@ $nowDates = computed(function () {
                             <p x-text="formatCountdown" class="mt-2 rounded-lg py-1 px-2 text-2xl bg-[#ec6646] text-white font-bold"></p>
                         </div>
                     @endforeach
-                    </div>
+                </div> --}}
 
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(setting('shareYourPoemQrCode'))
                         <img class="py-2 rounded-lg max-w-32 max-h-32" src="{{ url('storage/'.setting('shareYourPoemQrCode')) }}">
                     @endif
 
-                    <span class="text-1xl md:text-2xl text-center font-bold py-2">شاركنا قصيدتك بالفصحى !</span>
+                    <span class="text-1xl md:text-2xl text-center font-bold py-2">شاركنا قصيدتك بالنبطي !</span>
                     <img class="py-2" src="{{ asset('website/images/palm-horizontal.svg') }}">
                 </div>
 
