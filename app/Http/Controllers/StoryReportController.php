@@ -53,7 +53,7 @@ class StoryReportController extends Controller
                 $headers
             );
         } catch (\Throwable $th) {
-            abort(404);
+            dd(404);
         }
     }
 }
