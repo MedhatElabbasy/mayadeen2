@@ -14,6 +14,10 @@ $dates = computed(function () {
     return DatesOfPoem::where('type', 'nabati')->where('date', $this->currentDay)->get();
 });
 
+$nowDates = computed(function () {
+    return DatesOfPoem::where('type', 'fosha')->where('date', now('Asia/Riyadh')->format('Y-m-d'))->get();
+});
+
 ?>
 
 @extends('layouts.app')
@@ -54,7 +58,7 @@ $dates = computed(function () {
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($this->dates as $item)
+                                @foreach ($this->nowDates as $item)
                                     <tr class="text-sm md:text-lg text-black bg-[#f1e1c6] text-center">
                                         <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
                                             {{ !$item->is_break ? $item->owner : 'استراحة' }}

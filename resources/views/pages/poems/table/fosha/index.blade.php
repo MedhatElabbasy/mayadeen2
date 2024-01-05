@@ -9,8 +9,13 @@ state([
     'days' => $days,
     'currentDay' => $days->first(),
 ]);
+
 $dates = computed(function () {
     return DatesOfPoem::where('type', 'fosha')->where('date', $this->currentDay)->get();
+});
+
+$nowDates = computed(function () {
+    return DatesOfPoem::where('type', 'fosha')->where('date', now('Asia/Riyadh')->format('Y-m-d'))->get();
 });
 
 ?>
@@ -73,7 +78,7 @@ $dates = computed(function () {
                 </div>
 
                 <div wire:ignore x-data="{ currentDate: 0 }">
-                    @foreach ($this->dates as $item)
+                    @foreach ($this->nowDates as $item)
                         <div x-data="{
                             showContent: false,
                             countDownDate: new Date('{{ now('Asia/Riyadh')->format('Y-m-d') }}T{{$item->start_time}}').getTime(),
