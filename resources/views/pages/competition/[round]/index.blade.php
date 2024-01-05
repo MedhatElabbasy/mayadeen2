@@ -72,16 +72,27 @@ $vote = function ($team, $round) {
                         <div class="beep text-center relative hover:scale-95 cursor-pointer"
                             wire:click="vote(2,{{$this->round}})" x-on:click="step++">
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
-                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق المؤيد ( السينما )</span>
-                        </div>
+                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق المؤيد ( السينما )
 
+                                
+                            </span>
+                            
+
+                                
+                            
+
+                        </div>
+                        @if($this->votes_team_1==0 && $this->votes_team_2 ==0)
+
+                        @else
                         <h3 class="text-center text-1xl md:text-2xl font-bold my-8 text-black">
-                            الفريق المعارض ( الأدب ) : {{ $this->votes_team_1 }}
+                            الفريق المعارض ( الأدب ) : {{ round(($this->votes_team_1 /($this->votes_team_1+$this->votes_team_2))*100 ,1)}} %
                         </h3>
     
                         <h3 class="text-center text-1xl md:text-2xl font-bold my-8 text-black">
-                            الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}/{{ $this->votes_team_1 }}+{{ $this->votes_team_2 }}
+                            الفريق المؤيد ( السينما ) : {{ round(($this->votes_team_2 /($this->votes_team_1+$this->votes_team_2))*100 ,1)}} %
                         </h3>
+                        @endif
 
                     </div>
                 </div>
@@ -122,15 +133,21 @@ $vote = function ($team, $round) {
                             <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">تعادل</h2>
                         @endif
 
-                        <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">إجمالي الأصوات</h2>
 
-                        <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
-                            الفريق المعارض ( الأدب ) : {{ $this->votes_team_1 }}
-                        </h3>
+                        @if($this->votes_team_1==0 && $this->votes_team_2 ==0)
 
-                        <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
-                            الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}
+                        @else
+                        <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12"> نتيجة التصويت </h2>
+
+                        <h3 class="text-center text-1xl md:text-2xl font-bold my-8 text-black">
+                            الفريق المعارض ( الأدب ) : {{ round(($this->votes_team_1 /($this->votes_team_1+$this->votes_team_2))*100 ,1)}} %
                         </h3>
+    
+                        <h3 class="text-center text-1xl md:text-2xl font-bold my-8 text-black">
+                            الفريق المؤيد ( السينما ) : {{ round(($this->votes_team_2 /($this->votes_team_1+$this->votes_team_2))*100 ,1)}} %
+                        </h3>
+                        @endif
+
                     @else   
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ $this->round_title }}</h1>
                         <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">لم يبدأ التصويت بعد</h1>
