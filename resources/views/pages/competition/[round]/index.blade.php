@@ -12,7 +12,7 @@ state([
     'votes_team_1' => CompetitionVote::where('round', request('round'))->where('team', 1)->count(),
     'votes_team_2' => CompetitionVote::where('round', request('round'))->where('team', 2)->count(),
     'round'        => request('round'),
-    'round_title'  => return match(request('round')) {
+    'round_title'  => match(request('round')) {
             "1"     => "الجولة الأولى",
             "2"     => "الجولة الثانية",
             "3"     => "الجولة الثالثة",
