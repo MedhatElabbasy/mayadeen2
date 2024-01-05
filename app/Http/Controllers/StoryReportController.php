@@ -53,7 +53,7 @@ class StoryReportController extends Controller
                 $headers
             );
         } catch (\Throwable $th) {
-            dd(404);
+            dd(Story::find($id));
         }
     }
 }
