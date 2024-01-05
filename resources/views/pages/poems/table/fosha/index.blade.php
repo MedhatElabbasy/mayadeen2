@@ -7,7 +7,7 @@ $days = DatesOfPoem::select('date')->where('type', 'fosha')->distinct()->orderBy
 
 state([
     'days' => $days,
-    'currentDay' => $days->first(),
+    'currentDay' => $days->skip(1)->first(),
 ]);
 
 $dates = computed(function () {
