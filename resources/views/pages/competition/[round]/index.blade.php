@@ -58,8 +58,13 @@ $vote = function ($team, $round) {
         <div x-show="step == 1" class="px-8">
             <div class="flex flex-col items-center justify-center my-8">
                 <div class="z-10">
+<<<<<<< Updated upstream
                     <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ $this->round_title }}💪</h1>
                     <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">صوت لفريقك🤝</h2>
+=======
+                    <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{request('round')}}</h1>
+                    <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">صوت لفريقك</h2>
+>>>>>>> Stashed changes
 
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
 
@@ -83,7 +88,7 @@ $vote = function ($team, $round) {
         <div x-show="step == 2" class="px-8">
             <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
                 <div class="container mx-auto px-4 justify">
-                    <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">تم إرسال تصويتك ✍️</h1>
+                    <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">تم إرسال تصويتك </h1>
                 </div>
             </div>
         </div>
@@ -95,22 +100,26 @@ $vote = function ($team, $round) {
                         $this->day == now('Asia/Riyadh')->format('Y-m-d') 
                         && now('Asia/Riyadh')->gt($this->end_time)
                     )
+<<<<<<< Updated upstream
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]"> الفائز فى الجولة {{ $this->round_title }}💪</h1>
+=======
+                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]"> الفائز فى الجولة {{request('round')}}</h1>
+>>>>>>> Stashed changes
                     
                         @if($this->votes->count()!=0 && $this->votes_team_1 > $this->votes_team_2)
-                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المعارض ( الأدب ) 🤚</h2>
+                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المعارض ( الأدب ) </h2>
                         @endif
                     
                         @if($this->votes->count()!=0 && $this->votes_team_1 < $this->votes_team_2)
-                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المؤيد ( السينما ) 🤚</h2>
+                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المؤيد ( السينما ) </h2>
                         @endif
 
                         @if($this->votes->count()!=0 && $this->votes_team_1 == $this->votes_team_2)
-                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">تعادل 🤚</h2>
+                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">تعادل </h2>
                         @endif
                     
                         @if($this->votes->count() == 0)
-                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">تعادل🤚</h2>
+                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">تعادل</h2>
                         @endif
 
                         <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">إجمالي الأصوات</h2>
@@ -123,7 +132,11 @@ $vote = function ($team, $round) {
                             الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}
                         </h3>
                     @else   
+<<<<<<< Updated upstream
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ $this->round_title }}💪</h1>
+=======
+                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ request('round') }}</h1>
+>>>>>>> Stashed changes
                         <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">لم يبدأ التصويت بعد</h1>
                     @endif
                 </div>
