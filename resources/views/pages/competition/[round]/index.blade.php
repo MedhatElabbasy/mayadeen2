@@ -74,7 +74,6 @@ $vote = function ($team, $round) {
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
                             <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق المؤيد ( السينما )</span>
                         </div>
-                        <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">إجمالي الأصوات</h2>
 
                         <h3 class="text-center text-1xl md:text-2xl font-bold my-8 text-black">
                             الفريق المعارض ( الأدب ) : {{ $this->votes_team_1 }}
