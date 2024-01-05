@@ -107,7 +107,7 @@ $vote = function ($team, $round) {
                             <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">تعادل🤚</h2>
                         @endif
 
-                        <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">الأصوات</h2>
+                        <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">إجمالي الأصوات</h2>
 
                         <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
                             الفريق المعارض ( الأدب ) : {{ $this->votes_team_1 }}
