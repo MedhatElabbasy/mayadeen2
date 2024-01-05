@@ -15,7 +15,7 @@ $dates = computed(function () {
 });
 
 $nowDates = computed(function () {
-    return DatesOfPoem::where('type', 'fosha')->where('date', now('Asia/Riyadh')->format('Y-m-d'))->get();
+    return DatesOfPoem::where('type', 'nabati')->where('date', now('Asia/Riyadh')->format('Y-m-d'))->get();
 });
 
 ?>
