@@ -16,18 +16,10 @@ class CompetitionsSeeder extends Seeder
     {
         foreach ([
             [
-                "key"   => "is_end",
-                "value" => false,
-                "type"  => "bool",
-                'label' => ' منتهية ام لا',
-
-            ],
-            [
-                "key"   => "round_1_day",
+                "key"   => "day",
                 "value" => null,
                 "type"  => "date",
-                'label' => 'يوم الجولة الاولي    ',
-
+                'label' => 'يوم المنافسة',
             ],
             [
                 "key"   => "round_1_start_time",
@@ -36,17 +28,10 @@ class CompetitionsSeeder extends Seeder
                 'label' => 'وقت بدء الجولة الأولي',
             ],
             [
-                "key"   => "round_1_start_end",
+                "key"   => "round_1_end_time",
                 "value" => null,
                 "type"  => "time",
                 'label' => 'وقت انتهاء الجولة الأولي',
-            ],
-            [
-                "key"   => "round_2_day",
-                "value" => null,
-                "type"  => "date",
-                'label' => 'يوم الجولة الثانية ',
-
             ],
             [
                 "key"   => "round_2_start_time",
@@ -56,17 +41,10 @@ class CompetitionsSeeder extends Seeder
 
             ],
             [
-                "key"   => "round_2_start_time",
+                "key"   => "round_2_end_time",
                 "value" => null,
                 "type"  => "time",
                 'label' => 'وقت انتهاء الجولة الثانية',
-
-            ],
-            [
-                "key"   => "round_3_day",
-                "value" => null,
-                "type"  => "date",
-                'label' => 'يوم الجولة الثالثة    ',
 
             ],
             [
