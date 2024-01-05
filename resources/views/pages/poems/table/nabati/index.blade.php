@@ -3,7 +3,7 @@
 use function Livewire\Volt\{rules, state, computed};
 use App\Models\DatesOfPoem;
 
-$days = DatesOfPoem::select('date')->where('type', 'nabati')->distinct()->orderBy('date', 'asc')->get()->pluck('date');
+$days = DatesOfPoem::select('date')->where('type', 'nabati')->distinct()->orderBy('start_time', 'asc')->get()->pluck('date');
 
 state([
     'days' => $days,
