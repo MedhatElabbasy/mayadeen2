@@ -48,6 +48,7 @@ class CompetitionVoteResource extends Resource
                     ->options([
                         '1' => 'الجولة الأول',
                         '2' => 'الجولة الثاني',
+                        '3' => 'الجولة الثالثة',
                     ])
                     ->required()
                     ->rules('required', 'in:1,2'),
