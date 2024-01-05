@@ -4,15 +4,15 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Competition;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\Competition;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\CompetitionResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\CompetitionResource\RelationManagers;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\CompetitionResource\Pages;
+use App\Filament\Resources\CompetitionResource\RelationManagers;
 
 class CompetitionResource extends Resource
 {

@@ -24,6 +24,10 @@ state([
 
                     @foreach ([
                         [
+                            "title" => "مرحباً",
+                            "link" => "/"
+                        ],
+                        [
                             "title" => "تحد نفسك",
                             "link" => "/challenges"
                         ],
@@ -62,6 +66,10 @@ state([
                         [
                             "title" => "تسجيل كبار الزوار",
                             "link" => "/visitors/vip"
+                        ],
+                        [
+                            "title" => "المنافسة",
+                            "link" => "/competition"
                         ],
                     ] as $link)
 

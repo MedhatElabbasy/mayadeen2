@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\CompetitionVoteResource\Pages;
 
-use App\Filament\Resources\CompetitionVoteResource;
 use Filament\Actions;
+use Filament\Actions\Action;
+use App\Models\CompetitionVote;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\CompetitionVoteResource;
 
 class ListCompetitionVotes extends ListRecords
 {
@@ -14,6 +16,12 @@ class ListCompetitionVotes extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Action::make('reset')
+            ->label('إعادة المسابقة')
+            ->requiresConfirmation()
+            ->action(function () {
+                CompetitionVote::truncate();
+            }),
         ];
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\CompetitionResource\Pages;
 
-use App\Filament\Resources\CompetitionResource;
 use Filament\Actions;
+use Filament\Actions\Action;
+use App\Models\CompetitionVote;
 use Filament\Resources\Pages\ManageRecords ;
+use App\Filament\Resources\CompetitionResource;
 
 class ManageCompetitions extends ManageRecords
 {
@@ -13,6 +15,12 @@ class ManageCompetitions extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('reset')
+            ->label('إعادة المسابقة')
+            ->requiresConfirmation()
+            ->action(function () {
+                CompetitionVote::truncate();
+            }),
             Actions\CreateAction::make(),
         ];
     }
