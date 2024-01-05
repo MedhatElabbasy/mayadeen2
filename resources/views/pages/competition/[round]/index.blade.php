@@ -80,7 +80,7 @@ $vote = function ($team, $round) {
                         </h3>
     
                         <h3 class="text-center text-1xl md:text-2xl font-bold my-8 text-black">
-                            الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}
+                            الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}/{{ $this->votes_team_1 }}+{{ $this->votes_team_2 }}
                         </h3>
 
                     </div>

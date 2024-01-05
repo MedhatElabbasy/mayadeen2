@@ -11,7 +11,7 @@ state([
 ]);
 
 $dates = computed(function () {
-    return DatesOfPoem::where('type', 'fosha')->where('date', $this->currentDay)->orderBy('start_time', 'asc')->get();
+    return DatesOfPoem::where('type', 'fosha')->where('date', $this->currentDay)->orderBy('date', 'asc')->get();
 });
 
 $nowDates = computed(function () {
