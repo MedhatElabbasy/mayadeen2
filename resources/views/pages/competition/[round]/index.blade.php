@@ -12,9 +12,15 @@ state([
     'votes_team_1' => CompetitionVote::where('round', request('round'))->where('team', 1)->count(),
     'votes_team_2' => CompetitionVote::where('round', request('round'))->where('team', 2)->count(),
     'round'        => request('round'),
-    'day'          => $competition->where('key', 'day')->first()->value,
-    'start_time'   => $competition->where('key', 'round_'.request('round').'_start_time')->first()?->value,
-    'end_time'     => $competition->where('key', 'round_'.request('round').'_end_time')->first()?->value,
+    'round_title'  => return match(request('round')) {
+            "1"     => "الجولة الأولى",
+            "2"     => "الجولة الثانية",
+            "3"     => "الجولة الثالثة",
+            default => "الجولة الأولى",
+        },
+    'day'        => $competition->where('key', 'day')->first()->value,
+    'start_time' => $competition->where('key', 'round_'.request('round').'_start_time')->first()?->value,
+    'end_time'   => $competition->where('key', 'round_'.request('round').'_end_time')->first()?->value,
 ]);
 
 $vote = function ($team, $round) {
@@ -52,7 +58,7 @@ $vote = function ($team, $round) {
         <div x-show="step == 1" class="px-8">
             <div class="flex flex-col items-center justify-center my-8">
                 <div class="z-10">
-                    <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{request('round')}}💪</h1>
+                    <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ $this->round_title }}💪</h1>
                     <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">صوت لفريقك🤝</h2>
 
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 mx-auto justify-center mt-12 gap-4">
@@ -89,7 +95,7 @@ $vote = function ($team, $round) {
                         $this->day == now('Asia/Riyadh')->format('Y-m-d') 
                         && now('Asia/Riyadh')->gt($this->end_time)
                     )
-                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]"> الفائز فى الجولة {{request('round')}}💪</h1>
+                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]"> الفائز فى الجولة {{ $this->round_title }}💪</h1>
                     
                         @if($this->votes->count()!=0 && $this->votes_team_1 > $this->votes_team_2)
                             <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المعارض ( الأدب ) 🤚</h2>
@@ -117,7 +123,7 @@ $vote = function ($team, $round) {
                             الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}
                         </h3>
                     @else   
-                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ request('round') }}💪</h1>
+                        <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ $this->round_title }}💪</h1>
                         <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">لم يبدأ التصويت بعد</h1>
                     @endif
                 </div>
