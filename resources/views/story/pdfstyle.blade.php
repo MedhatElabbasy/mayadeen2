@@ -56,6 +56,7 @@
                 <span dir="rtl" class="margin-top:6px; font-size:12px"><b>المشرف:</b> <br> {{ $user }}</h1>
                 <br>
                 <div style="margin-top:12px">
+                    {!! nl2br(htmlspecialchars($content)) !!}
                 <div>
             </div>
 
