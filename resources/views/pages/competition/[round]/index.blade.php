@@ -78,17 +78,6 @@ $vote = function ($team, $round) {
             <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
                 <div class="container mx-auto px-4 justify">
                     <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">تم إرسال تصويتك ✍️</h1>
-
-                    <div class="z-10">
-                        <div class="beep text-center relative hover:scale-95 mb-8">
-                            <a href="{{url('/competition')}}" wire:navigate>
-                                <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}"
-                                    alt="">
-                                <span
-                                    class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الرئيسية</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -96,25 +85,30 @@ $vote = function ($team, $round) {
         <div x-show="step == 1" class="px-8">
             <div class="flex flex-col items-center justify-center my-8">
                 <div class="z-10">
-                    @if($this->votes->count()!=0)
+                    @if(
+                        $this->day == now('Asia/Riyadh')->format('Y-m-d') 
+                        && now('Asia/Riyadh')->gt($this->end_time)
+                    )
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الفائز💪</h1>
-                    @endif
-                
-                    @if($this->votes->count()!=0 && $this->votes_team_1 > $this->votes_team_2)
-                        <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">الفريق الأول 🤚</h1>
-                    @endif
-                
-                    @if($this->votes->count()!=0 && $this->votes_team_1 < $this->votes_team_2)
-                        <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">الفريق الثاني 🤚</h1>
-                    @endif
+                    
+                        @if($this->votes->count()!=0 && $this->votes_team_1 > $this->votes_team_2)
+                            <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">الفريق الأول 🤚</h1>
+                        @endif
+                    
+                        @if($this->votes->count()!=0 && $this->votes_team_1 < $this->votes_team_2)
+                            <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">الفريق الثاني 🤚</h1>
+                        @endif
 
-                    @if($this->votes->count()!=0 && $this->votes_team_1 == $this->votes_team_2)
-                    <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">تعادل 🤚</h1>
-                    @endif
-                
-                    @if($this->votes->count() == 0)
+                        @if($this->votes->count()!=0 && $this->votes_team_1 == $this->votes_team_2)
+                        <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">تعادل 🤚</h1>
+                        @endif
+                    
+                        @if($this->votes->count() == 0)
+                            <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">تعادل🤚</h1>
+                        @endif
+                    @else   
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ request('round') }}💪</h1>
-                        <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">غير متاح الآن🤚</h1>
+                        <h1 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34]">لم يبدأ التصويت بعد</h1>
                     @endif
                 </div>
             </div>
