@@ -31,7 +31,6 @@ class StoryReportController extends Controller
             $w3_number = $story->w3_number;
 
             // , compact('title', 'content')
-            // Use the logic from the 'test' route to generate and download the PDF
             $html = view('story.pdfstyle',
             compact('title', 'content' , 'user' , 'w1_name' , 'w1_email' , 'w1_number' , 'w2_name' , 'w2_email' , 'w2_number' , 'w3_name' , 'w3_email' , 'w3_number')
                 )->toArabicHTML();
@@ -53,7 +52,7 @@ class StoryReportController extends Controller
                 $headers
             );
         } catch (\Throwable $th) {
-            dd(Story::find($id));
+            abort(404);
         }
     }
 }
