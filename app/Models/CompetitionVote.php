@@ -16,16 +16,16 @@ class CompetitionVote extends Model
 
     public function getTeamAttribute($value)
     {
-        return $value == "1" ? 'الفريق الأول' : 'الفريق الثاني';
+        return $value == "1" ? 'الفريق المعارض ( الأدب )' : 'الفريق المؤيد ( السينما )';
     }
 
     public function getRoundAttribute($value)
     {
         return match($value) {
-            "1"     => "الجولة الأولي",
+            "1"     => "الجولة الأولى",
             "2"     => "الجولة الثانية",
             "3"     => "الجولة الثالثة",
-            default => "الجولة الأولي",
+            default => "الجولة الأولى",
         };
     }
 }

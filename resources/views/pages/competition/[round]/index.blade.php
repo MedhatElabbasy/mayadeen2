@@ -60,13 +60,13 @@ $vote = function ($team, $round) {
                         <div class="beep text-center relative hover:scale-95 cursor-pointer"
                             wire:click="vote(1,{{$this->round}})" x-on:click="step++">
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
-                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق الأول</span>
+                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق المعارض ( الأدب )</span>
                         </div>
 
                         <div class="beep text-center relative hover:scale-95 cursor-pointer"
                             wire:click="vote(2,{{$this->round}})" x-on:click="step++">
                             <img class="h-16 md:h-24 w-full" src="{{ asset('website/images/button.svg') }}">
-                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق الثاني</span>
+                            <span class="mt-2 absolute inset-0 flex items-center justify-center text-white text-1xl md:text-2xl font-semibold">الفريق المؤيد ( السينما )</span>
                         </div>
 
                     </div>
@@ -92,11 +92,11 @@ $vote = function ($team, $round) {
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الفائز💪</h1>
                     
                         @if($this->votes->count()!=0 && $this->votes_team_1 > $this->votes_team_2)
-                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق الأول 🤚</h2>
+                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المعارض ( الأدب ) 🤚</h2>
                         @endif
                     
                         @if($this->votes->count()!=0 && $this->votes_team_1 < $this->votes_team_2)
-                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق الثاني 🤚</h2>
+                            <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">الفريق المؤيد ( السينما ) 🤚</h2>
                         @endif
 
                         @if($this->votes->count()!=0 && $this->votes_team_1 == $this->votes_team_2)
@@ -110,11 +110,11 @@ $vote = function ($team, $round) {
                         <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">الأصوات</h2>
 
                         <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
-                            الفريق الأول : {{ $this->votes_team_1 }}
+                            الفريق المعارض ( الأدب ) : {{ $this->votes_team_1 }}
                         </h3>
 
                         <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
-                            الفريق الثاني : {{ $this->votes_team_2 }}
+                            الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}
                         </h3>
                     @else   
                         <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">الجولة {{ request('round') }}💪</h1>

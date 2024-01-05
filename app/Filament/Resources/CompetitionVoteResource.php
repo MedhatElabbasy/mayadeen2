@@ -37,8 +37,8 @@ class CompetitionVoteResource extends Resource
                     Forms\Components\Select::make('team')
                     ->label('الفريق')
                     ->options([
-                        '1' => 'الفريق الأول',
-                        '2' => 'الفريق الثاني',
+                        '1' => 'الفريق المعارض ( الأدب )',
+                        '2' => 'الفريق المؤيد ( السينما )',
                     ])
                     ->required()
                     ->rules('required', 'in:1,2'),
@@ -46,7 +46,7 @@ class CompetitionVoteResource extends Resource
                     Forms\Components\Select::make('round')
                     ->label('الجولة')
                     ->options([
-                        '1' => 'الجولة الأول',
+                        '1' => 'الجولة الأولى',
                         '2' => 'الجولة الثاني',
                         '3' => 'الجولة الثالثة',
                     ])
@@ -74,14 +74,14 @@ class CompetitionVoteResource extends Resource
                 Tables\Filters\SelectFilter::make('team')
                 ->label('الفريق')
                 ->options([
-                    "1" => 'الفريق الأول',
-                    "2" => 'الفريق الثاني',
+                    "1" => 'الفريق المعارض ( الأدب )',
+                    "2" => 'الفريق المؤيد ( السينما )',
                 ])
                 ->attribute('team'),
                 Tables\Filters\SelectFilter::make('round')
                 ->label('الجولة')
                 ->options([
-                    "1" => 'الجولة الأولي',
+                    "1" => 'الجولة الأولى',
                     "2" => 'الجولة الثانية',
                     "3" => 'الجولة الثالثة',
                 ])

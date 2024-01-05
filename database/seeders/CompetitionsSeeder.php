@@ -25,13 +25,13 @@ class CompetitionsSeeder extends Seeder
                 "key"   => "round_1_start_time",
                 "value" => null,
                 "type"  => "time",
-                'label' => 'وقت بدء الجولة الأولي',
+                'label' => 'وقت بدء الجولة الأولى',
             ],
             [
                 "key"   => "round_1_end_time",
                 "value" => null,
                 "type"  => "time",
-                'label' => 'وقت انتهاء الجولة الأولي',
+                'label' => 'وقت انتهاء الجولة الأولى',
             ],
             [
                 "key"   => "round_2_start_time",
