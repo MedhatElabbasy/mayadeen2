@@ -58,7 +58,7 @@ $nowDates = computed(function () {
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($this->nowDates as $item)
+                                @foreach ($this->dates as $item)
                                     <tr class="text-sm md:text-lg text-black bg-[#f1e1c6] text-center">
                                         <td @if($item->is_break) class="border-2 border-black p-2 bg-[#f4ceb0]" @else class="border-2 border-black p-2" @endif>
                                             {{ !$item->is_break ? $item->owner : 'استراحة' }}
@@ -78,7 +78,7 @@ $nowDates = computed(function () {
                 </div>
 
                 <div wire:ignore x-data="{ currentDate: 0 }">
-                    @foreach ($this->dates as $item)
+                    @foreach ($this->nowDates as $item)
                         <div x-data="{
                             showContent: false,
                             countDownDate: new Date('{{ now('Asia/Riyadh')->format('Y-m-d') }}T{{$item->start_time}}').getTime(),
