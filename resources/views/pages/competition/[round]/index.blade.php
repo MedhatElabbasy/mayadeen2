@@ -84,6 +84,15 @@ $vote = function ($team, $round) {
             <div class="flex flex-col items-center my-8 md:my-4 justify-center animate__animated animate__backInDown">
                 <div class="container mx-auto px-4 justify">
                     <h1 class="text-center text-2xl md:text-5xl font-bold my-8 text-[#e34e34]">تم إرسال تصويتك </h1>
+                    <h2 class="text-center text-1xl md:text-4xl font-bold my-8 text-[#e34e34] mt-12">إجمالي الأصوات</h2>
+
+                    <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
+                        الفريق المعارض ( الأدب ) : {{ $this->votes_team_1 }}
+                    </h3>
+
+                    <h3 class="text-center text-1xl md:text-4xl font-bold my-8 text-black">
+                        الفريق المؤيد ( السينما ) : {{ $this->votes_team_2 }}
+                    </h3>
                 </div>
             </div>
         </div>
