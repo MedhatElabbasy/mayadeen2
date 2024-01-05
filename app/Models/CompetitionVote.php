@@ -21,6 +21,11 @@ class CompetitionVote extends Model
 
     public function getRoundAttribute($value)
     {
-        return $value == 1 ? 'الجولة الأول' : 'الجولة الثاني';
+        return match($value) {
+            1       => "الجولة الأولي",
+            2       => "الجولة الثانية",
+            3       => "الجولة الثالثة",
+            default => "الجولة الأولي",
+        };
     }
 }
