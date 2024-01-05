@@ -6,12 +6,11 @@ use App\Models\Competition;
 use App\Models\CompetitionVote;
 
 $competition = Competition::get();
-$votes = CompetitionVote::where('round', request('round'));
 
 state([
-    'votes'        => $votes->get(),
-    'votes_team_1' => $votes->where('team', 1)->count(),
-    'votes_team_2' => $votes->where('team', 2)->count(),
+    'votes'        => CompetitionVote::where('round', request('round'))->get(),
+    'votes_team_1' => CompetitionVote::where('round', request('round'))->where('team', 1)->count(),
+    'votes_team_2' => CompetitionVote::where('round', request('round'))->where('team', 2)->count(),
     'round'        => request('round'),
     'day'          => $competition->where('key', 'day')->first()->value,
     'start_time'   => $competition->where('key', 'round_'.request('round').'_start_time')->first()?->value,
