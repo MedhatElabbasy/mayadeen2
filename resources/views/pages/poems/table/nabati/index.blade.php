@@ -77,7 +77,7 @@ $nowDates = computed(function () {
 
                 </div>
 
-{{--                 <div wire:ignore x-data="{ currentDate: 0 }">
+               <div wire:ignore x-data="{ currentDate: 0 }">
                     @foreach ($this->nowDates as $item)
                         <div x-data="{
                             showContent: false,
@@ -119,7 +119,7 @@ $nowDates = computed(function () {
                             <p x-text="formatCountdown" class="mt-2 rounded-lg py-1 px-2 text-2xl bg-[#ec6646] text-white font-bold"></p>
                         </div>
                     @endforeach
-                </div> --}}
+                </div> 
 
                 <div class="flex flex-col justify-center items-center px-4">
                     @if(setting('shareYourPoemQrCode'))
