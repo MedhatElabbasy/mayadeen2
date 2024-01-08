@@ -9,13 +9,14 @@ use App\Models\Challenge;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use App\Filament\Resources\ChallengeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ChallengeResource\RelationManagers;
-use pxlrbt\FilamentExcel\Columns\Column;
-use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use App\Filament\Resources\ChallengeResource\RelationManagers;
 
 class ChallengeResource extends Resource
 {
@@ -144,12 +145,12 @@ class ChallengeResource extends Resource
         return false;
     }
 
-    public static function canEdit(): bool
+    public static function canEdit(Model $record): bool
     {
         return false;
     }
 
-    public static function canDelete(): bool
+    public static function canDelete(Model $record): bool
     {
         return false;
     }
