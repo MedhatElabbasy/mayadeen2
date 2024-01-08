@@ -67,8 +67,8 @@ class AdminPanelProvider extends PanelProvider
             ->brandName(setting('siteName'))
             ->favicon(asset('images/logo.png'))
             ->plugins([
-                FilamentBackgroundsPlugin::make()
-                ->showAttribution(false),
+                /* FilamentBackgroundsPlugin::make()
+                ->showAttribution(false), */
 
                 StickyHeaderPlugin::make()
                 ->floating()
