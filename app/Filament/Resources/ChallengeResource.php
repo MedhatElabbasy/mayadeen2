@@ -138,4 +138,19 @@ class ChallengeResource extends Resource
             'edit' => Pages\EditChallenge::route('/{record}/edit'),
         ];
     }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(): bool
+    {
+        return false;
+    }
 }
