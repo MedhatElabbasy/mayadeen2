@@ -140,6 +140,7 @@ class ChallengeResource extends Resource
         ];
     }
 
+    /*
     public static function canCreate(): bool
     {
         return false;
@@ -154,4 +155,5 @@ class ChallengeResource extends Resource
     {
         return false;
     }
+    */
 }
