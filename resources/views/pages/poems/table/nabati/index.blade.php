@@ -7,7 +7,7 @@ $days = DatesOfPoem::select('date')->where('type', 'nabati')->distinct()->orderB
 
 state([
     'days' => $days,
-    'currentDay' => $days->skip(4)->first(),
+    'currentDay' => $days->skip(5)->first(),
 ]);
 
 $dates = computed(function () {
