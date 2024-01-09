@@ -2,19 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VipVisitorResource\Pages;
-use App\Filament\Resources\VipVisitorResource\RelationManagers;
-use App\Models\VipVisitor;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\VipVisitor;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
 use pxlrbt\FilamentExcel\Columns\Column;
+use Illuminate\Database\Eloquent\Builder;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\VipVisitorResource\Pages;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use App\Filament\Resources\VipVisitorResource\RelationManagers;
 
 class VipVisitorResource extends Resource
 {
@@ -143,5 +144,25 @@ class VipVisitorResource extends Resource
             'create' => Pages\CreateVipVisitor::route('/create'),
             'edit' => Pages\EditVipVisitor::route('/{record}/edit'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin', 'employee']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 }

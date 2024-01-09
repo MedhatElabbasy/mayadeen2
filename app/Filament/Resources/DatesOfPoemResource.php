@@ -9,13 +9,14 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\DatesOfPoem;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DatesOfPoemResource\Pages;
-use App\Filament\Resources\DatesOfPoemResource\RelationManagers;
-use pxlrbt\FilamentExcel\Columns\Column;
-use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use App\Filament\Resources\DatesOfPoemResource\RelationManagers;
 
 class DatesOfPoemResource extends Resource
 {
@@ -181,5 +182,25 @@ class DatesOfPoemResource extends Resource
             'create' => Pages\CreateDatesOfPoem::route('/create'),
             'edit' => Pages\EditDatesOfPoem::route('/{record}/edit'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 }

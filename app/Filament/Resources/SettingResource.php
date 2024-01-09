@@ -8,11 +8,12 @@ use App\Models\Setting;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SettingResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SettingResource\RelationManagers;
-use Filament\Forms\Components\TextInput;
 
 class SettingResource extends Resource
 {
@@ -25,11 +26,6 @@ class SettingResource extends Resource
     protected static ?string $pluralLabel = 'إعدادات';
 
     protected static ?string $modelLabel = 'إعداد';
-
-    public static function canCreate(): bool
-    {
-        return false;
-    }
 
     public static function form(Form $form): Form
     {
@@ -98,5 +94,25 @@ class SettingResource extends Resource
         return [
             'index' => Pages\ManageSettings::route('/'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 }
