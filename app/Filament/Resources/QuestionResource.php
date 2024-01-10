@@ -11,13 +11,14 @@ use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use App\Tables\Columns\CountColumn;
+use Illuminate\Database\Eloquent\Model;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use App\Filament\Resources\QuestionResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\QuestionResource\RelationManagers;
-use pxlrbt\FilamentExcel\Columns\Column;
-use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use App\Filament\Resources\QuestionResource\RelationManagers;
 
 class QuestionResource extends Resource
 {
@@ -26,7 +27,7 @@ class QuestionResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
     protected static ?string $navigationGroup = 'تحدي نفسك';
-    
+
     protected static ?string $navigationLabel = 'الأسئلة';
 
     protected static ?string $pluralLabel = 'أسئلة';
@@ -65,7 +66,7 @@ class QuestionResource extends Resource
                             ->maxLength(255)
                             ->columnSpanFull(),
                         ]),
-        
+
                         Forms\Components\Card::make("الإجابة")
                         ->schema([
                             Forms\Components\Grid::make(1)
@@ -82,7 +83,7 @@ class QuestionResource extends Resource
                                 ->maxLength(255)
                                 ->required(fn (Get $get): bool => !$get('isCorrect'))
                                 ->visible(fn (Get $get): bool => !$get('isCorrect')),
-                                
+
                                 Forms\Components\FileUpload::make('wrongImage')
                                 ->label('صورة تلميح الاجابة الخاطئة')
                                 ->image()
@@ -114,7 +115,7 @@ class QuestionResource extends Resource
 
                 CountColumn::make('answers')
                 ->label('الإجابات'),
-                    
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')
                     ->dateTime('M j, Y')
@@ -173,10 +174,10 @@ class QuestionResource extends Resource
                             true => 'success',
                             false => 'danger',
                         }),
-                        
+
                         \Filament\Infolists\Components\TextEntry::make('wrongText')
                         ->label('نص تلميح الاجابة الخاطئة'),
-                        
+
                         \Filament\Infolists\Components\ImageEntry::make('wrongImage')
                         ->label('صورة تلميح الاجابة الخاطئة')
                         ->size(500),
@@ -210,5 +211,25 @@ class QuestionResource extends Resource
             'view'   => Pages\ViewQuestion::route('/{record}'),
             'edit'   => Pages\EditQuestion::route('/{record}/edit'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 }

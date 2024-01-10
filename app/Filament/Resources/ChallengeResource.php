@@ -133,27 +133,30 @@ class ChallengeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListChallenges::route('/'),
+            'index'  => Pages\ListChallenges::route('/'),
             'create' => Pages\CreateChallenge::route('/create'),
-            'view' => Pages\ViewChallenge::route('/{record}'),
-            'edit' => Pages\EditChallenge::route('/{record}/edit'),
+            'view'   => Pages\ViewChallenge::route('/{record}'),
+            'edit'   => Pages\EditChallenge::route('/{record}/edit'),
         ];
     }
 
-    /*
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin', 'employee']);
+    }
+
     public static function canCreate(): bool
     {
-        return false;
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 
     public static function canEdit(Model $record): bool
     {
-        return false;
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 
     public static function canDelete(Model $record): bool
     {
-        return false;
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
-    */
 }

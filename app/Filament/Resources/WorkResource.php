@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
 use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
@@ -47,7 +48,7 @@ class WorkResource extends Resource
                             ->minLength(3)
                             ->maxLength(255)
                             ->rules('required|min:3|max:255'),
-        
+
                         Forms\Components\RichEditor::make('description')
                             ->label('وصف')
                             ->required()
@@ -55,7 +56,7 @@ class WorkResource extends Resource
                             ->minLength(10)
                             ->rules('required|string'),
                     ]),
-    
+
                     Forms\Components\Grid::make(1)
                     ->schema([
                         Forms\Components\FileUpload::make('image')
@@ -81,7 +82,7 @@ class WorkResource extends Resource
 
                 Tables\Columns\ImageColumn::make('image')
                     ->label('الصورة'),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاريخ الإضافة')
                     ->dateTime('M j, Y')
@@ -113,7 +114,7 @@ class WorkResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -158,5 +159,25 @@ class WorkResource extends Resource
             'view' => Pages\ViewWork::route('/{record}'),
             'edit' => Pages\EditWork::route('/{record}/edit'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin']);
     }
 }
