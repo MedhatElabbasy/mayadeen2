@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\SurveyResource\Pages;
 
-use App\Filament\Resources\SurveyResource;
 use Filament\Actions;
+use Filament\Actions\Action;
+use App\Exports\SurveysExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\SurveyResource;
 
 class ListSurveys extends ListRecords
 {
@@ -14,6 +17,12 @@ class ListSurveys extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Action::make('export')
+            ->label('تصدير الكل')
+            ->requiresConfirmation()
+            ->action(function () {
+               return Excel::download(new SurveysExport, 'surveys.xlsx');
+            }),
         ];
     }
 }
