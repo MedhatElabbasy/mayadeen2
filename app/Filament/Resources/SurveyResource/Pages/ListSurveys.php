@@ -17,14 +17,12 @@ class ListSurveys extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
-            /*
             Action::make('export')
             ->label('تصدير الكل')
             ->requiresConfirmation()
             ->action(function () {
                return Excel::download(new SurveysExport, 'surveys.xlsx');
             }),
-            */
         ];
     }
 }
