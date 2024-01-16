@@ -16,12 +16,14 @@ class ManageCompetitionVotes extends ManageRecords
     {
         return [
             Actions\CreateAction::make(),
+            /*
             Action::make('reset')
             ->label('إعادة المسابقة')
             ->requiresConfirmation()
             ->action(function () {
                 CompetitionVote::truncate();
             }),
+            */
         ];
     }
 }
