@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('email');
+            $table->boolean('is_vip')->default(false);
             $table->string('image');
             $table->timestamps();
         });

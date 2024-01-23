@@ -1,7 +1,7 @@
 <?php
 
 use function Livewire\Volt\{rules, state, usesFileUploads};
-use App\Models\VipVisitor;
+use App\Models\Visitor;
 
 usesFileUploads();
 
@@ -26,11 +26,12 @@ $submit = function () {
     $image_name = time() . '.' . $this->image->getFilename();
     $image = $this->image->storeAs('/public/', $image_name);
 
-    VipVisitor::create([
-        'name' => $this->name,
-        'email' => $this->email,
-        'phone' => $this->phone,
-        'image' => $image_name,
+    Visitor::create([
+        'name'   => $this->name,
+        'email'  => $this->email,
+        'phone'  => $this->phone,
+        'is_vip' => true,
+        'image'  => $image_name,
     ]);
 
     $this->completed = true;

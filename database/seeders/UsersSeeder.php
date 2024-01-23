@@ -34,6 +34,13 @@ class UsersSeeder extends Seeder
             'email_verified_at' => now(),
         ];
 
+        $visitorsSupervisor = [
+            'name' => 'visitorsSupervisor',
+            'email' => 'visitorssupervisor@email.com',
+            'password' => 'visitorsSupervisor',
+            'email_verified_at' => now(),
+        ];
+
         $superAdmin = User::create($superAdmin);
         $superAdmin->assignRole('superAdmin');
 
@@ -42,5 +49,9 @@ class UsersSeeder extends Seeder
 
         $supervisor = User::create($supervisor);
         $supervisor->assignRole('supervisor');
+
+        
+        $visitorsSupervisor = User::create($visitorsSupervisor);
+        $visitorsSupervisor->assignRole('visitorsSupervisor');
     }
 }

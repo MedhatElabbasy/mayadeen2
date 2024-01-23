@@ -13,6 +13,7 @@ class Visitor extends Model
         'name',
         'phone',
         'email',
+        'is_vip',
         'image',
     ];
 }

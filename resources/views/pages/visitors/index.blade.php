@@ -27,7 +27,7 @@ $submit = function () {
     $image = $this->image->storeAs('/public/', $image_name);
 
     Visitor::create([
-        'name' => $this->name,
+        'name'  => $this->name,
         'email' => $this->email,
         'phone' => $this->phone,
         'image' => $image_name,

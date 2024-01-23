@@ -8,6 +8,7 @@ use App\Models\Visitor;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Model;
 use pxlrbt\FilamentExcel\Columns\Column;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,11 +26,11 @@ class VisitorResource extends Resource
 
     protected static ?string $navigationGroup = 'الزوار';
 
-    protected static ?string $navigationLabel = 'خريطة مرسول';
+    protected static ?string $navigationLabel = 'الخرائط';
 
-    protected static ?string $pluralLabel = 'خريطة مرسول';
+    protected static ?string $pluralLabel = 'الخرائط';
 
-    protected static ?string $modelLabel = 'خريطة مرسول';
+    protected static ?string $modelLabel = 'للخريطة';
 
     public static function form(Form $form): Form
     {
@@ -62,6 +63,12 @@ class VisitorResource extends Resource
                         ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
                         ->rules('required'),
 
+                    Forms\Components\Toggle::make('is_vip')
+                    ->label('خريطة 35 ألف')
+                    ->inline(false)
+                    ->required()
+                    ->rules('required'),
+
                     Forms\Components\FileUpload::make('image')
                         ->label('الصورة')
                         ->image()
@@ -69,6 +76,7 @@ class VisitorResource extends Resource
                         ->appendFiles()
                         ->openable()
                         ->downloadable()
+                        ->columnSpanFull()
                         ->acceptedFileTypes(['image/*'])
                         ->required(),
                 ])
@@ -92,9 +100,9 @@ class VisitorResource extends Resource
                 ->label('الجوال')
                 ->searchable(),
 
-                Tables\Columns\ImageColumn::make('image')
-                ->circular()
-                ->label('الصورة'),
+                Tables\Columns\IconColumn::make('is_vip')
+                ->label('خريطة 35 ألف')
+                ->boolean(),
 
                 Tables\Columns\TextColumn::make('created_at')
                 ->label('تاريخ الإضافة')
@@ -109,7 +117,13 @@ class VisitorResource extends Resource
                 ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('is_vip')
+                ->label('الخريطة')
+                ->options([
+                    false => 'خريطة مرسول',
+                    true  => 'خريطة 35 ألف',
+                ])
+                ->attribute('is_vip'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -147,7 +161,7 @@ class VisitorResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->hasAnyRole(['superAdmin', 'admin', 'employee']);
+        return auth()->user()->hasAnyRole(['superAdmin', 'admin', 'employee', 'visitorsSupervisor']);
     }
 
     public static function canCreate(): bool

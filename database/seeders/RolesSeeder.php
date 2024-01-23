@@ -17,7 +17,8 @@ class RolesSeeder extends Seeder
             ['name' => 'superAdmin'],
             ['name' => 'admin'],
             ['name' => 'supervisor'],
-            ['name' => 'employee']
+            ['name' => 'employee'],
+            ['name' => 'visitorsSupervisor'],
         ] as $role) {
             Role::create($role);
         }
