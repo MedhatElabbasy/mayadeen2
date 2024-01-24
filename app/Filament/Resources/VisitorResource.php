@@ -126,6 +126,7 @@ class VisitorResource extends Resource
                 ->attribute('is_vip'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
