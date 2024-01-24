@@ -63,7 +63,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->spa()
+           // ->spa()
             ->brandName(setting('siteName'))
             ->favicon(asset('images/logo.png'))
             ->plugins([
